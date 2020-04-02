@@ -38,12 +38,6 @@
             this.ribbonOrbRecentItem3 = new System.Windows.Forms.RibbonOrbRecentItem();
             this.ribbonOrbRecentItem4 = new System.Windows.Forms.RibbonOrbRecentItem();
             this.ribbonButton1 = new System.Windows.Forms.RibbonButton();
-            this.experienceTab = new System.Windows.Forms.RibbonTab();
-            this.loadAnimations = new System.Windows.Forms.RibbonTab();
-            this.RoutesTab = new System.Windows.Forms.RibbonTab();
-            this.ribbonPanel1 = new System.Windows.Forms.RibbonPanel();
-            this.ribbonTab1 = new System.Windows.Forms.RibbonTab();
-            this.ribbonButton2 = new System.Windows.Forms.RibbonButton();
             this.ribbonButtonList1 = new System.Windows.Forms.RibbonButtonList();
             this.ribbonButtonList2 = new System.Windows.Forms.RibbonButtonList();
             this.ribbonButton3 = new System.Windows.Forms.RibbonButton();
@@ -53,18 +47,24 @@
             this.ribbonButtonList5 = new System.Windows.Forms.RibbonButtonList();
             this.ribbonButtonList6 = new System.Windows.Forms.RibbonButtonList();
             this.ribbonItemGroup1 = new System.Windows.Forms.RibbonItemGroup();
-            this.button1 = new System.Windows.Forms.Button();
+            this.ribbonButton2 = new System.Windows.Forms.RibbonButton();
+            this.experienceTab = new System.Windows.Forms.RibbonTab();
             this.newExperiencePanel = new System.Windows.Forms.RibbonPanel();
-            this.viewActiveUsers = new System.Windows.Forms.RibbonTab();
             this.ribbonButton4 = new System.Windows.Forms.RibbonButton();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.newRoutePanel = new System.Windows.Forms.RibbonPanel();
-            this.loadRoutePanel = new System.Windows.Forms.RibbonPanel();
+            this.loadExperiencePanel = new System.Windows.Forms.RibbonPanel();
+            this.loadAnimations = new System.Windows.Forms.RibbonTab();
             this.newAnimationPanel = new System.Windows.Forms.RibbonPanel();
             this.loadAnimationPanel = new System.Windows.Forms.RibbonPanel();
-            this.loadExperiencePanel = new System.Windows.Forms.RibbonPanel();
-            this.viewExistingUsers = new System.Windows.Forms.RibbonPanel();
-            this.ribbonPanel2 = new System.Windows.Forms.RibbonPanel();
+            this.RoutesTab = new System.Windows.Forms.RibbonTab();
+            this.newRoutePanel = new System.Windows.Forms.RibbonPanel();
+            this.loadRoutePanel = new System.Windows.Forms.RibbonPanel();
+            this.viewActiveUsers = new System.Windows.Forms.RibbonTab();
+            this.createNewUser = new System.Windows.Forms.RibbonPanel();
+            this.viewUsers = new System.Windows.Forms.RibbonPanel();
+            this.ribbonPanel1 = new System.Windows.Forms.RibbonPanel();
+            this.ribbonTab1 = new System.Windows.Forms.RibbonTab();
+            this.button1 = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -181,47 +181,6 @@
             this.ribbonButton1.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton1.SmallImage")));
             this.ribbonButton1.Text = "ribbonButton1";
             // 
-            // experienceTab
-            // 
-            this.experienceTab.Name = "experienceTab";
-            this.experienceTab.Panels.Add(this.newExperiencePanel);
-            this.experienceTab.Panels.Add(this.loadExperiencePanel);
-            this.experienceTab.Text = "Experience";
-            // 
-            // loadAnimations
-            // 
-            this.loadAnimations.Name = "loadAnimations";
-            this.loadAnimations.Panels.Add(this.newAnimationPanel);
-            this.loadAnimations.Panels.Add(this.loadAnimationPanel);
-            this.loadAnimations.Text = "Load Animations";
-            // 
-            // RoutesTab
-            // 
-            this.RoutesTab.Name = "RoutesTab";
-            this.RoutesTab.Panels.Add(this.newRoutePanel);
-            this.RoutesTab.Panels.Add(this.loadRoutePanel);
-            this.RoutesTab.Text = "Routes";
-            // 
-            // ribbonPanel1
-            // 
-            this.ribbonPanel1.Name = "ribbonPanel1";
-            this.ribbonPanel1.Text = "ribbonPanel1";
-            // 
-            // ribbonTab1
-            // 
-            this.ribbonTab1.Name = "ribbonTab1";
-            this.ribbonTab1.Panels.Add(this.ribbonPanel1);
-            this.ribbonTab1.Text = "Experience";
-            // 
-            // ribbonButton2
-            // 
-            this.ribbonButton2.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.Image")));
-            this.ribbonButton2.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.LargeImage")));
-            this.ribbonButton2.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Compact;
-            this.ribbonButton2.Name = "ribbonButton2";
-            this.ribbonButton2.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.SmallImage")));
-            this.ribbonButton2.Text = "ribbonButton2";
-            // 
             // ribbonButtonList1
             // 
             this.ribbonButtonList1.ButtonsSizeMode = System.Windows.Forms.RibbonElementSizeMode.Large;
@@ -289,27 +248,27 @@
             this.ribbonItemGroup1.Name = "ribbonItemGroup1";
             this.ribbonItemGroup1.Text = "ribbonItemGroup1";
             // 
-            // button1
+            // ribbonButton2
             // 
-            this.button1.Location = new System.Drawing.Point(363, 218);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.ribbonButton2.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.Image")));
+            this.ribbonButton2.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.LargeImage")));
+            this.ribbonButton2.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Compact;
+            this.ribbonButton2.Name = "ribbonButton2";
+            this.ribbonButton2.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.SmallImage")));
+            this.ribbonButton2.Text = "ribbonButton2";
+            // 
+            // experienceTab
+            // 
+            this.experienceTab.Name = "experienceTab";
+            this.experienceTab.Panels.Add(this.newExperiencePanel);
+            this.experienceTab.Panels.Add(this.loadExperiencePanel);
+            this.experienceTab.Text = "Experience";
             // 
             // newExperiencePanel
             // 
             this.newExperiencePanel.Items.Add(this.ribbonButton4);
             this.newExperiencePanel.Name = "newExperiencePanel";
             this.newExperiencePanel.Text = "New Experience";
-            // 
-            // viewActiveUsers
-            // 
-            this.viewActiveUsers.Name = "viewActiveUsers";
-            this.viewActiveUsers.Panels.Add(this.viewExistingUsers);
-            this.viewActiveUsers.Panels.Add(this.ribbonPanel2);
-            this.viewActiveUsers.Text = "Users";
             // 
             // ribbonButton4
             // 
@@ -322,24 +281,17 @@
             this.ribbonButton4.Name = "ribbonButton4";
             this.ribbonButton4.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton4.SmallImage")));
             // 
-            // tabControl1
+            // loadExperiencePanel
             // 
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 173);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(800, 277);
-            this.tabControl1.TabIndex = 3;
+            this.loadExperiencePanel.Name = "loadExperiencePanel";
+            this.loadExperiencePanel.Text = "Load Existing";
             // 
-            // newRoutePanel
+            // loadAnimations
             // 
-            this.newRoutePanel.Name = "newRoutePanel";
-            this.newRoutePanel.Text = "Create New";
-            // 
-            // loadRoutePanel
-            // 
-            this.loadRoutePanel.Name = "loadRoutePanel";
-            this.loadRoutePanel.Text = "Load Existing";
+            this.loadAnimations.Name = "loadAnimations";
+            this.loadAnimations.Panels.Add(this.newAnimationPanel);
+            this.loadAnimations.Panels.Add(this.loadAnimationPanel);
+            this.loadAnimations.Text = "Load Animations";
             // 
             // newAnimationPanel
             // 
@@ -351,20 +303,68 @@
             this.loadAnimationPanel.Name = "loadAnimationPanel";
             this.loadAnimationPanel.Text = "Load Existing";
             // 
-            // loadExperiencePanel
+            // RoutesTab
             // 
-            this.loadExperiencePanel.Name = "loadExperiencePanel";
-            this.loadExperiencePanel.Text = "Load Existing";
+            this.RoutesTab.Name = "RoutesTab";
+            this.RoutesTab.Panels.Add(this.newRoutePanel);
+            this.RoutesTab.Panels.Add(this.loadRoutePanel);
+            this.RoutesTab.Text = "Routes";
             // 
-            // viewExistingUsers
+            // newRoutePanel
             // 
-            this.viewExistingUsers.Name = "viewExistingUsers";
-            this.viewExistingUsers.Text = "View Existing";
+            this.newRoutePanel.Name = "newRoutePanel";
+            this.newRoutePanel.Text = "Create New";
             // 
-            // ribbonPanel2
+            // loadRoutePanel
             // 
-            this.ribbonPanel2.Name = "ribbonPanel2";
-            this.ribbonPanel2.Text = "ribbonPanel2";
+            this.loadRoutePanel.Name = "loadRoutePanel";
+            this.loadRoutePanel.Text = "Load Existing";
+            // 
+            // viewActiveUsers
+            // 
+            this.viewActiveUsers.Name = "viewActiveUsers";
+            this.viewActiveUsers.Panels.Add(this.createNewUser);
+            this.viewActiveUsers.Panels.Add(this.viewUsers);
+            this.viewActiveUsers.Text = "Users";
+            // 
+            // createNewUser
+            // 
+            this.createNewUser.Name = "createNewUser";
+            this.createNewUser.Text = "Create New";
+            // 
+            // viewUsers
+            // 
+            this.viewUsers.Name = "viewUsers";
+            this.viewUsers.Text = "View List";
+            // 
+            // ribbonPanel1
+            // 
+            this.ribbonPanel1.Name = "ribbonPanel1";
+            this.ribbonPanel1.Text = "ribbonPanel1";
+            // 
+            // ribbonTab1
+            // 
+            this.ribbonTab1.Name = "ribbonTab1";
+            this.ribbonTab1.Panels.Add(this.ribbonPanel1);
+            this.ribbonTab1.Text = "Experience";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(363, 218);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 173);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(800, 277);
+            this.tabControl1.TabIndex = 3;
             // 
             // Form1
             // 
@@ -419,8 +419,8 @@
         private System.Windows.Forms.RibbonPanel loadAnimationPanel;
         public System.Windows.Forms.RibbonButton ribbonButton4;
         private System.Windows.Forms.RibbonPanel loadExperiencePanel;
-        private System.Windows.Forms.RibbonPanel viewExistingUsers;
-        private System.Windows.Forms.RibbonPanel ribbonPanel2;
+        private System.Windows.Forms.RibbonPanel createNewUser;
+        private System.Windows.Forms.RibbonPanel viewUsers;
     }
 }
 
