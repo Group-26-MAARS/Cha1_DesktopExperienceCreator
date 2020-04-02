@@ -63,8 +63,27 @@
             this.viewUsers = new System.Windows.Forms.RibbonPanel();
             this.ribbonPanel1 = new System.Windows.Forms.RibbonPanel();
             this.ribbonTab1 = new System.Windows.Forms.RibbonTab();
-            this.button1 = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.newRouteTable = new System.Windows.Forms.DataGridView();
+            this.routeAnchorsForRemovalChkboxesCol = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.NavPointNameColumnFromNewRoute = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.anchorDataFromNewRoute = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.anchorLocationFromNewRoute = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.newRouteAnchorExpiration = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.anchorDescriptionFromNewRoute = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.availableNavPointsTable = new System.Windows.Forms.DataGridView();
+            this.addBtns = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.availableNavPointsNavPointName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.anchorDataFromAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.anchorLocationFromAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.anchorExpirationFromAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.anchorDescriptionFromAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.newRouteTableLabel = new System.Windows.Forms.Label();
+            this.availableNavPointsTableLabel = new System.Windows.Forms.Label();
+            this.addAnchorToNewRouteBtn = new System.Windows.Forms.Button();
+            this.removeAnchorFromNewRouteBtn = new System.Windows.Forms.Button();
+            this.saveNewRouteBtn = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.newRouteTable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.availableNavPointsTable)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -72,7 +91,7 @@
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(800, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1079, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -104,7 +123,7 @@
             this.ribbon1.QuickAccessToolbar.Items.Add(this.ribbonButton1);
             this.ribbon1.QuickAccessToolbar.Items.Add(this.ribbonButton2);
             this.ribbon1.RibbonTabFont = new System.Drawing.Font("Trebuchet MS", 9F);
-            this.ribbon1.Size = new System.Drawing.Size(800, 148);
+            this.ribbon1.Size = new System.Drawing.Size(1079, 148);
             this.ribbon1.TabIndex = 1;
             this.ribbon1.Tabs.Add(this.experienceTab);
             this.ribbon1.Tabs.Add(this.loadAnimations);
@@ -309,11 +328,13 @@
             this.RoutesTab.Panels.Add(this.newRoutePanel);
             this.RoutesTab.Panels.Add(this.loadRoutePanel);
             this.RoutesTab.Text = "Routes";
+            this.RoutesTab.ActiveChanged += new System.EventHandler(this.RoutesTab_ActiveChanged);
             // 
             // newRoutePanel
             // 
             this.newRoutePanel.Name = "newRoutePanel";
             this.newRoutePanel.Text = "Create New";
+            this.newRoutePanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.newRoutePanel_MouseUp);
             // 
             // loadRoutePanel
             // 
@@ -326,6 +347,7 @@
             this.viewActiveUsers.Panels.Add(this.createNewUser);
             this.viewActiveUsers.Panels.Add(this.viewUsers);
             this.viewActiveUsers.Text = "Users";
+            this.viewActiveUsers.ActiveChanged += new System.EventHandler(this.viewActiveUsers_ActiveChanged);
             // 
             // createNewUser
             // 
@@ -348,36 +370,229 @@
             this.ribbonTab1.Panels.Add(this.ribbonPanel1);
             this.ribbonTab1.Text = "Experience";
             // 
-            // button1
+            // newRouteTable
             // 
-            this.button1.Location = new System.Drawing.Point(363, 218);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.newRouteTable.AllowUserToAddRows = false;
+            this.newRouteTable.AllowUserToDeleteRows = false;
+            this.newRouteTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.newRouteTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.routeAnchorsForRemovalChkboxesCol,
+            this.NavPointNameColumnFromNewRoute,
+            this.anchorDataFromNewRoute,
+            this.anchorLocationFromNewRoute,
+            this.newRouteAnchorExpiration,
+            this.anchorDescriptionFromNewRoute});
+            this.newRouteTable.Location = new System.Drawing.Point(33, 218);
+            this.newRouteTable.Name = "newRouteTable";
+            this.newRouteTable.ReadOnly = true;
+            this.newRouteTable.RowHeadersWidth = 51;
+            this.newRouteTable.RowTemplate.Height = 24;
+            this.newRouteTable.Size = new System.Drawing.Size(555, 256);
+            this.newRouteTable.TabIndex = 3;
+            this.newRouteTable.Visible = false;
+            this.newRouteTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // tabControl1
+            // routeAnchorsForRemovalChkboxesCol
             // 
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 173);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(800, 277);
-            this.tabControl1.TabIndex = 3;
+            this.routeAnchorsForRemovalChkboxesCol.HeaderText = "";
+            this.routeAnchorsForRemovalChkboxesCol.MinimumWidth = 6;
+            this.routeAnchorsForRemovalChkboxesCol.Name = "routeAnchorsForRemovalChkboxesCol";
+            this.routeAnchorsForRemovalChkboxesCol.ReadOnly = true;
+            this.routeAnchorsForRemovalChkboxesCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.routeAnchorsForRemovalChkboxesCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.routeAnchorsForRemovalChkboxesCol.Width = 125;
+            // 
+            // NavPointNameColumnFromNewRoute
+            // 
+            this.NavPointNameColumnFromNewRoute.HeaderText = "Nav Point";
+            this.NavPointNameColumnFromNewRoute.MaxInputLength = 100;
+            this.NavPointNameColumnFromNewRoute.MinimumWidth = 6;
+            this.NavPointNameColumnFromNewRoute.Name = "NavPointNameColumnFromNewRoute";
+            this.NavPointNameColumnFromNewRoute.ReadOnly = true;
+            this.NavPointNameColumnFromNewRoute.Width = 125;
+            // 
+            // anchorDataFromNewRoute
+            // 
+            this.anchorDataFromNewRoute.FillWeight = 1F;
+            this.anchorDataFromNewRoute.HeaderText = "";
+            this.anchorDataFromNewRoute.MinimumWidth = 6;
+            this.anchorDataFromNewRoute.Name = "anchorDataFromNewRoute";
+            this.anchorDataFromNewRoute.ReadOnly = true;
+            this.anchorDataFromNewRoute.Visible = false;
+            this.anchorDataFromNewRoute.Width = 10;
+            // 
+            // anchorLocationFromNewRoute
+            // 
+            this.anchorLocationFromNewRoute.HeaderText = "Location";
+            this.anchorLocationFromNewRoute.MinimumWidth = 6;
+            this.anchorLocationFromNewRoute.Name = "anchorLocationFromNewRoute";
+            this.anchorLocationFromNewRoute.ReadOnly = true;
+            this.anchorLocationFromNewRoute.Width = 125;
+            // 
+            // newRouteAnchorExpiration
+            // 
+            this.newRouteAnchorExpiration.HeaderText = "Expiration";
+            this.newRouteAnchorExpiration.MinimumWidth = 6;
+            this.newRouteAnchorExpiration.Name = "newRouteAnchorExpiration";
+            this.newRouteAnchorExpiration.ReadOnly = true;
+            this.newRouteAnchorExpiration.Width = 125;
+            // 
+            // anchorDescriptionFromNewRoute
+            // 
+            this.anchorDescriptionFromNewRoute.HeaderText = "Description";
+            this.anchorDescriptionFromNewRoute.MinimumWidth = 6;
+            this.anchorDescriptionFromNewRoute.Name = "anchorDescriptionFromNewRoute";
+            this.anchorDescriptionFromNewRoute.ReadOnly = true;
+            this.anchorDescriptionFromNewRoute.Width = 125;
+            // 
+            // availableNavPointsTable
+            // 
+            this.availableNavPointsTable.AllowUserToAddRows = false;
+            this.availableNavPointsTable.AllowUserToDeleteRows = false;
+            this.availableNavPointsTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.availableNavPointsTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.addBtns,
+            this.availableNavPointsNavPointName,
+            this.anchorDataFromAvailable,
+            this.anchorLocationFromAvailable,
+            this.anchorExpirationFromAvailable,
+            this.anchorDescriptionFromAvailable});
+            this.availableNavPointsTable.Location = new System.Drawing.Point(33, 558);
+            this.availableNavPointsTable.Name = "availableNavPointsTable";
+            this.availableNavPointsTable.ReadOnly = true;
+            this.availableNavPointsTable.RowHeadersWidth = 51;
+            this.availableNavPointsTable.RowTemplate.Height = 24;
+            this.availableNavPointsTable.Size = new System.Drawing.Size(615, 258);
+            this.availableNavPointsTable.TabIndex = 4;
+            this.availableNavPointsTable.Visible = false;
+            // 
+            // addBtns
+            // 
+            this.addBtns.FillWeight = 50F;
+            this.addBtns.HeaderText = "";
+            this.addBtns.MinimumWidth = 6;
+            this.addBtns.Name = "addBtns";
+            this.addBtns.ReadOnly = true;
+            this.addBtns.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.addBtns.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.addBtns.Width = 50;
+            // 
+            // availableNavPointsNavPointName
+            // 
+            this.availableNavPointsNavPointName.HeaderText = "Nav Point";
+            this.availableNavPointsNavPointName.MaxInputLength = 100;
+            this.availableNavPointsNavPointName.MinimumWidth = 6;
+            this.availableNavPointsNavPointName.Name = "availableNavPointsNavPointName";
+            this.availableNavPointsNavPointName.ReadOnly = true;
+            this.availableNavPointsNavPointName.Width = 125;
+            // 
+            // anchorDataFromAvailable
+            // 
+            this.anchorDataFromAvailable.FillWeight = 1F;
+            this.anchorDataFromAvailable.HeaderText = "";
+            this.anchorDataFromAvailable.MinimumWidth = 6;
+            this.anchorDataFromAvailable.Name = "anchorDataFromAvailable";
+            this.anchorDataFromAvailable.ReadOnly = true;
+            this.anchorDataFromAvailable.Visible = false;
+            this.anchorDataFromAvailable.Width = 10;
+            // 
+            // anchorLocationFromAvailable
+            // 
+            this.anchorLocationFromAvailable.HeaderText = "Location";
+            this.anchorLocationFromAvailable.MinimumWidth = 6;
+            this.anchorLocationFromAvailable.Name = "anchorLocationFromAvailable";
+            this.anchorLocationFromAvailable.ReadOnly = true;
+            this.anchorLocationFromAvailable.Width = 125;
+            // 
+            // anchorExpirationFromAvailable
+            // 
+            this.anchorExpirationFromAvailable.HeaderText = "Expiration";
+            this.anchorExpirationFromAvailable.MinimumWidth = 6;
+            this.anchorExpirationFromAvailable.Name = "anchorExpirationFromAvailable";
+            this.anchorExpirationFromAvailable.ReadOnly = true;
+            this.anchorExpirationFromAvailable.Width = 125;
+            // 
+            // anchorDescriptionFromAvailable
+            // 
+            this.anchorDescriptionFromAvailable.HeaderText = "Description";
+            this.anchorDescriptionFromAvailable.MinimumWidth = 6;
+            this.anchorDescriptionFromAvailable.Name = "anchorDescriptionFromAvailable";
+            this.anchorDescriptionFromAvailable.ReadOnly = true;
+            this.anchorDescriptionFromAvailable.Width = 125;
+            // 
+            // newRouteTableLabel
+            // 
+            this.newRouteTableLabel.AutoSize = true;
+            this.newRouteTableLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newRouteTableLabel.Location = new System.Drawing.Point(28, 186);
+            this.newRouteTableLabel.Name = "newRouteTableLabel";
+            this.newRouteTableLabel.Size = new System.Drawing.Size(137, 29);
+            this.newRouteTableLabel.TabIndex = 5;
+            this.newRouteTableLabel.Text = "New Route";
+            this.newRouteTableLabel.Visible = false;
+            this.newRouteTableLabel.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // availableNavPointsTableLabel
+            // 
+            this.availableNavPointsTableLabel.AutoSize = true;
+            this.availableNavPointsTableLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.availableNavPointsTableLabel.Location = new System.Drawing.Point(28, 526);
+            this.availableNavPointsTableLabel.Name = "availableNavPointsTableLabel";
+            this.availableNavPointsTableLabel.Size = new System.Drawing.Size(247, 29);
+            this.availableNavPointsTableLabel.TabIndex = 6;
+            this.availableNavPointsTableLabel.Text = "Available Nav Points";
+            this.availableNavPointsTableLabel.Visible = false;
+            // 
+            // addAnchorToNewRouteBtn
+            // 
+            this.addAnchorToNewRouteBtn.Location = new System.Drawing.Point(573, 822);
+            this.addAnchorToNewRouteBtn.Name = "addAnchorToNewRouteBtn";
+            this.addAnchorToNewRouteBtn.Size = new System.Drawing.Size(75, 23);
+            this.addAnchorToNewRouteBtn.TabIndex = 7;
+            this.addAnchorToNewRouteBtn.Text = "Add";
+            this.addAnchorToNewRouteBtn.UseVisualStyleBackColor = true;
+            this.addAnchorToNewRouteBtn.Visible = false;
+            this.addAnchorToNewRouteBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.addAnchorToNewRouteBtn_MouseUp);
+            // 
+            // removeAnchorFromNewRouteBtn
+            // 
+            this.removeAnchorFromNewRouteBtn.Location = new System.Drawing.Point(513, 480);
+            this.removeAnchorFromNewRouteBtn.Name = "removeAnchorFromNewRouteBtn";
+            this.removeAnchorFromNewRouteBtn.Size = new System.Drawing.Size(75, 23);
+            this.removeAnchorFromNewRouteBtn.TabIndex = 8;
+            this.removeAnchorFromNewRouteBtn.Text = "Remove";
+            this.removeAnchorFromNewRouteBtn.UseVisualStyleBackColor = true;
+            this.removeAnchorFromNewRouteBtn.Visible = false;
+            // 
+            // saveNewRouteBtn
+            // 
+            this.saveNewRouteBtn.Location = new System.Drawing.Point(432, 480);
+            this.saveNewRouteBtn.Name = "saveNewRouteBtn";
+            this.saveNewRouteBtn.Size = new System.Drawing.Size(75, 23);
+            this.saveNewRouteBtn.TabIndex = 9;
+            this.saveNewRouteBtn.Text = "Save";
+            this.saveNewRouteBtn.UseVisualStyleBackColor = true;
+            this.saveNewRouteBtn.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(1079, 857);
+            this.Controls.Add(this.saveNewRouteBtn);
+            this.Controls.Add(this.removeAnchorFromNewRouteBtn);
+            this.Controls.Add(this.addAnchorToNewRouteBtn);
+            this.Controls.Add(this.availableNavPointsTableLabel);
+            this.Controls.Add(this.newRouteTableLabel);
+            this.Controls.Add(this.availableNavPointsTable);
+            this.Controls.Add(this.newRouteTable);
             this.Controls.Add(this.ribbon1);
             this.Controls.Add(this.toolStrip1);
             this.KeyPreview = true;
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.newRouteTable)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.availableNavPointsTable)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -410,9 +625,7 @@
         private System.Windows.Forms.RibbonItemGroup ribbonItemGroup1;
         private System.Windows.Forms.RibbonButton ribbonButton2;
         private System.Windows.Forms.RibbonPanel newExperiencePanel;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.RibbonTab viewActiveUsers;
-        private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.RibbonPanel newAnimationPanel;
         private System.Windows.Forms.RibbonPanel newRoutePanel;
         private System.Windows.Forms.RibbonPanel loadRoutePanel;
@@ -421,6 +634,25 @@
         private System.Windows.Forms.RibbonPanel loadExperiencePanel;
         private System.Windows.Forms.RibbonPanel createNewUser;
         private System.Windows.Forms.RibbonPanel viewUsers;
+        private System.Windows.Forms.DataGridView newRouteTable;
+        private System.Windows.Forms.Label newRouteTableLabel;
+        private System.Windows.Forms.Label availableNavPointsTableLabel;
+        public System.Windows.Forms.DataGridView availableNavPointsTable;
+        private System.Windows.Forms.Button addAnchorToNewRouteBtn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn addBtns;
+        private System.Windows.Forms.DataGridViewTextBoxColumn availableNavPointsNavPointName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn anchorDataFromAvailable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn anchorLocationFromAvailable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn anchorExpirationFromAvailable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn anchorDescriptionFromAvailable;
+        private System.Windows.Forms.Button removeAnchorFromNewRouteBtn;
+        private System.Windows.Forms.Button saveNewRouteBtn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn routeAnchorsForRemovalChkboxesCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NavPointNameColumnFromNewRoute;
+        private System.Windows.Forms.DataGridViewTextBoxColumn anchorDataFromNewRoute;
+        private System.Windows.Forms.DataGridViewTextBoxColumn anchorLocationFromNewRoute;
+        private System.Windows.Forms.DataGridViewTextBoxColumn newRouteAnchorExpiration;
+        private System.Windows.Forms.DataGridViewTextBoxColumn anchorDescriptionFromNewRoute;
     }
 }
 
