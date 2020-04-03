@@ -18,6 +18,7 @@ namespace MaarsExperienceCreator
             InitializeComponent();
         }
 
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -50,6 +51,7 @@ namespace MaarsExperienceCreator
 
                 // For Avail Navpoint Table, Set all but checkboxes to read only
                 availableNavPointsTable.ReadOnly = false;
+                availableNavPointsTable.Rows[n].Cells["addBtns"].Value = false;
                 availableNavPointsTable.Rows[n].Cells["availableNavPointsNavPointName"].ReadOnly = true;
                 availableNavPointsTable.Rows[n].Cells["anchorDataFromAvailable"].ReadOnly = true;
                 availableNavPointsTable.Rows[n].Cells["anchorLocationFromAvailable"].ReadOnly = true;
@@ -115,13 +117,69 @@ namespace MaarsExperienceCreator
                 if (Convert.ToBoolean(availableNavPointsTable.Rows[i].Cells["addBtns"].Value) == true)
                 {
                     this.newRouteTable.Rows.Add(i + 1, availableNavPointsTable.Rows[i].Cells["availableNavPointsNavPointName"].Value, "", "", "", "");
-
+                    newRouteTable.Rows[newRouteTable.Rows.Count - 1].Cells["routeAnchorsForRemovalChkboxesCol"].Value = false;
+                    availableNavPointsTable.Rows[i].Cells["addBtns"].Value = false;
                 }
                 else
                 {
-                    
+
                 }
             }
         }
+
+        private void removeAnchorFromNewRouteBtn_MouseUp(object sender, MouseEventArgs e)
+        {
+            /* Remove the selected anchors from the "New Route" list starting from the items
+            at the end */
+            for (int i = this.newRouteTable.Rows.Count - 1; i >= 0; i--)
+            {
+                if (Convert.ToBoolean(newRouteTable.Rows[i].Cells["routeAnchorsForRemovalChkboxesCol"].Value) == true)
+                {
+                    newRouteTable.Rows.RemoveAt(i);
+                }
+            }
+        }
+
+        private async void saveNewRouteBtn_MouseUp(object sender, MouseEventArgs e)
+        {
+            // Save Routes to the Cloud
+            string testInsertionStr = "test";
+            try
+            {
+                string BaseSharingUrl = "https://sharingservice20200308094713.azurewebsites.net" + "/api/routes";
+
+                HttpClient client = new HttpClient();
+                var response = await client.PostAsync(BaseSharingUrl, new StringContent(testInsertionStr));
+                if (response.IsSuccessStatusCode)
+                {
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    long ret;
+                    if (long.TryParse(responseBody, out ret))
+                    {
+                        Console.WriteLine("Key " + ret.ToString());
+                        return;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Failed to store the route key. Failed to parse the response body to a long: {responseBody}.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"Failed to store the route key: {response.StatusCode} {response.ReasonPhrase}.");
+                }
+
+                Console.WriteLine($"Failed to store the route key: {testInsertionStr}.");
+                return;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                Console.WriteLine($"Failed to store the route key: {testInsertionStr}.");
+                return;
+            }
+        }
+
+        // Clear "New Route" table
     }
 }

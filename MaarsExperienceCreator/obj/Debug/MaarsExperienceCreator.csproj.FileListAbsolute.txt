@@ -9,3 +9,5 @@ C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreat
 C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\bin\Debug\System.Windows.Forms.Ribbon.dll
 C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\obj\Debug\MaarsExperienceCreator.csproj.CopyComplete
 C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\obj\Debug\MaarsExperienceCreator.csprojAssemblyReference.cache
+C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\bin\Debug\NLog.dll
+C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\bin\Debug\NLog.xml
