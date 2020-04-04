@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace MaarsExperienceCreator
 {
-    public partial class Form1 : Form
+    public partial class MainExperienceCreator : Form
     {
-        public Form1()
+        public MainExperienceCreator()
         {
             InitializeComponent();
         }
@@ -139,17 +139,27 @@ namespace MaarsExperienceCreator
                 }
             }
         }
-
-        private async void saveNewRouteBtn_MouseUp(object sender, MouseEventArgs e)
+        public async void saveNewRoute(string routeName)
         {
             // Save Routes to the Cloud
-            string testInsertionStr = "test";
+            string testInsertionStr = "";
+            // Get the list of selected items
+            for (int i = 0; i < this.newRouteTable.Rows.Count; i++)
+            {
+                if (Convert.ToBoolean(newRouteTable.Rows[i].Cells["routeAnchorsForRemovalChkboxesCol"].Value) == true)
+                {
+                    testInsertionStr += newRouteTable.Rows[i].Cells["NavPointNameColumnFromNewRoute"].Value + ", ";
+                }
+            }
+            if (testInsertionStr.Length - 2 >= 0)
+                testInsertionStr = testInsertionStr.Substring(0, testInsertionStr.Length - 2);
             try
             {
                 string BaseSharingUrl = "https://sharingservice20200308094713.azurewebsites.net" + "/api/routes";
 
+
                 HttpClient client = new HttpClient();
-                var response = await client.PostAsync(BaseSharingUrl, new StringContent(testInsertionStr));
+                var response = await client.PostAsync(BaseSharingUrl, new StringContent(routeName + "|" + testInsertionStr));
                 if (response.IsSuccessStatusCode)
                 {
                     string responseBody = await response.Content.ReadAsStringAsync();
@@ -157,6 +167,9 @@ namespace MaarsExperienceCreator
                     if (long.TryParse(responseBody, out ret))
                     {
                         Console.WriteLine("Key " + ret.ToString());
+                        MessageBox.Show(routeName + " has been saved to database", "Route Created",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Information);
                         return;
                     }
                     else
@@ -179,6 +192,19 @@ namespace MaarsExperienceCreator
                 return;
             }
         }
+
+        private async void saveNewRouteBtn_MouseUp(object sender, MouseEventArgs e)
+        {
+            // Add modal or message box prompting user for name to save
+            SaveRouteDlg saveRouteDlg = new SaveRouteDlg(this);
+
+        }
+
+        private void ribbon2_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
         // Clear "New Route" table
     }

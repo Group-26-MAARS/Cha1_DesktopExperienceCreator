@@ -1,6 +1,6 @@
 ﻿namespace MaarsExperienceCreator
 {
-    partial class Form1
+    partial class MainExperienceCreator
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainExperienceCreator));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.ribbon1 = new System.Windows.Forms.Ribbon();
             this.ribbonOrbMenuItem1 = new System.Windows.Forms.RibbonOrbMenuItem();
@@ -91,7 +91,7 @@
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(809, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1079, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -99,7 +99,7 @@
             // 
             this.ribbon1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.ribbon1.Location = new System.Drawing.Point(0, 25);
-            this.ribbon1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ribbon1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ribbon1.Minimized = false;
             this.ribbon1.Name = "ribbon1";
             // 
@@ -124,7 +124,7 @@
             this.ribbon1.QuickAccessToolbar.Items.Add(this.ribbonButton1);
             this.ribbon1.QuickAccessToolbar.Items.Add(this.ribbonButton2);
             this.ribbon1.RibbonTabFont = new System.Drawing.Font("Trebuchet MS", 9F);
-            this.ribbon1.Size = new System.Drawing.Size(809, 120);
+            this.ribbon1.Size = new System.Drawing.Size(1079, 148);
             this.ribbon1.TabIndex = 1;
             this.ribbon1.Tabs.Add(this.experienceTab);
             this.ribbon1.Tabs.Add(this.loadAnimations);
@@ -383,13 +383,13 @@
             this.anchorLocationFromNewRoute,
             this.newRouteAnchorExpiration,
             this.anchorDescriptionFromNewRoute});
-            this.newRouteTable.Location = new System.Drawing.Point(25, 177);
-            this.newRouteTable.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.newRouteTable.Location = new System.Drawing.Point(33, 218);
+            this.newRouteTable.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.newRouteTable.Name = "newRouteTable";
             this.newRouteTable.ReadOnly = true;
             this.newRouteTable.RowHeadersWidth = 51;
             this.newRouteTable.RowTemplate.Height = 24;
-            this.newRouteTable.Size = new System.Drawing.Size(416, 208);
+            this.newRouteTable.Size = new System.Drawing.Size(555, 256);
             this.newRouteTable.TabIndex = 3;
             this.newRouteTable.Visible = false;
             this.newRouteTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -459,13 +459,13 @@
             this.anchorLocationFromAvailable,
             this.anchorExpirationFromAvailable,
             this.anchorDescriptionFromAvailable});
-            this.availableNavPointsTable.Location = new System.Drawing.Point(25, 453);
-            this.availableNavPointsTable.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.availableNavPointsTable.Location = new System.Drawing.Point(33, 558);
+            this.availableNavPointsTable.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.availableNavPointsTable.Name = "availableNavPointsTable";
             this.availableNavPointsTable.ReadOnly = true;
             this.availableNavPointsTable.RowHeadersWidth = 51;
             this.availableNavPointsTable.RowTemplate.Height = 24;
-            this.availableNavPointsTable.Size = new System.Drawing.Size(461, 210);
+            this.availableNavPointsTable.Size = new System.Drawing.Size(615, 258);
             this.availableNavPointsTable.TabIndex = 4;
             this.availableNavPointsTable.Visible = false;
             // 
@@ -527,10 +527,9 @@
             // 
             this.newRouteTableLabel.AutoSize = true;
             this.newRouteTableLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newRouteTableLabel.Location = new System.Drawing.Point(21, 151);
-            this.newRouteTableLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.newRouteTableLabel.Location = new System.Drawing.Point(28, 186);
             this.newRouteTableLabel.Name = "newRouteTableLabel";
-            this.newRouteTableLabel.Size = new System.Drawing.Size(107, 25);
+            this.newRouteTableLabel.Size = new System.Drawing.Size(137, 29);
             this.newRouteTableLabel.TabIndex = 5;
             this.newRouteTableLabel.Text = "New Route";
             this.newRouteTableLabel.Visible = false;
@@ -540,20 +539,19 @@
             // 
             this.availableNavPointsTableLabel.AutoSize = true;
             this.availableNavPointsTableLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.availableNavPointsTableLabel.Location = new System.Drawing.Point(21, 427);
-            this.availableNavPointsTableLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.availableNavPointsTableLabel.Location = new System.Drawing.Point(28, 526);
             this.availableNavPointsTableLabel.Name = "availableNavPointsTableLabel";
-            this.availableNavPointsTableLabel.Size = new System.Drawing.Size(191, 25);
+            this.availableNavPointsTableLabel.Size = new System.Drawing.Size(247, 29);
             this.availableNavPointsTableLabel.TabIndex = 6;
             this.availableNavPointsTableLabel.Text = "Available Nav Points";
             this.availableNavPointsTableLabel.Visible = false;
             // 
             // addAnchorToNewRouteBtn
             // 
-            this.addAnchorToNewRouteBtn.Location = new System.Drawing.Point(430, 668);
-            this.addAnchorToNewRouteBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.addAnchorToNewRouteBtn.Location = new System.Drawing.Point(573, 822);
+            this.addAnchorToNewRouteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.addAnchorToNewRouteBtn.Name = "addAnchorToNewRouteBtn";
-            this.addAnchorToNewRouteBtn.Size = new System.Drawing.Size(56, 19);
+            this.addAnchorToNewRouteBtn.Size = new System.Drawing.Size(75, 23);
             this.addAnchorToNewRouteBtn.TabIndex = 7;
             this.addAnchorToNewRouteBtn.Text = "Add";
             this.addAnchorToNewRouteBtn.UseVisualStyleBackColor = true;
@@ -562,10 +560,10 @@
             // 
             // removeAnchorFromNewRouteBtn
             // 
-            this.removeAnchorFromNewRouteBtn.Location = new System.Drawing.Point(385, 390);
-            this.removeAnchorFromNewRouteBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.removeAnchorFromNewRouteBtn.Location = new System.Drawing.Point(513, 480);
+            this.removeAnchorFromNewRouteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.removeAnchorFromNewRouteBtn.Name = "removeAnchorFromNewRouteBtn";
-            this.removeAnchorFromNewRouteBtn.Size = new System.Drawing.Size(56, 19);
+            this.removeAnchorFromNewRouteBtn.Size = new System.Drawing.Size(75, 23);
             this.removeAnchorFromNewRouteBtn.TabIndex = 8;
             this.removeAnchorFromNewRouteBtn.Text = "Remove";
             this.removeAnchorFromNewRouteBtn.UseVisualStyleBackColor = true;
@@ -574,21 +572,21 @@
             // 
             // saveNewRouteBtn
             // 
-            this.saveNewRouteBtn.Location = new System.Drawing.Point(324, 390);
-            this.saveNewRouteBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.saveNewRouteBtn.Location = new System.Drawing.Point(432, 480);
+            this.saveNewRouteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.saveNewRouteBtn.Name = "saveNewRouteBtn";
-            this.saveNewRouteBtn.Size = new System.Drawing.Size(56, 19);
+            this.saveNewRouteBtn.Size = new System.Drawing.Size(75, 23);
             this.saveNewRouteBtn.TabIndex = 9;
             this.saveNewRouteBtn.Text = "Save";
             this.saveNewRouteBtn.UseVisualStyleBackColor = true;
             this.saveNewRouteBtn.Visible = false;
             this.saveNewRouteBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.saveNewRouteBtn_MouseUp);
             // 
-            // Form1
+            // MainExperienceCreator
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(809, 687);
+            this.ClientSize = new System.Drawing.Size(1079, 846);
             this.Controls.Add(this.saveNewRouteBtn);
             this.Controls.Add(this.removeAnchorFromNewRouteBtn);
             this.Controls.Add(this.addAnchorToNewRouteBtn);
@@ -598,10 +596,11 @@
             this.Controls.Add(this.newRouteTable);
             this.Controls.Add(this.ribbon1);
             this.Controls.Add(this.toolStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Name = "MainExperienceCreator";
+            this.Text = "MAARS Experience Creator";
             ((System.ComponentModel.ISupportInitialize)(this.newRouteTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.availableNavPointsTable)).EndInit();
             this.ResumeLayout(false);
