@@ -91,7 +91,7 @@
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1079, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(778, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -124,7 +124,7 @@
             this.ribbon1.QuickAccessToolbar.Items.Add(this.ribbonButton1);
             this.ribbon1.QuickAccessToolbar.Items.Add(this.ribbonButton2);
             this.ribbon1.RibbonTabFont = new System.Drawing.Font("Trebuchet MS", 9F);
-            this.ribbon1.Size = new System.Drawing.Size(1079, 148);
+            this.ribbon1.Size = new System.Drawing.Size(778, 148);
             this.ribbon1.TabIndex = 1;
             this.ribbon1.Tabs.Add(this.experienceTab);
             this.ribbon1.Tabs.Add(this.loadAnimations);
@@ -586,7 +586,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1079, 846);
+            this.ClientSize = new System.Drawing.Size(778, 917);
             this.Controls.Add(this.saveNewRouteBtn);
             this.Controls.Add(this.removeAnchorFromNewRouteBtn);
             this.Controls.Add(this.addAnchorToNewRouteBtn);
@@ -600,6 +600,7 @@
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainExperienceCreator";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MAARS Experience Creator";
             ((System.ComponentModel.ISupportInitialize)(this.newRouteTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.availableNavPointsTable)).EndInit();

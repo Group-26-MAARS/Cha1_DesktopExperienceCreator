@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SaveRouteDlg));
             this.label1 = new System.Windows.Forms.Label();
             this.newRouteNameTxtbox = new System.Windows.Forms.TextBox();
             this.saveNewRouteOkBtn = new System.Windows.Forms.Button();
@@ -37,7 +38,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 25);
+            this.label1.Location = new System.Drawing.Point(89, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(146, 17);
             this.label1.TabIndex = 0;
@@ -46,14 +47,14 @@
             // 
             // newRouteNameTxtbox
             // 
-            this.newRouteNameTxtbox.Location = new System.Drawing.Point(31, 45);
+            this.newRouteNameTxtbox.Location = new System.Drawing.Point(92, 45);
             this.newRouteNameTxtbox.Name = "newRouteNameTxtbox";
             this.newRouteNameTxtbox.Size = new System.Drawing.Size(290, 22);
             this.newRouteNameTxtbox.TabIndex = 1;
             // 
             // saveNewRouteOkBtn
             // 
-            this.saveNewRouteOkBtn.Location = new System.Drawing.Point(168, 82);
+            this.saveNewRouteOkBtn.Location = new System.Drawing.Point(226, 82);
             this.saveNewRouteOkBtn.Name = "saveNewRouteOkBtn";
             this.saveNewRouteOkBtn.Size = new System.Drawing.Size(75, 23);
             this.saveNewRouteOkBtn.TabIndex = 2;
@@ -63,7 +64,7 @@
             // 
             // saveNewRouteCancelBtn
             // 
-            this.saveNewRouteCancelBtn.Location = new System.Drawing.Point(249, 82);
+            this.saveNewRouteCancelBtn.Location = new System.Drawing.Point(307, 82);
             this.saveNewRouteCancelBtn.Name = "saveNewRouteCancelBtn";
             this.saveNewRouteCancelBtn.Size = new System.Drawing.Size(75, 23);
             this.saveNewRouteCancelBtn.TabIndex = 3;
@@ -75,12 +76,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(333, 113);
+            this.ClientSize = new System.Drawing.Size(394, 114);
             this.Controls.Add(this.saveNewRouteCancelBtn);
             this.Controls.Add(this.saveNewRouteOkBtn);
             this.Controls.Add(this.newRouteNameTxtbox);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SaveRouteDlg";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Save New Route";
             this.ResumeLayout(false);
             this.PerformLayout();

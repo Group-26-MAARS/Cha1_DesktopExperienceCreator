@@ -47,11 +47,12 @@ namespace MaarsExperienceCreator
             {
                 anchorsFromAPI[n] = currStr.Replace("\"", "");
                 // Add to the Dattatable                
-                this.availableNavPointsTable.Rows.Add(n + 1, anchorsFromAPI[n].Split(':')[0].Trim(), anchorsFromAPI[n].Split(':')[1].Trim(), "");
+                this.availableNavPointsTable.Rows.Add(n + 1, anchorsFromAPI[n].Split(':')[0].Trim(), anchorsFromAPI[n].Split(':')[1].Trim(), anchorsFromAPI[n].Split(':')[2].Trim(), anchorsFromAPI[n].Split(':')[3].Trim(), anchorsFromAPI[n].Split(':')[4].Trim());
 
                 // For Avail Navpoint Table, Set all but checkboxes to read only
                 availableNavPointsTable.ReadOnly = false;
                 availableNavPointsTable.Rows[n].Cells["addBtns"].Value = false;
+                availableNavPointsTable.Rows[n].Cells["addBtns"].ToolTipText = "Select for Addition to New Route";
                 availableNavPointsTable.Rows[n].Cells["availableNavPointsNavPointName"].ReadOnly = true;
                 availableNavPointsTable.Rows[n].Cells["anchorDataFromAvailable"].ReadOnly = true;
                 availableNavPointsTable.Rows[n].Cells["anchorLocationFromAvailable"].ReadOnly = true;
@@ -119,6 +120,7 @@ namespace MaarsExperienceCreator
                     this.newRouteTable.Rows.Add(i + 1, availableNavPointsTable.Rows[i].Cells["availableNavPointsNavPointName"].Value, "", "", "", "");
                     newRouteTable.Rows[newRouteTable.Rows.Count - 1].Cells["routeAnchorsForRemovalChkboxesCol"].Value = false;
                     availableNavPointsTable.Rows[i].Cells["addBtns"].Value = false;
+                    availableNavPointsTable.Rows[i].Cells["addBtns"].ToolTipText = "Select for Removal";
                 }
                 else
                 {
@@ -146,10 +148,7 @@ namespace MaarsExperienceCreator
             // Get the list of selected items
             for (int i = 0; i < this.newRouteTable.Rows.Count; i++)
             {
-                if (Convert.ToBoolean(newRouteTable.Rows[i].Cells["routeAnchorsForRemovalChkboxesCol"].Value) == true)
-                {
-                    testInsertionStr += newRouteTable.Rows[i].Cells["NavPointNameColumnFromNewRoute"].Value + ", ";
-                }
+                testInsertionStr += newRouteTable.Rows[i].Cells["NavPointNameColumnFromNewRoute"].Value + ", ";
             }
             if (testInsertionStr.Length - 2 >= 0)
                 testInsertionStr = testInsertionStr.Substring(0, testInsertionStr.Length - 2);
@@ -159,7 +158,7 @@ namespace MaarsExperienceCreator
 
 
                 HttpClient client = new HttpClient();
-                var response = await client.PostAsync(BaseSharingUrl, new StringContent(routeName + "|" + testInsertionStr));
+                var response = await client.PostAsync(BaseSharingUrl, new StringContent(routeName + ":" + testInsertionStr));
                 if (response.IsSuccessStatusCode)
                 {
                     string responseBody = await response.Content.ReadAsStringAsync();
