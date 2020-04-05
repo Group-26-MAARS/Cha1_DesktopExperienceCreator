@@ -17,6 +17,13 @@ namespace MaarsExperienceCreator
         {
             InitializeComponent();
         }
+        enum RouteUIState
+        {
+            newRoute,
+            loadRoute,
+            notActive
+        }
+        private RouteUIState uiState;
         private bool newRouteTableModified;
         public bool NewRouteTableModified
         {
@@ -37,9 +44,18 @@ namespace MaarsExperienceCreator
         public void addRowToCurrentRouteTable(int rowNbr, List<string> currentStr)
         {
             this.newRouteTable.Rows.Add(rowNbr + 1, currentStr[0], currentStr[1], currentStr[2], currentStr[3], currentStr[4]);
+            newRouteTable.Rows[rowNbr].Cells["NavPointNameColumnFromNewRoute"].ReadOnly = true;
+            newRouteTable.Rows[rowNbr].Cells["anchorDataFromNewRoute"].ReadOnly = true;
+            newRouteTable.Rows[rowNbr].Cells["anchorLocationFromNewRoute"].ReadOnly = true;
+            newRouteTable.Rows[rowNbr].Cells["NavPointNameColumnFromNewRoute"].ReadOnly = true;
+            newRouteTable.Rows[rowNbr].Cells["anchorDescriptionFromNewRoute"].ReadOnly = true;
         }
 
         private void newRoutePanel_MouseUp(object sender, MouseEventArgs e)
+        {
+        }
+
+        public void setupForNewRoute()
         {
             // Populate Available Anchor List with data from Cosmos:
             // Clear Table if not empty
@@ -60,39 +76,32 @@ namespace MaarsExperienceCreator
             stringArray[stringArray.Length - 1] = stringArray[stringArray.Length - 1].Replace("]", "");
 
             int n = 0;
-
-            foreach (string currStr in stringArray)
+            newRouteTable.ReadOnly = false;
+            if (uiState == RouteUIState.notActive)
             {
-                
-                anchorsFromAPI[n] = currStr.Replace("\"", "");
-                // Add to the Dattatable                
-                this.availableNavPointsTable.Rows.Add(n + 1, anchorsFromAPI[n].Split(':')[0].Trim(), anchorsFromAPI[n].Split(':')[1].Trim(), anchorsFromAPI[n].Split(':')[2].Trim(), anchorsFromAPI[n].Split(':')[3].Trim(), anchorsFromAPI[n].Split(':')[4].Trim());
+                foreach (string currStr in stringArray)
+                {
 
-                // For Avail Navpoint Table, Set all but checkboxes to read only
-                availableNavPointsTable.ReadOnly = false;
-                availableNavPointsTable.Rows[n].Cells["addBtns"].Value = false;
-                availableNavPointsTable.Rows[n].Cells["addBtns"].ToolTipText = "Select for Addition to New Route";
-                availableNavPointsTable.Rows[n].Cells["availableNavPointsNavPointName"].ReadOnly = true;
-                availableNavPointsTable.Rows[n].Cells["anchorDataFromAvailable"].ReadOnly = true;
-                //availableNavPointsTable.Rows[n].Cells["anchorLocationFromAvailable"].ReadOnly = true;
-                availableNavPointsTable.Rows[n].Cells["anchorExpirationFromAvailable"].ReadOnly = true;
-                //availableNavPointsTable.Rows[n].Cells["anchorDescriptionFromAvailable"].ReadOnly = true;
+                    anchorsFromAPI[n] = currStr.Replace("\"", "");
+                    // Add to the Dattatable                
+                    this.availableNavPointsTable.Rows.Add(n + 1, anchorsFromAPI[n].Split(':')[0].Trim(), anchorsFromAPI[n].Split(':')[1].Trim(), anchorsFromAPI[n].Split(':')[2].Trim(), anchorsFromAPI[n].Split(':')[3].Trim(), anchorsFromAPI[n].Split(':')[4].Trim());
 
-                newRouteTable.ReadOnly = false;
+                    // For Avail Navpoint Table, Set all but checkboxes to read only
+                    availableNavPointsTable.ReadOnly = false;
+                    availableNavPointsTable.Rows[n].Cells["addBtns"].Value = false;
+                    availableNavPointsTable.Rows[n].Cells["addBtns"].ToolTipText = "Select for Addition to New Route";
+                    availableNavPointsTable.Rows[n].Cells["availableNavPointsNavPointName"].ReadOnly = true;
+                    availableNavPointsTable.Rows[n].Cells["anchorDataFromAvailable"].ReadOnly = true;
+                    //availableNavPointsTable.Rows[n].Cells["anchorLocationFromAvailable"].ReadOnly = true;
+                    availableNavPointsTable.Rows[n].Cells["anchorExpirationFromAvailable"].ReadOnly = true;
+                    //availableNavPointsTable.Rows[n].Cells["anchorDescriptionFromAvailable"].ReadOnly = true;
 
-                // Default the checkboxes to false
-                //    availableNavPointsTable.EditMode = DataGridViewEditMode.EditOnEnter;
-                // Only should do this when adding the new row
-                /*
-                newRouteTable.Rows[n].Cells["NavPointNameColumnFromNewRoute"].ReadOnly = true;
-                newRouteTable.Rows[n].Cells["anchorDataFromNewRoute"].ReadOnly = true;
-                newRouteTable.Rows[n].Cells["anchorLocationFromNewRoute"].ReadOnly = true;
-                newRouteTable.Rows[n].Cells["NavPointNameColumnFromNewRoute"].ReadOnly = true;
-                newRouteTable.Rows[n].Cells["anchorDescriptionFromNewRoute"].ReadOnly = true;
-                */
+                    // Default the checkboxes to false
+                    //    availableNavPointsTable.EditMode = DataGridViewEditMode.EditOnEnter;
+                    // Only should do this when adding the new row
 
-
-                n++;
+                    n++;
+                }
             }
 
             // When "Create New" is clicked under routes,
@@ -105,6 +114,7 @@ namespace MaarsExperienceCreator
             removeAnchorFromNewRouteBtn.Visible = true;
             saveNewRouteBtn.Visible = true;
             updateAnchorBtn.Visible = true;
+            loadBtn.Visible = true;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -121,14 +131,34 @@ namespace MaarsExperienceCreator
         {
             // When "Create New" loses focus (another tab is selected)
             // hid tables and labels
-            newRouteTable.Visible = false;
-            newRouteTableLabel.Visible = false;
-            availableNavPointsTable.Visible = false;
-            availableNavPointsTableLabel.Visible = false;
-            addAnchorToNewRouteBtn.Visible = false;
-            removeAnchorFromNewRouteBtn.Visible = false;
-            saveNewRouteBtn.Visible = false;
-            updateAnchorBtn.Visible = false;
+            if (RoutesTab.Active == true)
+            {
+                setupForNewRoute();
+                uiState = RouteUIState.newRoute;
+
+            }
+            else
+            {
+                newRouteTable.Visible = false;
+                newRouteTableLabel.Visible = false;
+                availableNavPointsTable.Visible = false;
+                availableNavPointsTableLabel.Visible = false;
+                addAnchorToNewRouteBtn.Visible = false;
+                removeAnchorFromNewRouteBtn.Visible = false;
+                saveNewRouteBtn.Visible = false;
+                updateAnchorBtn.Visible = false;
+                loadBtn.Visible = false;
+            }
+
+        }
+
+        public void setNewRouteTableToReadonly(int currentRow)
+        {
+            newRouteTable.Rows[currentRow].Cells["NavPointNameColumnFromNewRoute"].ReadOnly = true;
+            newRouteTable.Rows[currentRow].Cells["anchorDataFromNewRoute"].ReadOnly = true;
+            newRouteTable.Rows[currentRow].Cells["anchorLocationFromNewRoute"].ReadOnly = true;
+            newRouteTable.Rows[currentRow].Cells["NavPointNameColumnFromNewRoute"].ReadOnly = true;
+            newRouteTable.Rows[currentRow].Cells["anchorDescriptionFromNewRoute"].ReadOnly = true;
         }
 
         private void addAnchorToNewRouteBtn_MouseUp(object sender, MouseEventArgs e)
@@ -143,19 +173,25 @@ namespace MaarsExperienceCreator
                         availableNavPointsTable.Rows[i].Cells["anchorLocationFromAvailable"].Value, 
                         availableNavPointsTable.Rows[i].Cells["anchorExpirationFromAvailable"].Value, 
                         availableNavPointsTable.Rows[i].Cells["anchorDescriptionFromAvailable"].Value);
-                    newRouteTable.Rows[newRouteTable.Rows.Count - 1].Cells["routeAnchorsForRemovalChkboxesCol"].Value = false;
-                    availableNavPointsTable.Rows[i].Cells["addBtns"].Value = false;
-                    availableNavPointsTable.Rows[i].Cells["addBtns"].ToolTipText = "Select for Removal";
-                }
-                else
-                {
+                        newRouteTable.Rows[newRouteTable.Rows.Count - 1].Cells["routeAnchorsForRemovalChkboxesCol"].Value = false;
+                        availableNavPointsTable.Rows[i].Cells["addBtns"].Value = false;
+                        availableNavPointsTable.Rows[i].Cells["addBtns"].ToolTipText = "Select for Removal";
 
+                    setNewRouteTableToReadonly(newRouteTable.Rows.Count - 1);
                 }
             }
         }
 
         private void removeAnchorFromNewRouteBtn_MouseUp(object sender, MouseEventArgs e)
         {
+            if (this.newRouteTable.Rows.Count == 0)
+            {
+                MessageBox.Show("No Anchors Exist For Removal", "No Anchors",
+                                                 MessageBoxButtons.OK,
+                                                 MessageBoxIcon.Information);
+                return;
+            }
+
             /* Remove the selected anchors from the "New Route" list starting from the items
             at the end */
             for (int i = this.newRouteTable.Rows.Count - 1; i >= 0; i--)
@@ -221,11 +257,22 @@ namespace MaarsExperienceCreator
             }
         }
 
-        private async void saveNewRouteBtn_MouseUp(object sender, MouseEventArgs e)
+        public async void saveBtnHelper()
         {
+            if (this.newRouteTable.Rows.Count == 0)
+            {
+                MessageBox.Show("No Anchors Exist For This Route. Please Add anchors.", "No Anchors",
+                                                 MessageBoxButtons.OK,
+                                                 MessageBoxIcon.Information);
+                return;
+            }
             // Add modal or message box prompting user for name to save
             SaveRouteDlg saveRouteDlg = new SaveRouteDlg(this);
+        }
 
+        private void saveNewRouteBtn_MouseUp(object sender, MouseEventArgs e)
+        {
+            saveBtnHelper();
         }
 
         private void ribbon2_Click(object sender, EventArgs e)
@@ -328,7 +375,7 @@ namespace MaarsExperienceCreator
             }
         }
 
-        private void loadRoutePanel_MouseUp(object sender, MouseEventArgs e)
+        public void loadRoute()
         {
             if (getNewTableView().Rows.Count > 0)
             {
@@ -352,6 +399,10 @@ namespace MaarsExperienceCreator
             // Add a child window for loading a route from the DB
             newRouteTableLabel.Text = "Load Route";
             LoadRouteDlg loadRtDlg = new LoadRouteDlg(this);
+        }
+
+        private void loadRoutePanel_MouseUp(object sender, MouseEventArgs e)
+        {
 
         }
 
@@ -360,6 +411,29 @@ namespace MaarsExperienceCreator
             // Set Modified Flag True
             this.NewRouteTableModified = true;
 
+        }
+
+        private void loadBtn_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (uiState == RouteUIState.newRoute)
+            {
+                loadRoute();
+                loadBtn.Text = "New Route";
+                uiState = RouteUIState.loadRoute;
+            }
+            else if(uiState == RouteUIState.loadRoute)
+            {
+                setupForNewRoute();
+                loadBtn.Text = "Load Route";
+                newRouteTableLabel.Text = "New Route";
+                uiState = RouteUIState.newRoute;
+
+            }
+        }
+
+        private void saveRibbonBtn_MouseUp(object sender, MouseEventArgs e)
+        {
+            saveBtnHelper();
         }
     }
 }

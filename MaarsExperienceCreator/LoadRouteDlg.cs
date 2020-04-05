@@ -75,7 +75,9 @@ namespace MaarsExperienceCreator
                 parentForm.addRowToCurrentRouteTable(i, outList);
           }
             parentForm.newRouteTable.Visible = true;
-            //    parentForm.newRouteTable.Rows[parentForm.newRouteTable.Rows.Count - 1].Cells["routeAnchorsForRemovalChkboxesCol"].Value = false;
+            parentForm.newRouteTable.ReadOnly = true; // Don't allow edits
+                                                      //    parentForm.newRouteTable.Rows[parentForm.newRouteTable.Rows.Count - 1].Cells["routeAnchorsForRemovalChkboxesCol"].Value = false;
+            parentForm.newRouteTableLabel.Text = "Loaded Route";
 
             this.Close();
         }

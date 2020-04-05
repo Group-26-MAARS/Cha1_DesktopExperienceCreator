@@ -31,33 +31,20 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainExperienceCreator));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.ribbon1 = new System.Windows.Forms.Ribbon();
-            this.ribbonOrbMenuItem1 = new System.Windows.Forms.RibbonOrbMenuItem();
-            this.ribbonOrbMenuItem2 = new System.Windows.Forms.RibbonOrbMenuItem();
-            this.ribbonOrbRecentItem1 = new System.Windows.Forms.RibbonOrbRecentItem();
-            this.ribbonOrbRecentItem2 = new System.Windows.Forms.RibbonOrbRecentItem();
-            this.ribbonOrbRecentItem3 = new System.Windows.Forms.RibbonOrbRecentItem();
-            this.ribbonOrbRecentItem4 = new System.Windows.Forms.RibbonOrbRecentItem();
-            this.ribbonButton1 = new System.Windows.Forms.RibbonButton();
-            this.ribbonButtonList1 = new System.Windows.Forms.RibbonButtonList();
-            this.ribbonButtonList2 = new System.Windows.Forms.RibbonButtonList();
-            this.ribbonButton3 = new System.Windows.Forms.RibbonButton();
-            this.ribbonTextBox1 = new System.Windows.Forms.RibbonTextBox();
-            this.ribbonButtonList3 = new System.Windows.Forms.RibbonButtonList();
-            this.ribbonButtonList4 = new System.Windows.Forms.RibbonButtonList();
-            this.ribbonButtonList5 = new System.Windows.Forms.RibbonButtonList();
-            this.ribbonButtonList6 = new System.Windows.Forms.RibbonButtonList();
-            this.ribbonItemGroup1 = new System.Windows.Forms.RibbonItemGroup();
-            this.ribbonButton2 = new System.Windows.Forms.RibbonButton();
             this.experienceTab = new System.Windows.Forms.RibbonTab();
-            this.newExperiencePanel = new System.Windows.Forms.RibbonPanel();
-            this.ribbonButton4 = new System.Windows.Forms.RibbonButton();
             this.loadExperiencePanel = new System.Windows.Forms.RibbonPanel();
             this.loadAnimations = new System.Windows.Forms.RibbonTab();
             this.newAnimationPanel = new System.Windows.Forms.RibbonPanel();
             this.loadAnimationPanel = new System.Windows.Forms.RibbonPanel();
             this.RoutesTab = new System.Windows.Forms.RibbonTab();
             this.newRoutePanel = new System.Windows.Forms.RibbonPanel();
+            this.saveRibbonBtn = new System.Windows.Forms.RibbonButton();
+            this.delRouteRibbnBtn = new System.Windows.Forms.RibbonButton();
+            this.updateRouteNotes = new System.Windows.Forms.RibbonButton();
             this.loadRoutePanel = new System.Windows.Forms.RibbonPanel();
+            this.showHideRibbonBtn = new System.Windows.Forms.RibbonButton();
+            this.sortRibbonBtn = new System.Windows.Forms.RibbonButton();
+            this.filterRibbonBtn = new System.Windows.Forms.RibbonButton();
             this.viewActiveUsers = new System.Windows.Forms.RibbonTab();
             this.createNewUser = new System.Windows.Forms.RibbonPanel();
             this.viewUsers = new System.Windows.Forms.RibbonPanel();
@@ -83,6 +70,7 @@
             this.removeAnchorFromNewRouteBtn = new System.Windows.Forms.Button();
             this.saveNewRouteBtn = new System.Windows.Forms.Button();
             this.updateAnchorBtn = new System.Windows.Forms.Button();
+            this.loadBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.newRouteTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.availableNavPointsTable)).BeginInit();
             this.SuspendLayout();
@@ -92,7 +80,7 @@
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(778, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(755, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -108,24 +96,13 @@
             // 
             this.ribbon1.OrbDropDown.BorderRoundness = 8;
             this.ribbon1.OrbDropDown.Location = new System.Drawing.Point(0, 0);
-            this.ribbon1.OrbDropDown.MenuItems.Add(this.ribbonOrbMenuItem1);
-            this.ribbon1.OrbDropDown.MenuItems.Add(this.ribbonOrbMenuItem2);
             this.ribbon1.OrbDropDown.Name = "";
-            this.ribbon1.OrbDropDown.RecentItems.Add(this.ribbonOrbRecentItem1);
-            this.ribbon1.OrbDropDown.RecentItems.Add(this.ribbonOrbRecentItem2);
-            this.ribbon1.OrbDropDown.RecentItems.Add(this.ribbonOrbRecentItem3);
-            this.ribbon1.OrbDropDown.RecentItems.Add(this.ribbonOrbRecentItem4);
             this.ribbon1.OrbDropDown.Size = new System.Drawing.Size(527, 160);
             this.ribbon1.OrbDropDown.TabIndex = 0;
             this.ribbon1.OrbStyle = System.Windows.Forms.RibbonOrbStyle.Office_2010;
             this.ribbon1.OrbText = "File";
-            // 
-            // 
-            // 
-            this.ribbon1.QuickAccessToolbar.Items.Add(this.ribbonButton1);
-            this.ribbon1.QuickAccessToolbar.Items.Add(this.ribbonButton2);
             this.ribbon1.RibbonTabFont = new System.Drawing.Font("Trebuchet MS", 9F);
-            this.ribbon1.Size = new System.Drawing.Size(778, 148);
+            this.ribbon1.Size = new System.Drawing.Size(755, 148);
             this.ribbon1.TabIndex = 1;
             this.ribbon1.Tabs.Add(this.experienceTab);
             this.ribbon1.Tabs.Add(this.loadAnimations);
@@ -134,173 +111,11 @@
             this.ribbon1.TabSpacing = 3;
             this.ribbon1.Text = "ribbon1";
             // 
-            // ribbonOrbMenuItem1
-            // 
-            this.ribbonOrbMenuItem1.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
-            this.ribbonOrbMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("ribbonOrbMenuItem1.Image")));
-            this.ribbonOrbMenuItem1.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonOrbMenuItem1.LargeImage")));
-            this.ribbonOrbMenuItem1.Name = "ribbonOrbMenuItem1";
-            this.ribbonOrbMenuItem1.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonOrbMenuItem1.SmallImage")));
-            this.ribbonOrbMenuItem1.Text = "ribbonOrbMenuItem1";
-            // 
-            // ribbonOrbMenuItem2
-            // 
-            this.ribbonOrbMenuItem2.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
-            this.ribbonOrbMenuItem2.Image = ((System.Drawing.Image)(resources.GetObject("ribbonOrbMenuItem2.Image")));
-            this.ribbonOrbMenuItem2.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonOrbMenuItem2.LargeImage")));
-            this.ribbonOrbMenuItem2.Name = "ribbonOrbMenuItem2";
-            this.ribbonOrbMenuItem2.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonOrbMenuItem2.SmallImage")));
-            this.ribbonOrbMenuItem2.Text = "ribbonOrbMenuItem2";
-            // 
-            // ribbonOrbRecentItem1
-            // 
-            this.ribbonOrbRecentItem1.Image = ((System.Drawing.Image)(resources.GetObject("ribbonOrbRecentItem1.Image")));
-            this.ribbonOrbRecentItem1.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonOrbRecentItem1.LargeImage")));
-            this.ribbonOrbRecentItem1.Name = "ribbonOrbRecentItem1";
-            this.ribbonOrbRecentItem1.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonOrbRecentItem1.SmallImage")));
-            this.ribbonOrbRecentItem1.Text = "ribbonOrbRecentItem1";
-            // 
-            // ribbonOrbRecentItem2
-            // 
-            this.ribbonOrbRecentItem2.Image = ((System.Drawing.Image)(resources.GetObject("ribbonOrbRecentItem2.Image")));
-            this.ribbonOrbRecentItem2.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonOrbRecentItem2.LargeImage")));
-            this.ribbonOrbRecentItem2.Name = "ribbonOrbRecentItem2";
-            this.ribbonOrbRecentItem2.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonOrbRecentItem2.SmallImage")));
-            this.ribbonOrbRecentItem2.Text = "ribbonOrbRecentItem2";
-            // 
-            // ribbonOrbRecentItem3
-            // 
-            this.ribbonOrbRecentItem3.Image = ((System.Drawing.Image)(resources.GetObject("ribbonOrbRecentItem3.Image")));
-            this.ribbonOrbRecentItem3.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonOrbRecentItem3.LargeImage")));
-            this.ribbonOrbRecentItem3.Name = "ribbonOrbRecentItem3";
-            this.ribbonOrbRecentItem3.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonOrbRecentItem3.SmallImage")));
-            this.ribbonOrbRecentItem3.Text = "ribbonOrbRecentItem3";
-            // 
-            // ribbonOrbRecentItem4
-            // 
-            this.ribbonOrbRecentItem4.Image = ((System.Drawing.Image)(resources.GetObject("ribbonOrbRecentItem4.Image")));
-            this.ribbonOrbRecentItem4.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonOrbRecentItem4.LargeImage")));
-            this.ribbonOrbRecentItem4.Name = "ribbonOrbRecentItem4";
-            this.ribbonOrbRecentItem4.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonOrbRecentItem4.SmallImage")));
-            this.ribbonOrbRecentItem4.Text = "ribbonOrbRecentItem4";
-            // 
-            // ribbonButton1
-            // 
-            this.ribbonButton1.DropDownItems.Add(this.ribbonButtonList1);
-            this.ribbonButton1.DropDownItems.Add(this.ribbonButtonList2);
-            this.ribbonButton1.DropDownItems.Add(this.ribbonButton3);
-            this.ribbonButton1.DropDownItems.Add(this.ribbonTextBox1);
-            this.ribbonButton1.DropDownItems.Add(this.ribbonButtonList3);
-            this.ribbonButton1.DropDownItems.Add(this.ribbonButtonList4);
-            this.ribbonButton1.DropDownItems.Add(this.ribbonButtonList5);
-            this.ribbonButton1.DropDownItems.Add(this.ribbonButtonList6);
-            this.ribbonButton1.DropDownItems.Add(this.ribbonItemGroup1);
-            this.ribbonButton1.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton1.Image")));
-            this.ribbonButton1.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton1.LargeImage")));
-            this.ribbonButton1.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Compact;
-            this.ribbonButton1.Name = "ribbonButton1";
-            this.ribbonButton1.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton1.SmallImage")));
-            this.ribbonButton1.Text = "ribbonButton1";
-            // 
-            // ribbonButtonList1
-            // 
-            this.ribbonButtonList1.ButtonsSizeMode = System.Windows.Forms.RibbonElementSizeMode.Large;
-            this.ribbonButtonList1.FlowToBottom = false;
-            this.ribbonButtonList1.ItemsSizeInDropwDownMode = new System.Drawing.Size(7, 5);
-            this.ribbonButtonList1.Name = "ribbonButtonList1";
-            this.ribbonButtonList1.Text = "ribbonButtonList1";
-            // 
-            // ribbonButtonList2
-            // 
-            this.ribbonButtonList2.ButtonsSizeMode = System.Windows.Forms.RibbonElementSizeMode.Large;
-            this.ribbonButtonList2.FlowToBottom = false;
-            this.ribbonButtonList2.ItemsSizeInDropwDownMode = new System.Drawing.Size(7, 5);
-            this.ribbonButtonList2.Name = "ribbonButtonList2";
-            this.ribbonButtonList2.Text = "ribbonButtonList2";
-            // 
-            // ribbonButton3
-            // 
-            this.ribbonButton3.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton3.Image")));
-            this.ribbonButton3.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton3.LargeImage")));
-            this.ribbonButton3.Name = "ribbonButton3";
-            this.ribbonButton3.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton3.SmallImage")));
-            this.ribbonButton3.Text = "ribbonButton3";
-            // 
-            // ribbonTextBox1
-            // 
-            this.ribbonTextBox1.Name = "ribbonTextBox1";
-            this.ribbonTextBox1.Text = "ribbonTextBox1";
-            this.ribbonTextBox1.TextBoxText = "";
-            // 
-            // ribbonButtonList3
-            // 
-            this.ribbonButtonList3.ButtonsSizeMode = System.Windows.Forms.RibbonElementSizeMode.Large;
-            this.ribbonButtonList3.FlowToBottom = false;
-            this.ribbonButtonList3.ItemsSizeInDropwDownMode = new System.Drawing.Size(7, 5);
-            this.ribbonButtonList3.Name = "ribbonButtonList3";
-            this.ribbonButtonList3.Text = "ribbonButtonList3";
-            // 
-            // ribbonButtonList4
-            // 
-            this.ribbonButtonList4.ButtonsSizeMode = System.Windows.Forms.RibbonElementSizeMode.Large;
-            this.ribbonButtonList4.FlowToBottom = false;
-            this.ribbonButtonList4.ItemsSizeInDropwDownMode = new System.Drawing.Size(7, 5);
-            this.ribbonButtonList4.Name = "ribbonButtonList4";
-            this.ribbonButtonList4.Text = "ribbonButtonList4";
-            // 
-            // ribbonButtonList5
-            // 
-            this.ribbonButtonList5.ButtonsSizeMode = System.Windows.Forms.RibbonElementSizeMode.Large;
-            this.ribbonButtonList5.FlowToBottom = false;
-            this.ribbonButtonList5.ItemsSizeInDropwDownMode = new System.Drawing.Size(7, 5);
-            this.ribbonButtonList5.Name = "ribbonButtonList5";
-            this.ribbonButtonList5.Text = "ribbonButtonList5";
-            // 
-            // ribbonButtonList6
-            // 
-            this.ribbonButtonList6.ButtonsSizeMode = System.Windows.Forms.RibbonElementSizeMode.Large;
-            this.ribbonButtonList6.FlowToBottom = false;
-            this.ribbonButtonList6.ItemsSizeInDropwDownMode = new System.Drawing.Size(7, 5);
-            this.ribbonButtonList6.Name = "ribbonButtonList6";
-            this.ribbonButtonList6.Text = "ribbonButtonList6";
-            // 
-            // ribbonItemGroup1
-            // 
-            this.ribbonItemGroup1.Name = "ribbonItemGroup1";
-            this.ribbonItemGroup1.Text = "ribbonItemGroup1";
-            // 
-            // ribbonButton2
-            // 
-            this.ribbonButton2.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.Image")));
-            this.ribbonButton2.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.LargeImage")));
-            this.ribbonButton2.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Compact;
-            this.ribbonButton2.Name = "ribbonButton2";
-            this.ribbonButton2.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.SmallImage")));
-            this.ribbonButton2.Text = "ribbonButton2";
-            // 
             // experienceTab
             // 
             this.experienceTab.Name = "experienceTab";
-            this.experienceTab.Panels.Add(this.newExperiencePanel);
             this.experienceTab.Panels.Add(this.loadExperiencePanel);
             this.experienceTab.Text = "Experience";
-            // 
-            // newExperiencePanel
-            // 
-            this.newExperiencePanel.Items.Add(this.ribbonButton4);
-            this.newExperiencePanel.Name = "newExperiencePanel";
-            this.newExperiencePanel.Text = "New Experience";
-            // 
-            // ribbonButton4
-            // 
-            this.ribbonButton4.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton4.Image")));
-            this.ribbonButton4.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton4.LargeImage")));
-            this.ribbonButton4.MaximumSize = new System.Drawing.Size(50, 50);
-            this.ribbonButton4.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Medium;
-            this.ribbonButton4.MinimumSize = new System.Drawing.Size(50, 50);
-            this.ribbonButton4.MinSizeMode = System.Windows.Forms.RibbonElementSizeMode.Overflow;
-            this.ribbonButton4.Name = "ribbonButton4";
-            this.ribbonButton4.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton4.SmallImage")));
             // 
             // loadExperiencePanel
             // 
@@ -334,15 +149,74 @@
             // 
             // newRoutePanel
             // 
+            this.newRoutePanel.Items.Add(this.saveRibbonBtn);
+            this.newRoutePanel.Items.Add(this.delRouteRibbnBtn);
+            this.newRoutePanel.Items.Add(this.updateRouteNotes);
             this.newRoutePanel.Name = "newRoutePanel";
-            this.newRoutePanel.Text = "Create New";
+            this.newRoutePanel.Text = "Actions";
             this.newRoutePanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.newRoutePanel_MouseUp);
+            // 
+            // saveRibbonBtn
+            // 
+            this.saveRibbonBtn.Image = global::MaarsExperienceCreator.Properties.Resources.saveBtnCompressed24;
+            this.saveRibbonBtn.LargeImage = global::MaarsExperienceCreator.Properties.Resources.saveBtnCompressed24;
+            this.saveRibbonBtn.Name = "saveRibbonBtn";
+            this.saveRibbonBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("saveRibbonBtn.SmallImage")));
+            this.saveRibbonBtn.Text = "";
+            this.saveRibbonBtn.ToolTip = "Save Route";
+            this.saveRibbonBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.saveRibbonBtn_MouseUp);
+            // 
+            // delRouteRibbnBtn
+            // 
+            this.delRouteRibbnBtn.Image = global::MaarsExperienceCreator.Properties.Resources.compressedX_24;
+            this.delRouteRibbnBtn.LargeImage = global::MaarsExperienceCreator.Properties.Resources.compressedX_24;
+            this.delRouteRibbnBtn.Name = "delRouteRibbnBtn";
+            this.delRouteRibbnBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("delRouteRibbnBtn.SmallImage")));
+            this.delRouteRibbnBtn.ToolTip = "Provides a List of Available Routes, which can be deleted from database";
+            this.delRouteRibbnBtn.ToolTipTitle = "Delete Route";
+            // 
+            // updateRouteNotes
+            // 
+            this.updateRouteNotes.Image = global::MaarsExperienceCreator.Properties.Resources.clipboardjpeg24;
+            this.updateRouteNotes.LargeImage = global::MaarsExperienceCreator.Properties.Resources.clipboardjpeg24;
+            this.updateRouteNotes.Name = "updateRouteNotes";
+            this.updateRouteNotes.SmallImage = ((System.Drawing.Image)(resources.GetObject("updateRouteNotes.SmallImage")));
+            this.updateRouteNotes.TextAlignment = System.Windows.Forms.RibbonItem.RibbonItemTextAlignment.Right;
+            this.updateRouteNotes.ToolTip = "Launches Dialog to Update Notes for the provided route";
+            this.updateRouteNotes.ToolTipTitle = "Update Route Notes";
             // 
             // loadRoutePanel
             // 
+            this.loadRoutePanel.Items.Add(this.showHideRibbonBtn);
+            this.loadRoutePanel.Items.Add(this.sortRibbonBtn);
+            this.loadRoutePanel.Items.Add(this.filterRibbonBtn);
             this.loadRoutePanel.Name = "loadRoutePanel";
-            this.loadRoutePanel.Text = "Load Existing";
+            this.loadRoutePanel.Text = "View";
             this.loadRoutePanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.loadRoutePanel_MouseUp);
+            // 
+            // showHideRibbonBtn
+            // 
+            this.showHideRibbonBtn.Image = ((System.Drawing.Image)(resources.GetObject("showHideRibbonBtn.Image")));
+            this.showHideRibbonBtn.LargeImage = ((System.Drawing.Image)(resources.GetObject("showHideRibbonBtn.LargeImage")));
+            this.showHideRibbonBtn.Name = "showHideRibbonBtn";
+            this.showHideRibbonBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("showHideRibbonBtn.SmallImage")));
+            this.showHideRibbonBtn.ToolTip = "Show/Hide Columns";
+            // 
+            // sortRibbonBtn
+            // 
+            this.sortRibbonBtn.Image = ((System.Drawing.Image)(resources.GetObject("sortRibbonBtn.Image")));
+            this.sortRibbonBtn.LargeImage = ((System.Drawing.Image)(resources.GetObject("sortRibbonBtn.LargeImage")));
+            this.sortRibbonBtn.Name = "sortRibbonBtn";
+            this.sortRibbonBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("sortRibbonBtn.SmallImage")));
+            this.sortRibbonBtn.ToolTip = "Sort Anchors";
+            // 
+            // filterRibbonBtn
+            // 
+            this.filterRibbonBtn.Image = global::MaarsExperienceCreator.Properties.Resources.filterjpeg24;
+            this.filterRibbonBtn.LargeImage = global::MaarsExperienceCreator.Properties.Resources.filterjpeg24;
+            this.filterRibbonBtn.Name = "filterRibbonBtn";
+            this.filterRibbonBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("filterRibbonBtn.SmallImage")));
+            this.filterRibbonBtn.ToolTip = "Filter Anchors";
             // 
             // viewActiveUsers
             // 
@@ -391,7 +265,7 @@
             this.newRouteTable.ReadOnly = true;
             this.newRouteTable.RowHeadersWidth = 51;
             this.newRouteTable.RowTemplate.Height = 24;
-            this.newRouteTable.Size = new System.Drawing.Size(555, 256);
+            this.newRouteTable.Size = new System.Drawing.Size(603, 256);
             this.newRouteTable.TabIndex = 3;
             this.newRouteTable.Visible = false;
             this.newRouteTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -399,13 +273,14 @@
             // 
             // routeAnchorsForRemovalChkboxesCol
             // 
+            this.routeAnchorsForRemovalChkboxesCol.FillWeight = 50F;
             this.routeAnchorsForRemovalChkboxesCol.HeaderText = "";
             this.routeAnchorsForRemovalChkboxesCol.MinimumWidth = 6;
             this.routeAnchorsForRemovalChkboxesCol.Name = "routeAnchorsForRemovalChkboxesCol";
             this.routeAnchorsForRemovalChkboxesCol.ReadOnly = true;
             this.routeAnchorsForRemovalChkboxesCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.routeAnchorsForRemovalChkboxesCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.routeAnchorsForRemovalChkboxesCol.Width = 125;
+            this.routeAnchorsForRemovalChkboxesCol.Width = 50;
             // 
             // NavPointNameColumnFromNewRoute
             // 
@@ -468,7 +343,7 @@
             this.availableNavPointsTable.ReadOnly = true;
             this.availableNavPointsTable.RowHeadersWidth = 51;
             this.availableNavPointsTable.RowTemplate.Height = 24;
-            this.availableNavPointsTable.Size = new System.Drawing.Size(615, 258);
+            this.availableNavPointsTable.Size = new System.Drawing.Size(603, 258);
             this.availableNavPointsTable.TabIndex = 4;
             this.availableNavPointsTable.Visible = false;
             // 
@@ -551,7 +426,7 @@
             // 
             // addAnchorToNewRouteBtn
             // 
-            this.addAnchorToNewRouteBtn.Location = new System.Drawing.Point(573, 822);
+            this.addAnchorToNewRouteBtn.Location = new System.Drawing.Point(561, 822);
             this.addAnchorToNewRouteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.addAnchorToNewRouteBtn.Name = "addAnchorToNewRouteBtn";
             this.addAnchorToNewRouteBtn.Size = new System.Drawing.Size(75, 23);
@@ -563,7 +438,7 @@
             // 
             // removeAnchorFromNewRouteBtn
             // 
-            this.removeAnchorFromNewRouteBtn.Location = new System.Drawing.Point(513, 480);
+            this.removeAnchorFromNewRouteBtn.Location = new System.Drawing.Point(561, 480);
             this.removeAnchorFromNewRouteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.removeAnchorFromNewRouteBtn.Name = "removeAnchorFromNewRouteBtn";
             this.removeAnchorFromNewRouteBtn.Size = new System.Drawing.Size(75, 23);
@@ -575,7 +450,7 @@
             // 
             // saveNewRouteBtn
             // 
-            this.saveNewRouteBtn.Location = new System.Drawing.Point(432, 480);
+            this.saveNewRouteBtn.Location = new System.Drawing.Point(480, 480);
             this.saveNewRouteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.saveNewRouteBtn.Name = "saveNewRouteBtn";
             this.saveNewRouteBtn.Size = new System.Drawing.Size(75, 23);
@@ -587,7 +462,7 @@
             // 
             // updateAnchorBtn
             // 
-            this.updateAnchorBtn.Location = new System.Drawing.Point(492, 822);
+            this.updateAnchorBtn.Location = new System.Drawing.Point(480, 822);
             this.updateAnchorBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.updateAnchorBtn.Name = "updateAnchorBtn";
             this.updateAnchorBtn.Size = new System.Drawing.Size(75, 23);
@@ -597,11 +472,24 @@
             this.updateAnchorBtn.Visible = false;
             this.updateAnchorBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.updateAnchorBtn_MouseUp);
             // 
+            // loadBtn
+            // 
+            this.loadBtn.Location = new System.Drawing.Point(399, 480);
+            this.loadBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.loadBtn.Name = "loadBtn";
+            this.loadBtn.Size = new System.Drawing.Size(75, 23);
+            this.loadBtn.TabIndex = 11;
+            this.loadBtn.Text = "Load";
+            this.loadBtn.UseVisualStyleBackColor = true;
+            this.loadBtn.Visible = false;
+            this.loadBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.loadBtn_MouseUp);
+            // 
             // MainExperienceCreator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(778, 917);
+            this.ClientSize = new System.Drawing.Size(755, 955);
+            this.Controls.Add(this.loadBtn);
             this.Controls.Add(this.updateAnchorBtn);
             this.Controls.Add(this.saveNewRouteBtn);
             this.Controls.Add(this.removeAnchorFromNewRouteBtn);
@@ -629,40 +517,22 @@
 
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.Ribbon ribbon1;
-        private System.Windows.Forms.RibbonButton ribbonButton1;
-        private System.Windows.Forms.RibbonOrbMenuItem ribbonOrbMenuItem1;
-        private System.Windows.Forms.RibbonOrbMenuItem ribbonOrbMenuItem2;
-        private System.Windows.Forms.RibbonOrbRecentItem ribbonOrbRecentItem1;
-        private System.Windows.Forms.RibbonOrbRecentItem ribbonOrbRecentItem2;
-        private System.Windows.Forms.RibbonOrbRecentItem ribbonOrbRecentItem3;
-        private System.Windows.Forms.RibbonOrbRecentItem ribbonOrbRecentItem4;
         private System.Windows.Forms.RibbonTab experienceTab;
         private System.Windows.Forms.RibbonTab loadAnimations;
         private System.Windows.Forms.RibbonTab RoutesTab;
         private System.Windows.Forms.RibbonPanel ribbonPanel1;
         private System.Windows.Forms.RibbonTab ribbonTab1;
-        private System.Windows.Forms.RibbonButtonList ribbonButtonList1;
-        private System.Windows.Forms.RibbonButtonList ribbonButtonList2;
-        private System.Windows.Forms.RibbonButton ribbonButton3;
-        private System.Windows.Forms.RibbonTextBox ribbonTextBox1;
-        private System.Windows.Forms.RibbonButtonList ribbonButtonList3;
-        private System.Windows.Forms.RibbonButtonList ribbonButtonList4;
-        private System.Windows.Forms.RibbonButtonList ribbonButtonList5;
-        private System.Windows.Forms.RibbonButtonList ribbonButtonList6;
-        private System.Windows.Forms.RibbonItemGroup ribbonItemGroup1;
-        private System.Windows.Forms.RibbonButton ribbonButton2;
         private System.Windows.Forms.RibbonPanel newExperiencePanel;
         private System.Windows.Forms.RibbonTab viewActiveUsers;
         private System.Windows.Forms.RibbonPanel newAnimationPanel;
         private System.Windows.Forms.RibbonPanel newRoutePanel;
         private System.Windows.Forms.RibbonPanel loadRoutePanel;
         private System.Windows.Forms.RibbonPanel loadAnimationPanel;
-        public System.Windows.Forms.RibbonButton ribbonButton4;
         private System.Windows.Forms.RibbonPanel loadExperiencePanel;
         private System.Windows.Forms.RibbonPanel createNewUser;
         private System.Windows.Forms.RibbonPanel viewUsers;
         public System.Windows.Forms.DataGridView newRouteTable;
-        private System.Windows.Forms.Label newRouteTableLabel;
+        public System.Windows.Forms.Label newRouteTableLabel;
         private System.Windows.Forms.Label availableNavPointsTableLabel;
         public System.Windows.Forms.DataGridView availableNavPointsTable;
         private System.Windows.Forms.Button addAnchorToNewRouteBtn;
@@ -674,13 +544,20 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn anchorDescriptionFromAvailable;
         private System.Windows.Forms.Button removeAnchorFromNewRouteBtn;
         private System.Windows.Forms.Button saveNewRouteBtn;
+        private System.Windows.Forms.Button updateAnchorBtn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn routeAnchorsForRemovalChkboxesCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn NavPointNameColumnFromNewRoute;
         private System.Windows.Forms.DataGridViewTextBoxColumn anchorDataFromNewRoute;
         private System.Windows.Forms.DataGridViewTextBoxColumn anchorLocationFromNewRoute;
         private System.Windows.Forms.DataGridViewTextBoxColumn newRouteAnchorExpiration;
         private System.Windows.Forms.DataGridViewTextBoxColumn anchorDescriptionFromNewRoute;
-        private System.Windows.Forms.Button updateAnchorBtn;
+        private System.Windows.Forms.Button loadBtn;
+        private System.Windows.Forms.RibbonButton saveRibbonBtn;
+        private System.Windows.Forms.RibbonButton delRouteRibbnBtn;
+        private System.Windows.Forms.RibbonButton updateRouteNotes;
+        private System.Windows.Forms.RibbonButton showHideRibbonBtn;
+        private System.Windows.Forms.RibbonButton sortRibbonBtn;
+        private System.Windows.Forms.RibbonButton filterRibbonBtn;
     }
 }
 

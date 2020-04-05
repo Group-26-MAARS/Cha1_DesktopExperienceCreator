@@ -48,7 +48,7 @@ namespace MaarsExperienceCreator
             return true;
         }
 
-        private async void saveNewRouteOkBtn_MouseUp(object sender, MouseEventArgs e)
+        public async void saveBtnClickedHelper()
         {
             bool exists = await checkIfRouteExists(this.newRouteNameTxtbox.Text);
             // If Route Exists, prompt user to override
@@ -75,7 +75,7 @@ MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
             {
                 this.parentForm.saveNewRoute(this.newRouteNameTxtbox.Text);
-                DialogResult result = MessageBox.Show("Route " + this.newRouteNameTxtbox.Text + " has been saved", "Saved", 
+                DialogResult result = MessageBox.Show("Route " + this.newRouteNameTxtbox.Text + " has been saved", "Saved",
          MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (result == DialogResult.OK)
                 {
@@ -84,7 +84,11 @@ MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
             }
+        }
 
+        private void saveNewRouteOkBtn_MouseUp(object sender, MouseEventArgs e)
+        {
+            saveBtnClickedHelper();
         }
 
         private void saveNewRouteCancelBtn_MouseUp(object sender, MouseEventArgs e)

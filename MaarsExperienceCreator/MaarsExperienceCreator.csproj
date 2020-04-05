@@ -100,6 +100,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LoadRouteDlg.resx">
       <DependentUpon>LoadRouteDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SaveRouteDlg.resx">
       <DependentUpon>SaveRouteDlg.cs</DependentUpon>
@@ -139,6 +140,30 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Webp.net-compress-image.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\floppy_compressedjpeg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\floppy_compressdjpeg32.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\compressedX_24.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\savebtnjpeg24.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clipboardjpeg24.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\saveBtnCompressed24.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\filterjpeg24.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
