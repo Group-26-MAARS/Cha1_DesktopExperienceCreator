@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,8 +15,13 @@ namespace MaarsExperienceCreator
     public partial class LoadRouteDlg : Form
     {
         MainExperienceCreator parentForm;
+        private Thread myThread;
         public LoadRouteDlg(MainExperienceCreator parent)
         {
+            // Display loading screen (create new thread for it)
+            myThread = new Thread(new ThreadStart(parent.DisplayLoadingScreen));
+            myThread.Start();
+
             InitializeComponent();
             this.parentForm = parent;
             fillComboboxWithRoutes();
@@ -40,6 +46,7 @@ namespace MaarsExperienceCreator
                     this.comboBox1.Items.Add(currStr.Split(':')[0]);
             }
             this.comboBox1.SelectedIndex = 0;
+            myThread.Abort();
         }
 
         private void cancelBtn_MouseUp(object sender, MouseEventArgs e)
@@ -49,11 +56,12 @@ namespace MaarsExperienceCreator
 
         private async void loadBtn_MouseUp(object sender, MouseEventArgs e)
         {
-       // ["4:b8bd3801-4863-4123-8c75-5f1276f7e751:44435::Some Description","7:7c005465-f89d-4342-92af-7bcbc7c2ce33:lastlocfor58::","test0:40kjl3kht:AtUCF:12-20-20:this is the first anchor in the newerer form"]
+            myThread = new Thread(new ThreadStart(parentForm.DisplayLoadingScreen));
+            myThread.Start();
 
-        // Load Selected Route
-        // Get Name of Route
-        string routeName = (string)this.comboBox1.SelectedItem;
+            // Load Selected Route
+            // Get Name of Route
+            string routeName = (string)this.comboBox1.SelectedItem;
 
             // Get All of the Anchors for that Route
             HttpClient c = new HttpClient();
@@ -78,6 +86,7 @@ namespace MaarsExperienceCreator
             parentForm.newRouteTable.ReadOnly = true; // Don't allow edits
                                                       //    parentForm.newRouteTable.Rows[parentForm.newRouteTable.Rows.Count - 1].Cells["routeAnchorsForRemovalChkboxesCol"].Value = false;
             parentForm.newRouteTableLabel.Text = "Loaded Route";
+            myThread.Abort();
 
             this.Close();
         }

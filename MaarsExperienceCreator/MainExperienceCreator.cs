@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace MaarsExperienceCreator
 {
@@ -55,8 +56,18 @@ namespace MaarsExperienceCreator
         {
         }
 
+        public void DisplayLoadingScreen()
+        {
+            LoadingForm loadingForm = new LoadingForm();
+        }
+
         public void setupForNewRoute()
         {
+            // Display loading screen (create new thread for it)
+            Thread myThread = new Thread(new ThreadStart(DisplayLoadingScreen));
+            myThread.Start();
+
+
             // Populate Available Anchor List with data from Cosmos:
             // Clear Table if not empty
             newRouteTableLabel.Text = "New Route";
@@ -115,6 +126,8 @@ namespace MaarsExperienceCreator
             saveNewRouteBtn.Visible = true;
             updateAnchorBtn.Visible = true;
             loadBtn.Visible = true;
+            myThread.Abort();
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -398,6 +411,7 @@ namespace MaarsExperienceCreator
             // Replace the "New Route" Text with "Load Route" Text
             // Add a child window for loading a route from the DB
             newRouteTableLabel.Text = "Load Route";
+
             LoadRouteDlg loadRtDlg = new LoadRouteDlg(this);
         }
 
@@ -434,6 +448,11 @@ namespace MaarsExperienceCreator
         private void saveRibbonBtn_MouseUp(object sender, MouseEventArgs e)
         {
             saveBtnHelper();
+        }
+
+        private void MainExperienceCreator_Load(object sender, EventArgs e)
+        {
+            uiState = RouteUIState.notActive;
         }
     }
 }

@@ -506,6 +506,7 @@
             this.Name = "MainExperienceCreator";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MAARS Experience Creator";
+            this.Load += new System.EventHandler(this.MainExperienceCreator_Load);
             ((System.ComponentModel.ISupportInitialize)(this.newRouteTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.availableNavPointsTable)).EndInit();
             this.ResumeLayout(false);
