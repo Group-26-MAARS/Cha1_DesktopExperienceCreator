@@ -12,3 +12,4 @@ C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreat
 C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\bin\Debug\NLog.xml
 C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\obj\Debug\MaarsExperienceCreator.MainExperienceCreator.resources
 C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\obj\Debug\MaarsExperienceCreator.SaveRouteDlg.resources
+C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\obj\Debug\MaarsExperienceCreator.LoadRouteDlg.resources

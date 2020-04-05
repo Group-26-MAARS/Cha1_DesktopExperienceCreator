@@ -81,6 +81,12 @@
     <Compile Include="MainExperienceCreator.Designer.cs">
       <DependentUpon>MainExperienceCreator.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoadRouteDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadRouteDlg.Designer.cs">
+      <DependentUpon>LoadRouteDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="SaveRouteDlg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +97,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainExperienceCreator.resx">
       <DependentUpon>MainExperienceCreator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadRouteDlg.resx">
+      <DependentUpon>LoadRouteDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SaveRouteDlg.resx">
       <DependentUpon>SaveRouteDlg.cs</DependentUpon>

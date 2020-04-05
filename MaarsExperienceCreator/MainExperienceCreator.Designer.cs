@@ -82,6 +82,7 @@
             this.addAnchorToNewRouteBtn = new System.Windows.Forms.Button();
             this.removeAnchorFromNewRouteBtn = new System.Windows.Forms.Button();
             this.saveNewRouteBtn = new System.Windows.Forms.Button();
+            this.updateAnchorBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.newRouteTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.availableNavPointsTable)).BeginInit();
             this.SuspendLayout();
@@ -341,6 +342,7 @@
             // 
             this.loadRoutePanel.Name = "loadRoutePanel";
             this.loadRoutePanel.Text = "Load Existing";
+            this.loadRoutePanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.loadRoutePanel_MouseUp);
             // 
             // viewActiveUsers
             // 
@@ -393,6 +395,7 @@
             this.newRouteTable.TabIndex = 3;
             this.newRouteTable.Visible = false;
             this.newRouteTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.newRouteTable.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.newRouteTable_CellValueChanged);
             // 
             // routeAnchorsForRemovalChkboxesCol
             // 
@@ -582,11 +585,24 @@
             this.saveNewRouteBtn.Visible = false;
             this.saveNewRouteBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.saveNewRouteBtn_MouseUp);
             // 
+            // updateAnchorBtn
+            // 
+            this.updateAnchorBtn.Location = new System.Drawing.Point(492, 822);
+            this.updateAnchorBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.updateAnchorBtn.Name = "updateAnchorBtn";
+            this.updateAnchorBtn.Size = new System.Drawing.Size(75, 23);
+            this.updateAnchorBtn.TabIndex = 10;
+            this.updateAnchorBtn.Text = "Update";
+            this.updateAnchorBtn.UseVisualStyleBackColor = true;
+            this.updateAnchorBtn.Visible = false;
+            this.updateAnchorBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.updateAnchorBtn_MouseUp);
+            // 
             // MainExperienceCreator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(778, 917);
+            this.Controls.Add(this.updateAnchorBtn);
             this.Controls.Add(this.saveNewRouteBtn);
             this.Controls.Add(this.removeAnchorFromNewRouteBtn);
             this.Controls.Add(this.addAnchorToNewRouteBtn);
@@ -645,7 +661,7 @@
         private System.Windows.Forms.RibbonPanel loadExperiencePanel;
         private System.Windows.Forms.RibbonPanel createNewUser;
         private System.Windows.Forms.RibbonPanel viewUsers;
-        private System.Windows.Forms.DataGridView newRouteTable;
+        public System.Windows.Forms.DataGridView newRouteTable;
         private System.Windows.Forms.Label newRouteTableLabel;
         private System.Windows.Forms.Label availableNavPointsTableLabel;
         public System.Windows.Forms.DataGridView availableNavPointsTable;
@@ -664,6 +680,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn anchorLocationFromNewRoute;
         private System.Windows.Forms.DataGridViewTextBoxColumn newRouteAnchorExpiration;
         private System.Windows.Forms.DataGridViewTextBoxColumn anchorDescriptionFromNewRoute;
+        private System.Windows.Forms.Button updateAnchorBtn;
     }
 }
 

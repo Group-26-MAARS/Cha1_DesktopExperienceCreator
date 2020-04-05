@@ -61,18 +61,28 @@ namespace MaarsExperienceCreator
                 if (result == DialogResult.Yes)
                 {
                     this.parentForm.saveNewRoute(this.newRouteNameTxtbox.Text);
-                    MessageBox.Show("Route " + this.newRouteNameTxtbox.Text + " has been saved", "Saved",
+                    DialogResult dialogRes = MessageBox.Show("Route " + this.newRouteNameTxtbox.Text + " has been saved", "Saved",
 MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
+                    if (dialogRes == DialogResult.OK)
+                    {
+                        parentForm.clearNewRouteTable();
+                        this.Close();
+                        return;
+                    }
                 }
                 return;
             }
             else
             {
                 this.parentForm.saveNewRoute(this.newRouteNameTxtbox.Text);
-                MessageBox.Show("Route " + this.newRouteNameTxtbox.Text + " has been saved", "Saved", 
+                DialogResult result = MessageBox.Show("Route " + this.newRouteNameTxtbox.Text + " has been saved", "Saved", 
          MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+                if (result == DialogResult.OK)
+                {
+                    parentForm.clearNewRouteTable();
+                    this.Close();
+                    return;
+                }
             }
 
         }
