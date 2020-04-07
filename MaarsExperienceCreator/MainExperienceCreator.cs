@@ -17,7 +17,32 @@ namespace MaarsExperienceCreator
         public MainExperienceCreator()
         {
             InitializeComponent();
+            createNewRouteHeaderCheckbox();
         }
+        public void createNewRouteHeaderCheckbox()
+        {
+            // Creating checkbox without panel
+            newRouteHeaderCheckbox = new CheckBox();
+            newRouteHeaderCheckbox.Size = new System.Drawing.Size(15, 15);
+            newRouteHeaderCheckbox.BackColor = Color.Transparent;
+
+            // Reset properties
+            newRouteHeaderCheckbox.Padding = new Padding(0);
+            newRouteHeaderCheckbox.Margin = new Padding(0);
+            newRouteHeaderCheckbox.Text = "";
+
+            // Add checkbox to datagrid cell
+            this.newRouteTable.Controls.Add(newRouteHeaderCheckbox);
+            DataGridViewHeaderCell header = newRouteTable.Columns[0].HeaderCell;
+            newRouteHeaderCheckbox.Location = new Point(
+                70,
+                5
+            );
+            newRouteHeaderCheckbox.CheckStateChanged += new System.EventHandler(this.newRouteHeaderCheckbox_CheckStateChanged);
+        }
+        private CheckBox myHeaderChkbox;
+        private CheckBox newRouteHeaderCheckbox;
+
         enum RouteUIState
         {
             newRoute,
@@ -76,44 +101,75 @@ namespace MaarsExperienceCreator
             HttpClient c = new HttpClient();
             Task<string> t = c.GetStringAsync("https://sharingservice20200308094713.azurewebsites.net" + "/api/anchors/all");
 
-            var result = string.Join(",", t.Result);
-
-            Console.WriteLine(result);
-            string[] stringArray = result.Split(',');
-            string[] anchorsFromAPI = new string[stringArray.Length];
-            // Remove the [ from the first element
-            stringArray[0] = stringArray[0].Replace("[", "");
-            // Remove the ] from the last element
-            stringArray[stringArray.Length - 1] = stringArray[stringArray.Length - 1].Replace("]", "");
-
-            int n = 0;
-            newRouteTable.ReadOnly = false;
-            if (uiState == RouteUIState.notActive)
+            try
             {
-                foreach (string currStr in stringArray)
+                var result = string.Join(",", t.Result);
+                Console.WriteLine(result);
+                string[] stringArray = result.Split(',');
+                string[] anchorsFromAPI = new string[stringArray.Length];
+                // Remove the [ from the first element
+                stringArray[0] = stringArray[0].Replace("[", "");
+                // Remove the ] from the last element
+                stringArray[stringArray.Length - 1] = stringArray[stringArray.Length - 1].Replace("]", "");
+                int n = 0;
+                newRouteTable.ReadOnly = false;
+                if (uiState == RouteUIState.notActive)
                 {
 
-                    anchorsFromAPI[n] = currStr.Replace("\"", "");
-                    // Add to the Dattatable                
-                    this.availableNavPointsTable.Rows.Add(n + 1, anchorsFromAPI[n].Split(':')[0].Trim(), anchorsFromAPI[n].Split(':')[1].Trim(), anchorsFromAPI[n].Split(':')[2].Trim(), anchorsFromAPI[n].Split(':')[3].Trim(), anchorsFromAPI[n].Split(':')[4].Trim());
 
-                    // For Avail Navpoint Table, Set all but checkboxes to read only
-                    availableNavPointsTable.ReadOnly = false;
-                    availableNavPointsTable.Rows[n].Cells["addBtns"].Value = false;
-                    availableNavPointsTable.Rows[n].Cells["addBtns"].ToolTipText = "Select for Addition to New Route";
-                    availableNavPointsTable.Rows[n].Cells["availableNavPointsNavPointName"].ReadOnly = true;
-                    availableNavPointsTable.Rows[n].Cells["anchorDataFromAvailable"].ReadOnly = true;
-                    //availableNavPointsTable.Rows[n].Cells["anchorLocationFromAvailable"].ReadOnly = true;
-                    availableNavPointsTable.Rows[n].Cells["anchorExpirationFromAvailable"].ReadOnly = true;
-                    //availableNavPointsTable.Rows[n].Cells["anchorDescriptionFromAvailable"].ReadOnly = true;
+                    foreach (string currStr in stringArray)
+                    {
 
-                    // Default the checkboxes to false
-                    //    availableNavPointsTable.EditMode = DataGridViewEditMode.EditOnEnter;
-                    // Only should do this when adding the new row
+                        anchorsFromAPI[n] = currStr.Replace("\"", "");
+                        // Add to the Dattatable                
+                        this.availableNavPointsTable.Rows.Add(n + 1, anchorsFromAPI[n].Split(':')[0].Trim(), anchorsFromAPI[n].Split(':')[1].Trim(), anchorsFromAPI[n].Split(':')[2].Trim(), anchorsFromAPI[n].Split(':')[3].Trim(), anchorsFromAPI[n].Split(':')[4].Trim());
 
-                    n++;
+                        // For Avail Navpoint Table, Set all but checkboxes to read only
+                        availableNavPointsTable.ReadOnly = false;
+                        availableNavPointsTable.Rows[n].Cells["addBtns"].Value = false;
+                        availableNavPointsTable.Rows[n].Cells["addBtns"].ToolTipText = "Select for Addition to New Route";
+                        availableNavPointsTable.Rows[n].Cells["availableNavPointsNavPointName"].ReadOnly = true;
+                        availableNavPointsTable.Rows[n].Cells["anchorDataFromAvailable"].ReadOnly = true;
+                        //availableNavPointsTable.Rows[n].Cells["anchorLocationFromAvailable"].ReadOnly = true;
+                        availableNavPointsTable.Rows[n].Cells["anchorExpirationFromAvailable"].ReadOnly = true;
+                        //availableNavPointsTable.Rows[n].Cells["anchorDescriptionFromAvailable"].ReadOnly = true;
+
+                        // Default the checkboxes to false
+                        //    availableNavPointsTable.EditMode = DataGridViewEditMode.EditOnEnter;
+                        // Only should do this when adding the new row
+
+                        n++;
+                    }
+                    // Creating checkbox without panel
+                    myHeaderChkbox = new CheckBox();
+                    myHeaderChkbox.Size = new System.Drawing.Size(15, 15);
+                    myHeaderChkbox.BackColor = Color.Transparent;
+
+                    // Reset properties
+                    myHeaderChkbox.Padding = new Padding(0);
+                    myHeaderChkbox.Margin = new Padding(0);
+                    myHeaderChkbox.Text = "";
+
+                    // Add checkbox to datagrid cell
+                    this.availableNavPointsTable.Controls.Add(myHeaderChkbox);
+                    DataGridViewHeaderCell header = availableNavPointsTable.Rows[0].Cells["addBtns"].OwningColumn.HeaderCell;
+                    myHeaderChkbox.Location = new Point(
+                        70,
+                        5
+                    );
+                    myHeaderChkbox.CheckStateChanged += new System.EventHandler(this.myHeaderChkbox_CheckStateChanged);
+
                 }
             }
+            catch(AggregateException e)
+            {
+                LoadingForm.setAbort();
+                MessageBox.Show("Unable to Connect to Database. Check Internet Connection", "No Connection",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error);
+                return;
+            }
+    
 
             // When "Create New" is clicked under routes,
             // display the new route table and availableAnchorTable
@@ -126,7 +182,10 @@ namespace MaarsExperienceCreator
             saveNewRouteBtn.Visible = true;
             updateAnchorBtn.Visible = true;
             loadBtn.Visible = true;
-            myThread.Abort();
+            //myThread.Abort();
+            //myThread.Join();
+            LoadingForm.setAbort();
+
 
         }
 
@@ -138,6 +197,83 @@ namespace MaarsExperienceCreator
         private void viewActiveUsers_ActiveChanged(object sender, EventArgs e)
         {
 
+        }
+
+        public void newRouteHeaderCheckbox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (newRouteHeaderCheckbox.Checked)
+            {
+                // Deselect selected Rows
+                // Go through Each checkbox and check them
+                for (int i = 0; i < newRouteTable.Rows.Count; i++)
+                {
+                    if (newRouteTable.Rows[i].Cells["routeAnchorsForRemovalChkboxesCol"].Selected == true)
+                    {
+                        newRouteTable.Rows[i].Cells["routeAnchorsForRemovalChkboxesCol"].ReadOnly = true;
+                        newRouteTable.Rows[i].Cells["routeAnchorsForRemovalChkboxesCol"].Value = true;
+                    }
+                    newRouteTable.Rows[i].Cells["routeAnchorsForRemovalChkboxesCol"].Value = true;
+                    newRouteTable.Rows[i].Cells["routeAnchorsForRemovalChkboxesCol"].ReadOnly = false;
+
+                }
+
+            }
+            else
+            {
+                // Go through each checkbox and uncheck them
+                for (int i = 0; i < newRouteTable.Rows.Count; i++)
+                {
+                    if (newRouteTable.Rows[i].Cells["routeAnchorsForRemovalChkboxesCol"].Selected == true)
+                    {
+                        newRouteTable.Rows[i].Cells["routeAnchorsForRemovalChkboxesCol"].ReadOnly = true;
+                        newRouteTable.Rows[i].Cells["routeAnchorsForRemovalChkboxesCol"].Value = false;
+
+
+                    }
+                    newRouteTable.Rows[i].Cells["routeAnchorsForRemovalChkboxesCol"].Value = false;
+                    newRouteTable.Rows[i].Cells["routeAnchorsForRemovalChkboxesCol"].ReadOnly = false;
+
+                }
+            }
+        }
+
+
+        public void myHeaderChkbox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (myHeaderChkbox.Checked)
+            {
+                // Deselect selected Rows
+                // Go through Each checkbox and check them
+                for (int i = 0; i < availableNavPointsTable.Rows.Count; i++)
+                {
+                    if (availableNavPointsTable.Rows[i].Cells["addBtns"].Selected == true)
+                    {
+                        availableNavPointsTable.Rows[i].Cells["addBtns"].ReadOnly = true;
+                        availableNavPointsTable.Rows[i].Cells["addBtns"].Value = true;
+                    }
+                    availableNavPointsTable.Rows[i].Cells["addBtns"].Value = true;
+                    availableNavPointsTable.Rows[i].Cells["addBtns"].ReadOnly = false;
+
+                }
+
+            }
+            else
+            {
+                // Go through each checkbox and uncheck them
+                for (int i = 0; i < availableNavPointsTable.Rows.Count; i++)
+                {
+                    if (availableNavPointsTable.Rows[i].Cells["addBtns"].Selected == true)
+                    {
+                        availableNavPointsTable.Rows[i].Cells["addBtns"].ReadOnly = true;
+                        availableNavPointsTable.Rows[i].Cells["addBtns"].Value = false;
+
+
+                    }
+                    availableNavPointsTable.Rows[i].Cells["addBtns"].Value = false;
+                    availableNavPointsTable.Rows[i].Cells["addBtns"].ReadOnly = false;
+
+                }
+            }
         }
 
         private void RoutesTab_ActiveChanged(object sender, EventArgs e)
@@ -453,6 +589,19 @@ namespace MaarsExperienceCreator
         private void MainExperienceCreator_Load(object sender, EventArgs e)
         {
             uiState = RouteUIState.notActive;
+        }
+
+        private void delRouteRibbnBtn_MouseUp(object sender, MouseEventArgs e)
+        {
+            // Bring up dialog to delete specified route
+            DeleteRouteDlg deleteRouteDlg = new DeleteRouteDlg(this);
+
+        }
+
+        private void showHideRibbonBtn_MouseUp(object sender, MouseEventArgs e)
+        {
+            ShowHideColumns showHideColumns = new ShowHideColumns();
+
         }
     }
 }

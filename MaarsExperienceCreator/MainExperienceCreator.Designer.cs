@@ -149,6 +149,7 @@
             // 
             // newRoutePanel
             // 
+            this.newRoutePanel.FlowsTo = System.Windows.Forms.RibbonPanelFlowDirection.Left;
             this.newRoutePanel.Items.Add(this.saveRibbonBtn);
             this.newRoutePanel.Items.Add(this.delRouteRibbnBtn);
             this.newRoutePanel.Items.Add(this.updateRouteNotes);
@@ -174,6 +175,7 @@
             this.delRouteRibbnBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("delRouteRibbnBtn.SmallImage")));
             this.delRouteRibbnBtn.ToolTip = "Provides a List of Available Routes, which can be deleted from database";
             this.delRouteRibbnBtn.ToolTipTitle = "Delete Route";
+            this.delRouteRibbnBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.delRouteRibbnBtn_MouseUp);
             // 
             // updateRouteNotes
             // 
@@ -201,6 +203,7 @@
             this.showHideRibbonBtn.Name = "showHideRibbonBtn";
             this.showHideRibbonBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("showHideRibbonBtn.SmallImage")));
             this.showHideRibbonBtn.ToolTip = "Show/Hide Columns";
+            this.showHideRibbonBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.showHideRibbonBtn_MouseUp);
             // 
             // sortRibbonBtn
             // 

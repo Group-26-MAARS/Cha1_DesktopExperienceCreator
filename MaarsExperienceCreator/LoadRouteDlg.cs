@@ -45,8 +45,13 @@ namespace MaarsExperienceCreator
                 if (currStr.Contains(":"))
                     this.comboBox1.Items.Add(currStr.Split(':')[0]);
             }
-            this.comboBox1.SelectedIndex = 0;
-            myThread.Abort();
+            if (this.comboBox1.Items.Count > 0)
+                this.comboBox1.SelectedIndex = 0;
+            // myThread.Abort();
+            // myThread.Join();
+
+            LoadingForm.setAbort();
+
         }
 
         private void cancelBtn_MouseUp(object sender, MouseEventArgs e)
@@ -56,6 +61,16 @@ namespace MaarsExperienceCreator
 
         private async void loadBtn_MouseUp(object sender, MouseEventArgs e)
         {
+            if (this.comboBox1.Items.Count == 0)
+            {
+                // If no routes exist, don't allow "delete"
+                if (this.comboBox1.Items.Count == 0)
+                {
+                    MessageBox.Show("Cannot Load. No Routes Exist", "No Routes Exist",
+         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
             myThread = new Thread(new ThreadStart(parentForm.DisplayLoadingScreen));
             myThread.Start();
 
@@ -86,7 +101,9 @@ namespace MaarsExperienceCreator
             parentForm.newRouteTable.ReadOnly = true; // Don't allow edits
                                                       //    parentForm.newRouteTable.Rows[parentForm.newRouteTable.Rows.Count - 1].Cells["routeAnchorsForRemovalChkboxesCol"].Value = false;
             parentForm.newRouteTableLabel.Text = "Loaded Route";
-            myThread.Abort();
+            //myThread.Abort();
+            //myThread.Join();
+            LoadingForm.setAbort();
 
             this.Close();
         }

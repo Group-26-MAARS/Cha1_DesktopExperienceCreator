@@ -81,6 +81,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ShowHideColumns.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowHideColumns.Designer.cs">
+      <DependentUpon>ShowHideColumns.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoadingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +105,12 @@
     <Compile Include="LoadRouteDlg.Designer.cs">
       <DependentUpon>LoadRouteDlg.cs</DependentUpon>
     </Compile>
+    <Compile Include="DeleteRouteDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteRouteDlg.Designer.cs">
+      <DependentUpon>DeleteRouteDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="SaveRouteDlg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +119,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ShowHideColumns.resx">
+      <DependentUpon>ShowHideColumns.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoadingForm.resx">
       <DependentUpon>LoadingForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -116,6 +131,9 @@
     <EmbeddedResource Include="LoadRouteDlg.resx">
       <DependentUpon>LoadRouteDlg.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteRouteDlg.resx">
+      <DependentUpon>DeleteRouteDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SaveRouteDlg.resx">
       <DependentUpon>SaveRouteDlg.cs</DependentUpon>

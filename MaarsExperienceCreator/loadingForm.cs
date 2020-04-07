@@ -13,6 +13,7 @@ namespace MaarsExperienceCreator
 {
     public partial class LoadingForm : Form
     {
+        static bool abortRequested;
         public LoadingForm()
         {
             InitializeComponent();
@@ -22,7 +23,14 @@ namespace MaarsExperienceCreator
             circularProgressBar1.ForeColor = Color.Black;
             this.Show();
             this.Visible = true;
+            abortRequested = false;
             UpdateTicks();
+
+
+        }
+        public static void setAbort()
+        {
+            abortRequested = true;
         }
 
         private void button1_MouseUp(object sender, MouseEventArgs e)
@@ -30,6 +38,28 @@ namespace MaarsExperienceCreator
 
         }
 
+       /* private void TransformPointsPoint(PaintEventArgs e)
+        {
+
+            // Create array of two points.
+            Point[] points = { new Point(0, 0), new Point(100, 50) };
+
+            // Draw line connecting two untransformed points.
+            e.Graphics.DrawLine(new Pen(Color.Blue, 3), points[0], points[1]);
+
+            // Set world transformation of Graphics object to translate.
+            e.Graphics.TranslateTransform(40, 30);
+
+            // Transform points in array from world to page coordinates.
+            e.Graphics.TransformPoints(System.Drawing.Drawing2D.CoordinateSpace.Page, System.Drawing.Drawing2D.CoordinateSpace.World, points);
+
+            // Reset world transformation.
+            e.Graphics.ResetTransform();
+
+            // Draw line that connects transformed points.
+            e.Graphics.DrawLine(new Pen(Color.Red, 3), points[0], points[1]);
+        }
+        */
         private void UpdateTicks()
         {
             int i = 0;
@@ -38,20 +68,21 @@ namespace MaarsExperienceCreator
                 if (i == 100)
                     i = 0;
                 // If not in the process of being aborted
-                if (Thread.CurrentThread.ThreadState != ThreadState.StopRequested)
+                Thread.Sleep(30);
+                if (abortRequested == false)
                 {
                     circularProgressBar1.Value = i++;
-                    try
-                    {
-                        Thread.Sleep(30);
-
-                        circularProgressBar1.Update();
-                    }
-                    catch (System.Threading.ThreadAbortException e)
-                    {
-                        Console.WriteLine(e.StackTrace);
-                    }
+                    circularProgressBar1.Update();
+                    
                 }
+                else
+                {
+                    Thread.CurrentThread.Abort();
+                    Thread.CurrentThread.Join();
+
+                }
+
+
             }
         }
 
