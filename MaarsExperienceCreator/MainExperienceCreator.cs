@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.IO;
 
 namespace MaarsExperienceCreator
 {
@@ -190,11 +191,6 @@ namespace MaarsExperienceCreator
         }
 
         private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void viewActiveUsers_ActiveChanged(object sender, EventArgs e)
         {
 
         }
@@ -602,6 +598,36 @@ namespace MaarsExperienceCreator
         {
             ShowHideColumns showHideColumns = new ShowHideColumns();
 
+        }
+
+        private void loadAnimationPanel_MouseUp(object sender, MouseEventArgs e)
+        {
+            var fileContent = string.Empty;
+            var filePath = string.Empty;
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+
+                openFileDialog.InitialDirectory = $"C:\\Users\\{System.Environment.GetEnvironmentVariable("UserName")}\\Documents"; //\\VuforiaStudio\\Projects";
+
+                openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    filePath = openFileDialog.FileName;
+
+                    //Read the contents of the file into a stream
+                    var fileStream = openFileDialog.OpenFile();
+
+                    using (StreamReader reader = new StreamReader(fileStream))
+                    {
+                        fileContent = reader.ReadToEnd();
+                    }
+                }
+            }
         }
     }
 }

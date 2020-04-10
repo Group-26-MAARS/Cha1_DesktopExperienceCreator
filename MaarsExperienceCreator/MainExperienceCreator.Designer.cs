@@ -138,6 +138,7 @@
             // 
             this.loadAnimationPanel.Name = "loadAnimationPanel";
             this.loadAnimationPanel.Text = "Load Existing";
+            this.loadAnimationPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.loadAnimationPanel_MouseUp);
             // 
             // RoutesTab
             // 
@@ -227,7 +228,6 @@
             this.viewActiveUsers.Panels.Add(this.createNewUser);
             this.viewActiveUsers.Panels.Add(this.viewUsers);
             this.viewActiveUsers.Text = "Users";
-            this.viewActiveUsers.ActiveChanged += new System.EventHandler(this.viewActiveUsers_ActiveChanged);
             // 
             // createNewUser
             // 
