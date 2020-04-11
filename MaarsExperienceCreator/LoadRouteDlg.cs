@@ -43,7 +43,7 @@ namespace MaarsExperienceCreator
             foreach (string currStr in stringArray)
             {
                 if (currStr.Contains(":"))
-                    this.comboBox1.Items.Add(currStr.Split(':')[0]);
+                    this.comboBox1.Items.Add(currStr.Split(':')[0].Substring(0, currStr.Split(':')[0].Length - 1));
             }
             if (this.comboBox1.Items.Count > 0)
                 this.comboBox1.SelectedIndex = 0;
