@@ -10,11 +10,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 using System.IO;
+using System.Xml.Serialization;
 
 namespace MaarsExperienceCreator
 {
     public partial class MainExperienceCreator : Form
     {
+        delegate void MyDelegate();
         public MainExperienceCreator()
         {
             InitializeComponent();
@@ -80,11 +82,69 @@ namespace MaarsExperienceCreator
 
         private void newRoutePanel_MouseUp(object sender, MouseEventArgs e)
         {
+
         }
 
         public void DisplayLoadingScreen()
         {
             LoadingForm loadingForm = new LoadingForm();
+        }
+        public void clearAvailableExperienceItems()
+        {
+            this.availableExpItems.Rows.Clear();
+        }
+        public void setupForNewExperience()
+        {
+            Thread myThread = new Thread(new ThreadStart(DisplayLoadingScreen));
+            myThread.Start();
+            clearAvailableExperienceItems();
+
+            HttpClient c = new HttpClient();
+            Task<string> t = c.GetStringAsync("https://sharingservice20200308094713.azurewebsites.net" + "/api/routes/all");
+
+            var result = string.Join(",", t.Result);
+            Console.WriteLine(result);
+            string[] routesKeyVal = result.Replace(", ", "*").Replace("[\"", "").Replace("\"]", "").Replace("\"", "").Split(',');
+            availableExpItems.Visible = false;
+            availableExpItems.ReadOnly = false;
+            int i = 0;
+            foreach (string routeStr in routesKeyVal)
+            {
+                string routeName = routeStr.Split(':')[0];
+
+                this.availableExpItems.Rows.Add(false, routeName, "Route", "");
+                availableExpItems.Rows[i].Cells["availExpChkboxCol"].ReadOnly = false;
+                availableExpItems.Rows[i].Cells["availExpNameCol"].ReadOnly = true;
+                availableExpItems.Rows[i].Cells["availExpTypeCol"].ReadOnly = true;
+                availableExpItems.Rows[i].Cells["availExpUserAccessCol"].ReadOnly = true;
+
+                i++;
+            }
+
+            Task<string> x = c.GetStringAsync("https://sharingservice20200308094713.azurewebsites.net" + "/api/animations/all");
+
+            abortLoadingForm();
+
+            result = string.Join(",", x.Result.Replace(":\\", "_"));
+
+            string[] animationsKeyVal = result.Replace("[\"", "").Replace("\"]", "").Replace("\"", "").Replace(",\\", "").Split(',');
+            this.availableExpItems.Visible = false;
+
+            foreach (string animationStr in animationsKeyVal)
+            {
+                string animationName = animationStr.Split(':')[0].Substring(2, animationStr.Split(':')[0].Length - 2).Replace(" ", "");
+                this.availableExpItems.Rows.Add(false, animationName, "Animation", "");
+
+            }
+
+            availableExpItems.Visible = true;
+
+
+        }
+        public void abortLoadingForm()
+        {
+            LoadingForm.setAbort();
+
         }
 
         public void setupForNewRoute()
@@ -131,9 +191,7 @@ namespace MaarsExperienceCreator
                         availableNavPointsTable.Rows[n].Cells["addBtns"].ToolTipText = "Select for Addition to New Route";
                         availableNavPointsTable.Rows[n].Cells["availableNavPointsNavPointName"].ReadOnly = true;
                         availableNavPointsTable.Rows[n].Cells["anchorDataFromAvailable"].ReadOnly = true;
-                        //availableNavPointsTable.Rows[n].Cells["anchorLocationFromAvailable"].ReadOnly = true;
                         availableNavPointsTable.Rows[n].Cells["anchorExpirationFromAvailable"].ReadOnly = true;
-                        //availableNavPointsTable.Rows[n].Cells["anchorDescriptionFromAvailable"].ReadOnly = true;
 
                         // Default the checkboxes to false
                         //    availableNavPointsTable.EditMode = DataGridViewEditMode.EditOnEnter;
@@ -162,15 +220,17 @@ namespace MaarsExperienceCreator
 
                 }
             }
-            catch(AggregateException e)
+            catch (AggregateException e)
             {
-                LoadingForm.setAbort();
+                abortLoadingForm();
+
                 MessageBox.Show("Unable to Connect to Database. Check Internet Connection", "No Connection",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error);
                 return;
             }
-    
+
+            abortLoadingForm();
 
             // When "Create New" is clicked under routes,
             // display the new route table and availableAnchorTable
@@ -183,11 +243,6 @@ namespace MaarsExperienceCreator
             saveNewRouteBtn.Visible = true;
             updateAnchorBtn.Visible = true;
             loadBtn.Visible = true;
-            //myThread.Abort();
-            //myThread.Join();
-            LoadingForm.setAbort();
-
-
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -279,6 +334,8 @@ namespace MaarsExperienceCreator
             if (RoutesTab.Active == true)
             {
                 setupForNewRoute();
+                LoadingForm.setAbort();
+
                 uiState = RouteUIState.newRoute;
 
             }
@@ -313,14 +370,14 @@ namespace MaarsExperienceCreator
             {
                 if (Convert.ToBoolean(availableNavPointsTable.Rows[i].Cells["addBtns"].Value) == true)
                 {
-                    this.newRouteTable.Rows.Add(i + 1, availableNavPointsTable.Rows[i].Cells["availableNavPointsNavPointName"].Value, 
-                        availableNavPointsTable.Rows[i].Cells["anchorDataFromAvailable"].Value, 
-                        availableNavPointsTable.Rows[i].Cells["anchorLocationFromAvailable"].Value, 
-                        availableNavPointsTable.Rows[i].Cells["anchorExpirationFromAvailable"].Value, 
+                    this.newRouteTable.Rows.Add(i + 1, availableNavPointsTable.Rows[i].Cells["availableNavPointsNavPointName"].Value,
+                        availableNavPointsTable.Rows[i].Cells["anchorDataFromAvailable"].Value,
+                        availableNavPointsTable.Rows[i].Cells["anchorLocationFromAvailable"].Value,
+                        availableNavPointsTable.Rows[i].Cells["anchorExpirationFromAvailable"].Value,
                         availableNavPointsTable.Rows[i].Cells["anchorDescriptionFromAvailable"].Value);
-                        newRouteTable.Rows[newRouteTable.Rows.Count - 1].Cells["routeAnchorsForRemovalChkboxesCol"].Value = false;
-                        availableNavPointsTable.Rows[i].Cells["addBtns"].Value = false;
-                        availableNavPointsTable.Rows[i].Cells["addBtns"].ToolTipText = "Select for Removal";
+                    newRouteTable.Rows[newRouteTable.Rows.Count - 1].Cells["routeAnchorsForRemovalChkboxesCol"].Value = false;
+                    availableNavPointsTable.Rows[i].Cells["addBtns"].Value = false;
+                    availableNavPointsTable.Rows[i].Cells["addBtns"].ToolTipText = "Select for Removal";
 
                     setNewRouteTableToReadonly(newRouteTable.Rows.Count - 1);
                 }
@@ -351,7 +408,57 @@ namespace MaarsExperienceCreator
         {
             return this.newRouteTable;
         }
-        
+
+        public async void saveNewExperience(string experienceName)
+        {
+            // Save Routes to the Cloud
+            string testInsertionStr = "";
+            // Get the list of selected items
+            for (int i = 0; i < this.experienceTable.Rows.Count; i++)
+            {
+                testInsertionStr += experienceTable.Rows[i].Cells["newExpNameCol"].Value + ", ";
+            }
+            if (testInsertionStr.Length - 2 >= 0)
+                testInsertionStr = testInsertionStr.Substring(0, testInsertionStr.Length - 2);
+            try
+            {
+                string BaseSharingUrl = "https://sharingservice20200308094713.azurewebsites.net";
+
+
+                HttpClient client = new HttpClient();
+                var response = await client.PostAsync(BaseSharingUrl + "/api/experiences", new StringContent(experienceName + ":" + testInsertionStr));
+                if (response.IsSuccessStatusCode)
+                {
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    long ret;
+                    if (long.TryParse(responseBody, out ret))
+                    {
+                        Console.WriteLine("Key " + ret.ToString());
+                        DialogResult result = MessageBox.Show(experienceName + " has been saved to database", "Route Created",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Failed to store the route key. Failed to parse the response body to a long: {responseBody}.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"Failed to store the route key: {response.StatusCode} {response.ReasonPhrase}.");
+                }
+
+                Console.WriteLine($"Failed to store the route key: {testInsertionStr}.");
+                return;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                Console.WriteLine($"Failed to store the route key: {testInsertionStr}.");
+                return;
+            }
+        }
+
         public async void saveNewRoute(string routeName)
         {
             // Save Routes to the Cloud
@@ -446,7 +553,7 @@ namespace MaarsExperienceCreator
 
 
                     HttpClient client = new HttpClient();
-                    var response = await client.PostAsync(BaseSharingUrl +"/api/anchors", new StringContent(testInsertionStr));
+                    var response = await client.PostAsync(BaseSharingUrl + "/api/anchors", new StringContent(testInsertionStr));
                     if (response.IsSuccessStatusCode)
                     {
                         string responseBody = await response.Content.ReadAsStringAsync();
@@ -465,7 +572,7 @@ namespace MaarsExperienceCreator
                         Console.WriteLine($"Failed to store the route key: {response.StatusCode} {response.ReasonPhrase}.");
                         return false;
                     }
-                    
+
                 }
                 catch (Exception ex)
                 {
@@ -515,8 +622,8 @@ namespace MaarsExperienceCreator
             }
             else
             {
-                 MessageBox.Show("No Anchors Selected", "Invalid Selection",
-                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No Anchors Selected", "Invalid Selection",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -567,7 +674,7 @@ namespace MaarsExperienceCreator
                 loadBtn.Text = "New Route";
                 uiState = RouteUIState.loadRoute;
             }
-            else if(uiState == RouteUIState.loadRoute)
+            else if (uiState == RouteUIState.loadRoute)
             {
                 setupForNewRoute();
                 loadBtn.Text = "Load Route";
@@ -585,6 +692,7 @@ namespace MaarsExperienceCreator
         private void MainExperienceCreator_Load(object sender, EventArgs e)
         {
             uiState = RouteUIState.notActive;
+            setupForNewExperience();
         }
 
         private void delRouteRibbnBtn_MouseUp(object sender, MouseEventArgs e)
@@ -628,6 +736,97 @@ namespace MaarsExperienceCreator
                     }
                 }
             }
+        }
+
+        public void hideExperienceUI()
+        {
+            experienceTable.Visible = false;
+            experienceLoadBtn.Visible = false;
+            experienceSaveBtn.Visible = false;
+            experienceRemoveBtn.Visible = false;
+            experienceLabel.Visible = false;
+
+
+            availableExpItems.Visible = false;
+            availableExpItemsLabel.Visible = false;
+            addExpItemBtn.Visible = false;
+        }
+        public void showExperienceUI()
+        {
+
+            experienceTable.Visible = true;
+            experienceLoadBtn.Visible = true;
+            experienceSaveBtn.Visible = true;
+            experienceRemoveBtn.Visible = true;
+            experienceLabel.Visible = true;
+
+            availableExpItems.Visible = true;
+            availableExpItemsLabel.Visible = true;
+            addExpItemBtn.Visible = true;
+
+
+        }
+
+        private void experienceTab_ActiveChanged(object sender, EventArgs e)
+        {
+            if (experienceTab.Active == true)
+            {
+                // Make Experience Tables and buttons hidden
+                setupForNewExperience();
+                /*
+                var md = new MyDelegate(abortLoadingForm);
+                md();
+                */
+                showExperienceUI();
+            }
+            else
+            {
+                hideExperienceUI();
+            }
+        }
+
+        public void setNewExperienceTableToReadOnly(int currentRow)
+        {
+            experienceTable.Rows[currentRow].Cells["newExpChkboxCol"].ReadOnly = true;
+            experienceTable.Rows[currentRow].Cells["newExpNameCol"].ReadOnly = true;
+            experienceTable.Rows[currentRow].Cells["newExpTypeCol"].ReadOnly = true;
+            experienceTable.Rows[currentRow].Cells["newExpUserAccessCol"].ReadOnly = true;
+        }
+
+        private void addExpItemBtn_MouseUp(object sender, MouseEventArgs e)
+        {
+            // Add items to "New Experience" table
+            // Add all selected rows to the new route table.
+            for (int i = 0; i < this.availableExpItems.Rows.Count; i++)
+            {
+                if (Convert.ToBoolean(availableExpItems.Rows[i].Cells["availExpChkboxCol"].Value) == true)
+                {
+                    this.experienceTable.Rows.Add(false,
+                        availableExpItems.Rows[i].Cells["availExpNameCol"].Value,
+                        availableExpItems.Rows[i].Cells["availExpTypeCol"].Value,
+                        availableExpItems.Rows[i].Cells["availExpUserAccessCol"].Value);
+
+                    experienceTable.Rows[experienceTable.Rows.Count - 1].Cells["newExpChkboxCol"].Value = false;
+                    availableExpItems.Rows[i].Cells["availExpChkboxCol"].Value = false;
+                    availableExpItems.Rows[i].Cells["availExpChkboxCol"].ToolTipText = "Select for Removal";
+
+
+                    setNewExperienceTableToReadOnly(experienceTable.Rows.Count - 1);
+                }
+            }
+        }
+
+        private void experienceSaveBtn_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (this.experienceTable.Rows.Count == 0)
+            {
+                MessageBox.Show("No Anchors Exist For This Route. Please Add anchors.", "No Anchors",
+                                                 MessageBoxButtons.OK,
+                                                 MessageBoxIcon.Information);
+                return;
+            }
+            // Add modal or message box prompting user for name to save
+            SaveExpDlg saveExpDlg = new SaveExpDlg(this);
         }
     }
 }

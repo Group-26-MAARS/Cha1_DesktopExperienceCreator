@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
-            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // circularProgressBar1
@@ -65,22 +64,11 @@
             this.circularProgressBar1.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
             this.circularProgressBar1.Value = 68;
             // 
-            // button1
-            // 
-            this.button1.Image = global::MaarsExperienceCreator.Properties.Resources.filterjpeg24;
-            this.button1.Location = new System.Drawing.Point(117, 90);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(130, 59);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // LoadingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(354, 367);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.circularProgressBar1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "LoadingForm";
@@ -94,6 +82,5 @@
         #endregion
 
         private CircularProgressBar.CircularProgressBar circularProgressBar1;
-        private System.Windows.Forms.Button button1;
     }
 }

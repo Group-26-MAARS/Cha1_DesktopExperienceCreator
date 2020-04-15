@@ -38,28 +38,6 @@ namespace MaarsExperienceCreator
 
         }
 
-       /* private void TransformPointsPoint(PaintEventArgs e)
-        {
-
-            // Create array of two points.
-            Point[] points = { new Point(0, 0), new Point(100, 50) };
-
-            // Draw line connecting two untransformed points.
-            e.Graphics.DrawLine(new Pen(Color.Blue, 3), points[0], points[1]);
-
-            // Set world transformation of Graphics object to translate.
-            e.Graphics.TranslateTransform(40, 30);
-
-            // Transform points in array from world to page coordinates.
-            e.Graphics.TransformPoints(System.Drawing.Drawing2D.CoordinateSpace.Page, System.Drawing.Drawing2D.CoordinateSpace.World, points);
-
-            // Reset world transformation.
-            e.Graphics.ResetTransform();
-
-            // Draw line that connects transformed points.
-            e.Graphics.DrawLine(new Pen(Color.Red, 3), points[0], points[1]);
-        }
-        */
         private void UpdateTicks()
         {
             int i = 0;
@@ -68,7 +46,7 @@ namespace MaarsExperienceCreator
                 if (i == 100)
                     i = 0;
                 // If not in the process of being aborted
-                Thread.Sleep(30);
+                Thread.Sleep(5);
                 if (abortRequested == false)
                 {
                     circularProgressBar1.Value = i++;

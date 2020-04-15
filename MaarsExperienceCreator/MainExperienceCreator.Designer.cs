@@ -38,13 +38,7 @@
             this.loadAnimationPanel = new System.Windows.Forms.RibbonPanel();
             this.RoutesTab = new System.Windows.Forms.RibbonTab();
             this.newRoutePanel = new System.Windows.Forms.RibbonPanel();
-            this.saveRibbonBtn = new System.Windows.Forms.RibbonButton();
-            this.delRouteRibbnBtn = new System.Windows.Forms.RibbonButton();
-            this.updateRouteNotes = new System.Windows.Forms.RibbonButton();
             this.loadRoutePanel = new System.Windows.Forms.RibbonPanel();
-            this.showHideRibbonBtn = new System.Windows.Forms.RibbonButton();
-            this.sortRibbonBtn = new System.Windows.Forms.RibbonButton();
-            this.filterRibbonBtn = new System.Windows.Forms.RibbonButton();
             this.viewActiveUsers = new System.Windows.Forms.RibbonTab();
             this.createNewUser = new System.Windows.Forms.RibbonPanel();
             this.viewUsers = new System.Windows.Forms.RibbonPanel();
@@ -71,8 +65,32 @@
             this.saveNewRouteBtn = new System.Windows.Forms.Button();
             this.updateAnchorBtn = new System.Windows.Forms.Button();
             this.loadBtn = new System.Windows.Forms.Button();
+            this.experienceTable = new System.Windows.Forms.DataGridView();
+            this.experienceLabel = new System.Windows.Forms.Label();
+            this.experienceLoadBtn = new System.Windows.Forms.Button();
+            this.experienceSaveBtn = new System.Windows.Forms.Button();
+            this.experienceRemoveBtn = new System.Windows.Forms.Button();
+            this.availableExpItems = new System.Windows.Forms.DataGridView();
+            this.addExpItemBtn = new System.Windows.Forms.Button();
+            this.availableExpItemsLabel = new System.Windows.Forms.Label();
+            this.availExpChkboxCol = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.availExpNameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.availExpTypeCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.availExpUserAccessCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.newExpChkboxCol = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.newExpNameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.newExpTypeCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.newExpUserAccessCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saveRibbonBtn = new System.Windows.Forms.RibbonButton();
+            this.delRouteRibbnBtn = new System.Windows.Forms.RibbonButton();
+            this.updateRouteNotes = new System.Windows.Forms.RibbonButton();
+            this.showHideRibbonBtn = new System.Windows.Forms.RibbonButton();
+            this.sortRibbonBtn = new System.Windows.Forms.RibbonButton();
+            this.filterRibbonBtn = new System.Windows.Forms.RibbonButton();
             ((System.ComponentModel.ISupportInitialize)(this.newRouteTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.availableNavPointsTable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.experienceTable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.availableExpItems)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -80,14 +98,14 @@
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(755, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(711, 31);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // ribbon1
             // 
             this.ribbon1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.ribbon1.Location = new System.Drawing.Point(0, 25);
+            this.ribbon1.Location = new System.Drawing.Point(0, 31);
             this.ribbon1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ribbon1.Minimized = false;
             this.ribbon1.Name = "ribbon1";
@@ -102,7 +120,7 @@
             this.ribbon1.OrbStyle = System.Windows.Forms.RibbonOrbStyle.Office_2010;
             this.ribbon1.OrbText = "File";
             this.ribbon1.RibbonTabFont = new System.Drawing.Font("Trebuchet MS", 9F);
-            this.ribbon1.Size = new System.Drawing.Size(755, 148);
+            this.ribbon1.Size = new System.Drawing.Size(711, 148);
             this.ribbon1.TabIndex = 1;
             this.ribbon1.Tabs.Add(this.experienceTab);
             this.ribbon1.Tabs.Add(this.loadAnimations);
@@ -116,6 +134,7 @@
             this.experienceTab.Name = "experienceTab";
             this.experienceTab.Panels.Add(this.loadExperiencePanel);
             this.experienceTab.Text = "Experience";
+            this.experienceTab.ActiveChanged += new System.EventHandler(this.experienceTab_ActiveChanged);
             // 
             // loadExperiencePanel
             // 
@@ -158,36 +177,6 @@
             this.newRoutePanel.Text = "Actions";
             this.newRoutePanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.newRoutePanel_MouseUp);
             // 
-            // saveRibbonBtn
-            // 
-            this.saveRibbonBtn.Image = global::MaarsExperienceCreator.Properties.Resources.saveBtnCompressed24;
-            this.saveRibbonBtn.LargeImage = global::MaarsExperienceCreator.Properties.Resources.saveBtnCompressed24;
-            this.saveRibbonBtn.Name = "saveRibbonBtn";
-            this.saveRibbonBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("saveRibbonBtn.SmallImage")));
-            this.saveRibbonBtn.Text = "";
-            this.saveRibbonBtn.ToolTip = "Save Route";
-            this.saveRibbonBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.saveRibbonBtn_MouseUp);
-            // 
-            // delRouteRibbnBtn
-            // 
-            this.delRouteRibbnBtn.Image = global::MaarsExperienceCreator.Properties.Resources.compressedX_24;
-            this.delRouteRibbnBtn.LargeImage = global::MaarsExperienceCreator.Properties.Resources.compressedX_24;
-            this.delRouteRibbnBtn.Name = "delRouteRibbnBtn";
-            this.delRouteRibbnBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("delRouteRibbnBtn.SmallImage")));
-            this.delRouteRibbnBtn.ToolTip = "Provides a List of Available Routes, which can be deleted from database";
-            this.delRouteRibbnBtn.ToolTipTitle = "Delete Route";
-            this.delRouteRibbnBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.delRouteRibbnBtn_MouseUp);
-            // 
-            // updateRouteNotes
-            // 
-            this.updateRouteNotes.Image = global::MaarsExperienceCreator.Properties.Resources.clipboardjpeg24;
-            this.updateRouteNotes.LargeImage = global::MaarsExperienceCreator.Properties.Resources.clipboardjpeg24;
-            this.updateRouteNotes.Name = "updateRouteNotes";
-            this.updateRouteNotes.SmallImage = ((System.Drawing.Image)(resources.GetObject("updateRouteNotes.SmallImage")));
-            this.updateRouteNotes.TextAlignment = System.Windows.Forms.RibbonItem.RibbonItemTextAlignment.Right;
-            this.updateRouteNotes.ToolTip = "Launches Dialog to Update Notes for the provided route";
-            this.updateRouteNotes.ToolTipTitle = "Update Route Notes";
-            // 
             // loadRoutePanel
             // 
             this.loadRoutePanel.Items.Add(this.showHideRibbonBtn);
@@ -196,31 +185,6 @@
             this.loadRoutePanel.Name = "loadRoutePanel";
             this.loadRoutePanel.Text = "View";
             this.loadRoutePanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.loadRoutePanel_MouseUp);
-            // 
-            // showHideRibbonBtn
-            // 
-            this.showHideRibbonBtn.Image = ((System.Drawing.Image)(resources.GetObject("showHideRibbonBtn.Image")));
-            this.showHideRibbonBtn.LargeImage = ((System.Drawing.Image)(resources.GetObject("showHideRibbonBtn.LargeImage")));
-            this.showHideRibbonBtn.Name = "showHideRibbonBtn";
-            this.showHideRibbonBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("showHideRibbonBtn.SmallImage")));
-            this.showHideRibbonBtn.ToolTip = "Show/Hide Columns";
-            this.showHideRibbonBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.showHideRibbonBtn_MouseUp);
-            // 
-            // sortRibbonBtn
-            // 
-            this.sortRibbonBtn.Image = ((System.Drawing.Image)(resources.GetObject("sortRibbonBtn.Image")));
-            this.sortRibbonBtn.LargeImage = ((System.Drawing.Image)(resources.GetObject("sortRibbonBtn.LargeImage")));
-            this.sortRibbonBtn.Name = "sortRibbonBtn";
-            this.sortRibbonBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("sortRibbonBtn.SmallImage")));
-            this.sortRibbonBtn.ToolTip = "Sort Anchors";
-            // 
-            // filterRibbonBtn
-            // 
-            this.filterRibbonBtn.Image = global::MaarsExperienceCreator.Properties.Resources.filterjpeg24;
-            this.filterRibbonBtn.LargeImage = global::MaarsExperienceCreator.Properties.Resources.filterjpeg24;
-            this.filterRibbonBtn.Name = "filterRibbonBtn";
-            this.filterRibbonBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("filterRibbonBtn.SmallImage")));
-            this.filterRibbonBtn.ToolTip = "Filter Anchors";
             // 
             // viewActiveUsers
             // 
@@ -262,7 +226,7 @@
             this.anchorLocationFromNewRoute,
             this.newRouteAnchorExpiration,
             this.anchorDescriptionFromNewRoute});
-            this.newRouteTable.Location = new System.Drawing.Point(33, 218);
+            this.newRouteTable.Location = new System.Drawing.Point(57, 221);
             this.newRouteTable.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.newRouteTable.Name = "newRouteTable";
             this.newRouteTable.ReadOnly = true;
@@ -340,7 +304,7 @@
             this.anchorLocationFromAvailable,
             this.anchorExpirationFromAvailable,
             this.anchorDescriptionFromAvailable});
-            this.availableNavPointsTable.Location = new System.Drawing.Point(33, 558);
+            this.availableNavPointsTable.Location = new System.Drawing.Point(57, 521);
             this.availableNavPointsTable.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.availableNavPointsTable.Name = "availableNavPointsTable";
             this.availableNavPointsTable.ReadOnly = true;
@@ -408,7 +372,7 @@
             // 
             this.newRouteTableLabel.AutoSize = true;
             this.newRouteTableLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newRouteTableLabel.Location = new System.Drawing.Point(28, 186);
+            this.newRouteTableLabel.Location = new System.Drawing.Point(52, 190);
             this.newRouteTableLabel.Name = "newRouteTableLabel";
             this.newRouteTableLabel.Size = new System.Drawing.Size(137, 29);
             this.newRouteTableLabel.TabIndex = 5;
@@ -420,7 +384,7 @@
             // 
             this.availableNavPointsTableLabel.AutoSize = true;
             this.availableNavPointsTableLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.availableNavPointsTableLabel.Location = new System.Drawing.Point(28, 526);
+            this.availableNavPointsTableLabel.Location = new System.Drawing.Point(52, 490);
             this.availableNavPointsTableLabel.Name = "availableNavPointsTableLabel";
             this.availableNavPointsTableLabel.Size = new System.Drawing.Size(247, 29);
             this.availableNavPointsTableLabel.TabIndex = 6;
@@ -429,7 +393,7 @@
             // 
             // addAnchorToNewRouteBtn
             // 
-            this.addAnchorToNewRouteBtn.Location = new System.Drawing.Point(561, 822);
+            this.addAnchorToNewRouteBtn.Location = new System.Drawing.Point(585, 783);
             this.addAnchorToNewRouteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.addAnchorToNewRouteBtn.Name = "addAnchorToNewRouteBtn";
             this.addAnchorToNewRouteBtn.Size = new System.Drawing.Size(75, 23);
@@ -441,7 +405,7 @@
             // 
             // removeAnchorFromNewRouteBtn
             // 
-            this.removeAnchorFromNewRouteBtn.Location = new System.Drawing.Point(561, 480);
+            this.removeAnchorFromNewRouteBtn.Location = new System.Drawing.Point(585, 481);
             this.removeAnchorFromNewRouteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.removeAnchorFromNewRouteBtn.Name = "removeAnchorFromNewRouteBtn";
             this.removeAnchorFromNewRouteBtn.Size = new System.Drawing.Size(75, 23);
@@ -453,7 +417,7 @@
             // 
             // saveNewRouteBtn
             // 
-            this.saveNewRouteBtn.Location = new System.Drawing.Point(480, 480);
+            this.saveNewRouteBtn.Location = new System.Drawing.Point(504, 481);
             this.saveNewRouteBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.saveNewRouteBtn.Name = "saveNewRouteBtn";
             this.saveNewRouteBtn.Size = new System.Drawing.Size(75, 23);
@@ -465,7 +429,7 @@
             // 
             // updateAnchorBtn
             // 
-            this.updateAnchorBtn.Location = new System.Drawing.Point(480, 822);
+            this.updateAnchorBtn.Location = new System.Drawing.Point(504, 782);
             this.updateAnchorBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.updateAnchorBtn.Name = "updateAnchorBtn";
             this.updateAnchorBtn.Size = new System.Drawing.Size(75, 23);
@@ -477,7 +441,7 @@
             // 
             // loadBtn
             // 
-            this.loadBtn.Location = new System.Drawing.Point(399, 480);
+            this.loadBtn.Location = new System.Drawing.Point(423, 481);
             this.loadBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.loadBtn.Name = "loadBtn";
             this.loadBtn.Size = new System.Drawing.Size(75, 23);
@@ -487,22 +451,258 @@
             this.loadBtn.Visible = false;
             this.loadBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.loadBtn_MouseUp);
             // 
+            // experienceTable
+            // 
+            this.experienceTable.AllowUserToAddRows = false;
+            this.experienceTable.AllowUserToDeleteRows = false;
+            this.experienceTable.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.experienceTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.experienceTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.newExpChkboxCol,
+            this.newExpNameCol,
+            this.newExpTypeCol,
+            this.newExpUserAccessCol});
+            this.experienceTable.Location = new System.Drawing.Point(57, 230);
+            this.experienceTable.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.experienceTable.Name = "experienceTable";
+            this.experienceTable.ReadOnly = true;
+            this.experienceTable.RowHeadersWidth = 51;
+            this.experienceTable.RowTemplate.Height = 24;
+            this.experienceTable.Size = new System.Drawing.Size(615, 256);
+            this.experienceTable.TabIndex = 12;
+            // 
+            // experienceLabel
+            // 
+            this.experienceLabel.AutoSize = true;
+            this.experienceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.experienceLabel.Location = new System.Drawing.Point(52, 199);
+            this.experienceLabel.Name = "experienceLabel";
+            this.experienceLabel.Size = new System.Drawing.Size(196, 29);
+            this.experienceLabel.TabIndex = 13;
+            this.experienceLabel.Text = "New Experience";
+            // 
+            // experienceLoadBtn
+            // 
+            this.experienceLoadBtn.Location = new System.Drawing.Point(435, 490);
+            this.experienceLoadBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.experienceLoadBtn.Name = "experienceLoadBtn";
+            this.experienceLoadBtn.Size = new System.Drawing.Size(75, 23);
+            this.experienceLoadBtn.TabIndex = 14;
+            this.experienceLoadBtn.Text = "Load";
+            this.experienceLoadBtn.UseVisualStyleBackColor = true;
+            // 
+            // experienceSaveBtn
+            // 
+            this.experienceSaveBtn.Location = new System.Drawing.Point(516, 490);
+            this.experienceSaveBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.experienceSaveBtn.Name = "experienceSaveBtn";
+            this.experienceSaveBtn.Size = new System.Drawing.Size(75, 23);
+            this.experienceSaveBtn.TabIndex = 15;
+            this.experienceSaveBtn.Text = "Save";
+            this.experienceSaveBtn.UseVisualStyleBackColor = true;
+            this.experienceSaveBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.experienceSaveBtn_MouseUp);
+            // 
+            // experienceRemoveBtn
+            // 
+            this.experienceRemoveBtn.Location = new System.Drawing.Point(597, 490);
+            this.experienceRemoveBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.experienceRemoveBtn.Name = "experienceRemoveBtn";
+            this.experienceRemoveBtn.Size = new System.Drawing.Size(75, 23);
+            this.experienceRemoveBtn.TabIndex = 16;
+            this.experienceRemoveBtn.Text = "Remove";
+            this.experienceRemoveBtn.UseVisualStyleBackColor = true;
+            // 
+            // availableExpItems
+            // 
+            this.availableExpItems.AllowUserToAddRows = false;
+            this.availableExpItems.AllowUserToDeleteRows = false;
+            this.availableExpItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.availableExpItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.availExpChkboxCol,
+            this.availExpNameCol,
+            this.availExpTypeCol,
+            this.availExpUserAccessCol});
+            this.availableExpItems.Location = new System.Drawing.Point(57, 521);
+            this.availableExpItems.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.availableExpItems.Name = "availableExpItems";
+            this.availableExpItems.ReadOnly = true;
+            this.availableExpItems.RowHeadersWidth = 51;
+            this.availableExpItems.RowTemplate.Height = 24;
+            this.availableExpItems.Size = new System.Drawing.Size(615, 258);
+            this.availableExpItems.TabIndex = 17;
+            // 
+            // addExpItemBtn
+            // 
+            this.addExpItemBtn.Location = new System.Drawing.Point(597, 782);
+            this.addExpItemBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.addExpItemBtn.Name = "addExpItemBtn";
+            this.addExpItemBtn.Size = new System.Drawing.Size(75, 23);
+            this.addExpItemBtn.TabIndex = 19;
+            this.addExpItemBtn.Text = "Add";
+            this.addExpItemBtn.UseVisualStyleBackColor = true;
+            this.addExpItemBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.addExpItemBtn_MouseUp);
+            // 
+            // availableExpItemsLabel
+            // 
+            this.availableExpItemsLabel.AutoSize = true;
+            this.availableExpItemsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.availableExpItemsLabel.Location = new System.Drawing.Point(52, 490);
+            this.availableExpItemsLabel.Name = "availableExpItemsLabel";
+            this.availableExpItemsLabel.Size = new System.Drawing.Size(186, 29);
+            this.availableExpItemsLabel.TabIndex = 20;
+            this.availableExpItemsLabel.Text = "Available Items";
+            // 
+            // availExpChkboxCol
+            // 
+            this.availExpChkboxCol.FillWeight = 50F;
+            this.availExpChkboxCol.HeaderText = "";
+            this.availExpChkboxCol.MinimumWidth = 6;
+            this.availExpChkboxCol.Name = "availExpChkboxCol";
+            this.availExpChkboxCol.ReadOnly = true;
+            this.availExpChkboxCol.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.availExpChkboxCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.availExpChkboxCol.Width = 50;
+            // 
+            // availExpNameCol
+            // 
+            this.availExpNameCol.HeaderText = "Name";
+            this.availExpNameCol.MaxInputLength = 100;
+            this.availExpNameCol.MinimumWidth = 6;
+            this.availExpNameCol.Name = "availExpNameCol";
+            this.availExpNameCol.ReadOnly = true;
+            this.availExpNameCol.Width = 125;
+            // 
+            // availExpTypeCol
+            // 
+            this.availExpTypeCol.HeaderText = "Type";
+            this.availExpTypeCol.MinimumWidth = 6;
+            this.availExpTypeCol.Name = "availExpTypeCol";
+            this.availExpTypeCol.ReadOnly = true;
+            this.availExpTypeCol.Width = 125;
+            // 
+            // availExpUserAccessCol
+            // 
+            this.availExpUserAccessCol.HeaderText = "User Access";
+            this.availExpUserAccessCol.MinimumWidth = 6;
+            this.availExpUserAccessCol.Name = "availExpUserAccessCol";
+            this.availExpUserAccessCol.ReadOnly = true;
+            this.availExpUserAccessCol.Width = 125;
+            // 
+            // newExpChkboxCol
+            // 
+            this.newExpChkboxCol.FillWeight = 50F;
+            this.newExpChkboxCol.HeaderText = "";
+            this.newExpChkboxCol.MinimumWidth = 6;
+            this.newExpChkboxCol.Name = "newExpChkboxCol";
+            this.newExpChkboxCol.ReadOnly = true;
+            this.newExpChkboxCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.newExpChkboxCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.newExpChkboxCol.Width = 50;
+            // 
+            // newExpNameCol
+            // 
+            this.newExpNameCol.HeaderText = "Name";
+            this.newExpNameCol.MaxInputLength = 100;
+            this.newExpNameCol.MinimumWidth = 6;
+            this.newExpNameCol.Name = "newExpNameCol";
+            this.newExpNameCol.ReadOnly = true;
+            this.newExpNameCol.Width = 125;
+            // 
+            // newExpTypeCol
+            // 
+            this.newExpTypeCol.HeaderText = "Type";
+            this.newExpTypeCol.MinimumWidth = 6;
+            this.newExpTypeCol.Name = "newExpTypeCol";
+            this.newExpTypeCol.ReadOnly = true;
+            this.newExpTypeCol.Width = 125;
+            // 
+            // newExpUserAccessCol
+            // 
+            this.newExpUserAccessCol.HeaderText = "User Access";
+            this.newExpUserAccessCol.MinimumWidth = 6;
+            this.newExpUserAccessCol.Name = "newExpUserAccessCol";
+            this.newExpUserAccessCol.ReadOnly = true;
+            this.newExpUserAccessCol.Width = 125;
+            // 
+            // saveRibbonBtn
+            // 
+            this.saveRibbonBtn.Image = global::MaarsExperienceCreator.Properties.Resources.saveBtnCompressed24;
+            this.saveRibbonBtn.LargeImage = global::MaarsExperienceCreator.Properties.Resources.saveBtnCompressed24;
+            this.saveRibbonBtn.Name = "saveRibbonBtn";
+            this.saveRibbonBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("saveRibbonBtn.SmallImage")));
+            this.saveRibbonBtn.Text = "";
+            this.saveRibbonBtn.ToolTip = "Save Route";
+            this.saveRibbonBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.saveRibbonBtn_MouseUp);
+            // 
+            // delRouteRibbnBtn
+            // 
+            this.delRouteRibbnBtn.Image = global::MaarsExperienceCreator.Properties.Resources.compressedX_24;
+            this.delRouteRibbnBtn.LargeImage = global::MaarsExperienceCreator.Properties.Resources.compressedX_24;
+            this.delRouteRibbnBtn.Name = "delRouteRibbnBtn";
+            this.delRouteRibbnBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("delRouteRibbnBtn.SmallImage")));
+            this.delRouteRibbnBtn.ToolTip = "Provides a List of Available Routes, which can be deleted from database";
+            this.delRouteRibbnBtn.ToolTipTitle = "Delete Route";
+            this.delRouteRibbnBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.delRouteRibbnBtn_MouseUp);
+            // 
+            // updateRouteNotes
+            // 
+            this.updateRouteNotes.Image = global::MaarsExperienceCreator.Properties.Resources.clipboardjpeg24;
+            this.updateRouteNotes.LargeImage = global::MaarsExperienceCreator.Properties.Resources.clipboardjpeg24;
+            this.updateRouteNotes.Name = "updateRouteNotes";
+            this.updateRouteNotes.SmallImage = ((System.Drawing.Image)(resources.GetObject("updateRouteNotes.SmallImage")));
+            this.updateRouteNotes.TextAlignment = System.Windows.Forms.RibbonItem.RibbonItemTextAlignment.Right;
+            this.updateRouteNotes.ToolTip = "Launches Dialog to Update Notes for the provided route";
+            this.updateRouteNotes.ToolTipTitle = "Update Route Notes";
+            // 
+            // showHideRibbonBtn
+            // 
+            this.showHideRibbonBtn.Image = ((System.Drawing.Image)(resources.GetObject("showHideRibbonBtn.Image")));
+            this.showHideRibbonBtn.LargeImage = ((System.Drawing.Image)(resources.GetObject("showHideRibbonBtn.LargeImage")));
+            this.showHideRibbonBtn.Name = "showHideRibbonBtn";
+            this.showHideRibbonBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("showHideRibbonBtn.SmallImage")));
+            this.showHideRibbonBtn.ToolTip = "Show/Hide Columns";
+            this.showHideRibbonBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.showHideRibbonBtn_MouseUp);
+            // 
+            // sortRibbonBtn
+            // 
+            this.sortRibbonBtn.Image = ((System.Drawing.Image)(resources.GetObject("sortRibbonBtn.Image")));
+            this.sortRibbonBtn.LargeImage = ((System.Drawing.Image)(resources.GetObject("sortRibbonBtn.LargeImage")));
+            this.sortRibbonBtn.Name = "sortRibbonBtn";
+            this.sortRibbonBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("sortRibbonBtn.SmallImage")));
+            this.sortRibbonBtn.ToolTip = "Sort Anchors";
+            // 
+            // filterRibbonBtn
+            // 
+            this.filterRibbonBtn.Image = global::MaarsExperienceCreator.Properties.Resources.filterjpeg24;
+            this.filterRibbonBtn.LargeImage = global::MaarsExperienceCreator.Properties.Resources.filterjpeg24;
+            this.filterRibbonBtn.Name = "filterRibbonBtn";
+            this.filterRibbonBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("filterRibbonBtn.SmallImage")));
+            this.filterRibbonBtn.ToolTip = "Filter Anchors";
+            // 
             // MainExperienceCreator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(755, 955);
-            this.Controls.Add(this.loadBtn);
-            this.Controls.Add(this.updateAnchorBtn);
-            this.Controls.Add(this.saveNewRouteBtn);
-            this.Controls.Add(this.removeAnchorFromNewRouteBtn);
-            this.Controls.Add(this.addAnchorToNewRouteBtn);
-            this.Controls.Add(this.availableNavPointsTableLabel);
-            this.Controls.Add(this.newRouteTableLabel);
-            this.Controls.Add(this.availableNavPointsTable);
-            this.Controls.Add(this.newRouteTable);
+            this.ClientSize = new System.Drawing.Size(711, 955);
             this.Controls.Add(this.ribbon1);
             this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.experienceTable);
+            this.Controls.Add(this.experienceRemoveBtn);
+            this.Controls.Add(this.experienceSaveBtn);
+            this.Controls.Add(this.experienceLoadBtn);
+            this.Controls.Add(this.addExpItemBtn);
+            this.Controls.Add(this.availableExpItemsLabel);
+            this.Controls.Add(this.experienceLabel);
+            this.Controls.Add(this.newRouteTable);
+            this.Controls.Add(this.saveNewRouteBtn);
+            this.Controls.Add(this.removeAnchorFromNewRouteBtn);
+            this.Controls.Add(this.loadBtn);
+            this.Controls.Add(this.availableExpItems);
+            this.Controls.Add(this.availableNavPointsTableLabel);
+            this.Controls.Add(this.newRouteTableLabel);
+            this.Controls.Add(this.updateAnchorBtn);
+            this.Controls.Add(this.addAnchorToNewRouteBtn);
+            this.Controls.Add(this.availableNavPointsTable);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -512,6 +712,8 @@
             this.Load += new System.EventHandler(this.MainExperienceCreator_Load);
             ((System.ComponentModel.ISupportInitialize)(this.newRouteTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.availableNavPointsTable)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.experienceTable)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.availableExpItems)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -562,6 +764,22 @@
         private System.Windows.Forms.RibbonButton showHideRibbonBtn;
         private System.Windows.Forms.RibbonButton sortRibbonBtn;
         private System.Windows.Forms.RibbonButton filterRibbonBtn;
+        public System.Windows.Forms.DataGridView experienceTable;
+        public System.Windows.Forms.Label experienceLabel;
+        private System.Windows.Forms.Button experienceLoadBtn;
+        private System.Windows.Forms.Button experienceSaveBtn;
+        private System.Windows.Forms.Button experienceRemoveBtn;
+        public System.Windows.Forms.DataGridView availableExpItems;
+        private System.Windows.Forms.Button addExpItemBtn;
+        private System.Windows.Forms.Label availableExpItemsLabel;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn availExpChkboxCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn availExpNameCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn availExpTypeCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn availExpUserAccessCol;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn newExpChkboxCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn newExpNameCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn newExpTypeCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn newExpUserAccessCol;
     }
 }
 
