@@ -51,11 +51,17 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BCrypt.Net-Core, Version=1.6.0.0, Culture=neutral, PublicKeyToken=4d63bfbfdfd3c6e4, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt.Net-Core.1.6.0\lib\net452\BCrypt.Net-Core.dll</HintPath>
+    </Reference>
     <Reference Include="CircularProgressBar, Version=2.7.0.7, Culture=neutral, PublicKeyToken=310fd07b25df79b3, processorArchitecture=MSIL">
       <HintPath>..\packages\CircularProgressBar.2.7.0.7\lib\net40\CircularProgressBar.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.7.0\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="PBKDF2.NET, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PBKDF2.NET.2.0.0\lib\net45\PBKDF2.NET.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -81,6 +87,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LoadExperienceDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadExperienceDlg.Designer.cs">
+      <DependentUpon>LoadExperienceDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MAARSExperienceLogin .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MAARSExperienceLogin .Designer.cs">
+      <DependentUpon>MAARSExperienceLogin .cs</DependentUpon>
+    </Compile>
     <Compile Include="SaveExpDlg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +143,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="LoadExperienceDlg.resx">
+      <DependentUpon>LoadExperienceDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MAARSExperienceLogin .resx">
+      <DependentUpon>MAARSExperienceLogin .cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="SaveExpDlg.resx">
       <DependentUpon>SaveExpDlg.cs</DependentUpon>
     </EmbeddedResource>
@@ -206,6 +232,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\filterjpeg24.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\niceRocketLoginPic.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

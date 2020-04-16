@@ -127,19 +127,22 @@
   <data name="Webp.net-compress-image" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Webp.net-compress-image.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="floppy_compressedjpeg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\floppy_compressedjpeg.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="clipboardjpeg24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\clipboardjpeg24.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="savebtnjpeg24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\savebtnjpeg24.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="filterjpeg24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\filterjpeg24.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="saveBtnCompressed24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\saveBtnCompressed24.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="clipboardjpeg24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\clipboardjpeg24.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="floppy_compressedjpeg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\floppy_compressedjpeg.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="filterjpeg24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\filterjpeg24.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="niceRocketLoginPic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\niceRocketLoginPic.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

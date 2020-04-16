@@ -74,6 +74,7 @@
             this.Name = "LoadingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "loadingForm";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.loadingForm_Load);
             this.ResumeLayout(false);
 

@@ -113,6 +113,16 @@ namespace MaarsExperienceCreator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap niceRocketLoginPic {
+            get {
+                object obj = ResourceManager.GetObject("niceRocketLoginPic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap saveBtnCompressed24 {
             get {
                 object obj = ResourceManager.GetObject("saveBtnCompressed24", resourceCulture);

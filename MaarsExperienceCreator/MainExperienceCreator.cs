@@ -20,6 +20,8 @@ namespace MaarsExperienceCreator
         public MainExperienceCreator()
         {
             InitializeComponent();
+            this.BringToFront();
+
             createNewRouteHeaderCheckbox();
         }
         public void createNewRouteHeaderCheckbox()
@@ -52,12 +54,28 @@ namespace MaarsExperienceCreator
             loadRoute,
             notActive
         }
+        enum ExperienceUIState
+        {
+            newExperience,
+            loadExperience,
+            notActive
+        }
+
         private RouteUIState uiState;
+        private ExperienceUIState experienceUIState;
+
         private bool newRouteTableModified;
         public bool NewRouteTableModified
         {
             get { return newRouteTableModified; }
             set { newRouteTableModified = value; }
+        }
+
+        private bool newExperienceTableModified;
+        public bool NewExperienceTableModified
+        {
+            get { return newExperienceTableModified; }
+            set { newExperienceTableModified = value; }
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -79,6 +97,14 @@ namespace MaarsExperienceCreator
             newRouteTable.Rows[rowNbr].Cells["NavPointNameColumnFromNewRoute"].ReadOnly = true;
             newRouteTable.Rows[rowNbr].Cells["anchorDescriptionFromNewRoute"].ReadOnly = true;
         }
+        public void addRowToCurrentExperienceTable(int rowNbr, List<string> currentStr)
+        {
+            this.experienceTable.Rows.Add(false, currentStr[0], currentStr[1], "");
+            experienceTable.Rows[rowNbr].Cells["newExpChkboxCol"].ReadOnly = false;
+            experienceTable.Rows[rowNbr].Cells["newExpNameCol"].ReadOnly = true;
+            experienceTable.Rows[rowNbr].Cells["newExpTypeCol"].ReadOnly = true;
+            experienceTable.Rows[rowNbr].Cells["newExpUserAccessCol"].ReadOnly = true;
+        }
 
         private void newRoutePanel_MouseUp(object sender, MouseEventArgs e)
         {
@@ -91,7 +117,8 @@ namespace MaarsExperienceCreator
         }
         public void clearAvailableExperienceItems()
         {
-            this.availableExpItems.Rows.Clear();
+            this.NewExperienceTableModified = false;
+            this.experienceTable.Rows.Clear();
         }
         public void setupForNewExperience()
         {
@@ -133,7 +160,7 @@ namespace MaarsExperienceCreator
             foreach (string animationStr in animationsKeyVal)
             {
                 string animationName = animationStr.Split(':')[0].Substring(2, animationStr.Split(':')[0].Length - 2).Replace(" ", "");
-                this.availableExpItems.Rows.Add(false, animationName, "Animation", "");
+                this.availableExpItems.Rows.Add(false, animationName, "Assembly", "");
 
             }
 
@@ -408,6 +435,10 @@ namespace MaarsExperienceCreator
         {
             return this.newRouteTable;
         }
+        public DataGridView getNewExperienceView()
+        {
+            return this.experienceTable;
+        }
 
         public async void saveNewExperience(string experienceName)
         {
@@ -416,6 +447,10 @@ namespace MaarsExperienceCreator
             // Get the list of selected items
             for (int i = 0; i < this.experienceTable.Rows.Count; i++)
             {
+                if (experienceTable.Rows[i].Cells["newExpTypeCol"].Value.Equals("Route"))
+                    testInsertionStr += "R_";
+                else if (experienceTable.Rows[i].Cells["newExpTypeCol"].Value.Equals("Assembly"))
+                    testInsertionStr += "A_";
                 testInsertionStr += experienceTable.Rows[i].Cells["newExpNameCol"].Value + ", ";
             }
             if (testInsertionStr.Length - 2 >= 0)
@@ -691,9 +726,9 @@ namespace MaarsExperienceCreator
 
         private void MainExperienceCreator_Load(object sender, EventArgs e)
         {
-            uiState = RouteUIState.notActive;
-            setupForNewExperience();
+
         }
+
 
         private void delRouteRibbnBtn_MouseUp(object sender, MouseEventArgs e)
         {
@@ -787,7 +822,7 @@ namespace MaarsExperienceCreator
 
         public void setNewExperienceTableToReadOnly(int currentRow)
         {
-            experienceTable.Rows[currentRow].Cells["newExpChkboxCol"].ReadOnly = true;
+            // Do not want the entire table set to read only (checkbox column)
             experienceTable.Rows[currentRow].Cells["newExpNameCol"].ReadOnly = true;
             experienceTable.Rows[currentRow].Cells["newExpTypeCol"].ReadOnly = true;
             experienceTable.Rows[currentRow].Cells["newExpUserAccessCol"].ReadOnly = true;
@@ -797,10 +832,14 @@ namespace MaarsExperienceCreator
         {
             // Add items to "New Experience" table
             // Add all selected rows to the new route table.
+            experienceTable.ReadOnly = false;
+
             for (int i = 0; i < this.availableExpItems.Rows.Count; i++)
             {
                 if (Convert.ToBoolean(availableExpItems.Rows[i].Cells["availExpChkboxCol"].Value) == true)
                 {
+                    this.NewExperienceTableModified = true;
+
                     this.experienceTable.Rows.Add(false,
                         availableExpItems.Rows[i].Cells["availExpNameCol"].Value,
                         availableExpItems.Rows[i].Cells["availExpTypeCol"].Value,
@@ -810,8 +849,8 @@ namespace MaarsExperienceCreator
                     availableExpItems.Rows[i].Cells["availExpChkboxCol"].Value = false;
                     availableExpItems.Rows[i].Cells["availExpChkboxCol"].ToolTipText = "Select for Removal";
 
-
                     setNewExperienceTableToReadOnly(experienceTable.Rows.Count - 1);
+                    experienceTable.Rows[experienceTable.Rows.Count - 1].Cells["newExpChkboxCol"].ReadOnly = false;
                 }
             }
         }
@@ -820,13 +859,121 @@ namespace MaarsExperienceCreator
         {
             if (this.experienceTable.Rows.Count == 0)
             {
-                MessageBox.Show("No Anchors Exist For This Route. Please Add anchors.", "No Anchors",
+                MessageBox.Show("No Experience Items Exist For This Route. Please Add items.", "No Items Exist",
                                                  MessageBoxButtons.OK,
                                                  MessageBoxIcon.Information);
                 return;
             }
             // Add modal or message box prompting user for name to save
-            SaveExpDlg saveExpDlg = new SaveExpDlg(this);
+            SaveExpDlg saveExpDlg = new SaveExpDlg(this, false);
+        }
+
+        private void experienceRemoveBtn_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (this.experienceTable.Rows.Count == 0)
+            {
+                MessageBox.Show("No Experience Items Exist For Removal", "No Items Exist",
+                                                 MessageBoxButtons.OK,
+                                                 MessageBoxIcon.Information);
+                return;
+            }
+
+            /* Remove the selected anchors from the "New Route" list starting from the items
+            at the end */
+            for (int i = this.experienceTable.Rows.Count - 1; i >= 0; i--)
+            {
+                if (Convert.ToBoolean(experienceTable.Rows[i].Cells["newExpChkboxCol"].Value) == true)
+                {
+                    experienceTable.Rows.RemoveAt(i);
+                }
+            }
+        }
+
+        public void loadExperience()
+        {
+            if (getNewExperienceView().Rows.Count > 0)
+            {
+                // Prompt user (ask if they want to save ()
+                if (this.NewExperienceTableModified)
+                {
+                    DialogResult result = MessageBox.Show("New Experience been modified. Would you like to save?", "Save Results",
+                     MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                        // Save Before Entering the Loading Panel
+                        SaveExpDlg saveExpDlg = new SaveExpDlg(this, true);
+                    }
+                }
+            }
+            else
+            {
+                clearAvailableExperienceItems();
+                // Replace the "New Route" Text with "Load Route" Text
+                // Add a child window for loading a route from the DB
+                experienceLabel.Text = "Load Experience";
+
+                LoadExperienceDlg loadExpDlg = new LoadExperienceDlg(this);
+            }
+        }
+
+        private void experienceLoadBtn_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (experienceUIState == ExperienceUIState.newExperience)
+            {
+                loadExperience(); // fix this
+                experienceUIState = ExperienceUIState.loadExperience;
+            }
+            else if (experienceUIState == ExperienceUIState.loadExperience)
+            {
+                setupForNewExperience();
+                experienceLoadBtn.Text = "Load";
+                experienceLabel.Text = "New Experience";
+                experienceUIState = ExperienceUIState.newExperience;
+
+            }
+        }
+
+        private void experienceTable_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            this.NewExperienceTableModified = true;
+        }
+
+        public void disableFormControls()
+        {
+            this.BackColor = Color.Gray;
+
+            foreach (Control control in this.Controls)
+            {
+                control.Enabled = false;
+            }
+        }
+
+        public void enableFormControls()
+        {
+            this.BackColor = Color.White;
+
+            foreach (Control control in this.Controls)
+            {
+                control.Enabled = true;
+            }
+        }
+
+        public void allowLogin()
+        {
+            enableFormControls();
+            uiState = RouteUIState.notActive;
+            this.SendToBack();
+            setupForNewExperience();
+            this.BringToFront();
+        }
+
+        private void MainExperienceCreator_Shown(object sender, EventArgs e)
+        {
+            // change opacity
+            // showl ogin screen
+            MaarsExperienceLogin loginScreen = new MaarsExperienceLogin(this);
+
+
         }
     }
 }

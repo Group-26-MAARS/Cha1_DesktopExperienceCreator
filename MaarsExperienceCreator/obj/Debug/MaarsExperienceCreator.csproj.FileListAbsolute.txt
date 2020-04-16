@@ -20,3 +20,9 @@ C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreat
 C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\obj\Debug\MaarsExperienceCreator.ShowHideColumns.resources
 C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\obj\Debug\MaarsExperienceCreator.csproj.CoreCompileInputs.cache
 C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\obj\Debug\MaarsExperienceCreator.SaveExpDlg.resources
+C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\obj\Debug\MaarsExperienceCreator.LoadExperienceDlg.resources
+C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\obj\Debug\MaarsExperienceCreator.MaarsExperienceLogin.resources
+C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\bin\Debug\BCrypt.Net-Core.dll
+C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\bin\Debug\PBKDF2.NET.dll
+C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\bin\Debug\BCrypt.Net-Core.pdb
+C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\bin\Debug\PBKDF2.NET.xml

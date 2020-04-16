@@ -66,21 +66,21 @@
             this.updateAnchorBtn = new System.Windows.Forms.Button();
             this.loadBtn = new System.Windows.Forms.Button();
             this.experienceTable = new System.Windows.Forms.DataGridView();
+            this.newExpChkboxCol = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.newExpNameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.newExpTypeCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.newExpUserAccessCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.experienceLabel = new System.Windows.Forms.Label();
             this.experienceLoadBtn = new System.Windows.Forms.Button();
             this.experienceSaveBtn = new System.Windows.Forms.Button();
             this.experienceRemoveBtn = new System.Windows.Forms.Button();
             this.availableExpItems = new System.Windows.Forms.DataGridView();
-            this.addExpItemBtn = new System.Windows.Forms.Button();
-            this.availableExpItemsLabel = new System.Windows.Forms.Label();
             this.availExpChkboxCol = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.availExpNameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.availExpTypeCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.availExpUserAccessCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.newExpChkboxCol = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.newExpNameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.newExpTypeCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.newExpUserAccessCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addExpItemBtn = new System.Windows.Forms.Button();
+            this.availableExpItemsLabel = new System.Windows.Forms.Label();
             this.saveRibbonBtn = new System.Windows.Forms.RibbonButton();
             this.delRouteRibbnBtn = new System.Windows.Forms.RibbonButton();
             this.updateRouteNotes = new System.Windows.Forms.RibbonButton();
@@ -98,14 +98,14 @@
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(711, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(711, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // ribbon1
             // 
             this.ribbon1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.ribbon1.Location = new System.Drawing.Point(0, 31);
+            this.ribbon1.Location = new System.Drawing.Point(0, 25);
             this.ribbon1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ribbon1.Minimized = false;
             this.ribbon1.Name = "ribbon1";
@@ -139,7 +139,7 @@
             // loadExperiencePanel
             // 
             this.loadExperiencePanel.Name = "loadExperiencePanel";
-            this.loadExperiencePanel.Text = "Load Existing";
+            this.loadExperiencePanel.Text = "";
             // 
             // loadAnimations
             // 
@@ -470,6 +470,43 @@
             this.experienceTable.RowTemplate.Height = 24;
             this.experienceTable.Size = new System.Drawing.Size(615, 256);
             this.experienceTable.TabIndex = 12;
+            this.experienceTable.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.experienceTable_CellValueChanged);
+            // 
+            // newExpChkboxCol
+            // 
+            this.newExpChkboxCol.FillWeight = 50F;
+            this.newExpChkboxCol.HeaderText = "";
+            this.newExpChkboxCol.MinimumWidth = 6;
+            this.newExpChkboxCol.Name = "newExpChkboxCol";
+            this.newExpChkboxCol.ReadOnly = true;
+            this.newExpChkboxCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.newExpChkboxCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.newExpChkboxCol.Width = 50;
+            // 
+            // newExpNameCol
+            // 
+            this.newExpNameCol.HeaderText = "Name";
+            this.newExpNameCol.MaxInputLength = 100;
+            this.newExpNameCol.MinimumWidth = 6;
+            this.newExpNameCol.Name = "newExpNameCol";
+            this.newExpNameCol.ReadOnly = true;
+            this.newExpNameCol.Width = 125;
+            // 
+            // newExpTypeCol
+            // 
+            this.newExpTypeCol.HeaderText = "Type";
+            this.newExpTypeCol.MinimumWidth = 6;
+            this.newExpTypeCol.Name = "newExpTypeCol";
+            this.newExpTypeCol.ReadOnly = true;
+            this.newExpTypeCol.Width = 125;
+            // 
+            // newExpUserAccessCol
+            // 
+            this.newExpUserAccessCol.HeaderText = "User Access";
+            this.newExpUserAccessCol.MinimumWidth = 6;
+            this.newExpUserAccessCol.Name = "newExpUserAccessCol";
+            this.newExpUserAccessCol.ReadOnly = true;
+            this.newExpUserAccessCol.Width = 125;
             // 
             // experienceLabel
             // 
@@ -490,6 +527,7 @@
             this.experienceLoadBtn.TabIndex = 14;
             this.experienceLoadBtn.Text = "Load";
             this.experienceLoadBtn.UseVisualStyleBackColor = true;
+            this.experienceLoadBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.experienceLoadBtn_MouseUp);
             // 
             // experienceSaveBtn
             // 
@@ -511,6 +549,7 @@
             this.experienceRemoveBtn.TabIndex = 16;
             this.experienceRemoveBtn.Text = "Remove";
             this.experienceRemoveBtn.UseVisualStyleBackColor = true;
+            this.experienceRemoveBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.experienceRemoveBtn_MouseUp);
             // 
             // availableExpItems
             // 
@@ -530,27 +569,6 @@
             this.availableExpItems.RowTemplate.Height = 24;
             this.availableExpItems.Size = new System.Drawing.Size(615, 258);
             this.availableExpItems.TabIndex = 17;
-            // 
-            // addExpItemBtn
-            // 
-            this.addExpItemBtn.Location = new System.Drawing.Point(597, 782);
-            this.addExpItemBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.addExpItemBtn.Name = "addExpItemBtn";
-            this.addExpItemBtn.Size = new System.Drawing.Size(75, 23);
-            this.addExpItemBtn.TabIndex = 19;
-            this.addExpItemBtn.Text = "Add";
-            this.addExpItemBtn.UseVisualStyleBackColor = true;
-            this.addExpItemBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.addExpItemBtn_MouseUp);
-            // 
-            // availableExpItemsLabel
-            // 
-            this.availableExpItemsLabel.AutoSize = true;
-            this.availableExpItemsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.availableExpItemsLabel.Location = new System.Drawing.Point(52, 490);
-            this.availableExpItemsLabel.Name = "availableExpItemsLabel";
-            this.availableExpItemsLabel.Size = new System.Drawing.Size(186, 29);
-            this.availableExpItemsLabel.TabIndex = 20;
-            this.availableExpItemsLabel.Text = "Available Items";
             // 
             // availExpChkboxCol
             // 
@@ -588,41 +606,26 @@
             this.availExpUserAccessCol.ReadOnly = true;
             this.availExpUserAccessCol.Width = 125;
             // 
-            // newExpChkboxCol
+            // addExpItemBtn
             // 
-            this.newExpChkboxCol.FillWeight = 50F;
-            this.newExpChkboxCol.HeaderText = "";
-            this.newExpChkboxCol.MinimumWidth = 6;
-            this.newExpChkboxCol.Name = "newExpChkboxCol";
-            this.newExpChkboxCol.ReadOnly = true;
-            this.newExpChkboxCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.newExpChkboxCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.newExpChkboxCol.Width = 50;
+            this.addExpItemBtn.Location = new System.Drawing.Point(597, 782);
+            this.addExpItemBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.addExpItemBtn.Name = "addExpItemBtn";
+            this.addExpItemBtn.Size = new System.Drawing.Size(75, 23);
+            this.addExpItemBtn.TabIndex = 19;
+            this.addExpItemBtn.Text = "Add";
+            this.addExpItemBtn.UseVisualStyleBackColor = true;
+            this.addExpItemBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.addExpItemBtn_MouseUp);
             // 
-            // newExpNameCol
+            // availableExpItemsLabel
             // 
-            this.newExpNameCol.HeaderText = "Name";
-            this.newExpNameCol.MaxInputLength = 100;
-            this.newExpNameCol.MinimumWidth = 6;
-            this.newExpNameCol.Name = "newExpNameCol";
-            this.newExpNameCol.ReadOnly = true;
-            this.newExpNameCol.Width = 125;
-            // 
-            // newExpTypeCol
-            // 
-            this.newExpTypeCol.HeaderText = "Type";
-            this.newExpTypeCol.MinimumWidth = 6;
-            this.newExpTypeCol.Name = "newExpTypeCol";
-            this.newExpTypeCol.ReadOnly = true;
-            this.newExpTypeCol.Width = 125;
-            // 
-            // newExpUserAccessCol
-            // 
-            this.newExpUserAccessCol.HeaderText = "User Access";
-            this.newExpUserAccessCol.MinimumWidth = 6;
-            this.newExpUserAccessCol.Name = "newExpUserAccessCol";
-            this.newExpUserAccessCol.ReadOnly = true;
-            this.newExpUserAccessCol.Width = 125;
+            this.availableExpItemsLabel.AutoSize = true;
+            this.availableExpItemsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.availableExpItemsLabel.Location = new System.Drawing.Point(52, 490);
+            this.availableExpItemsLabel.Name = "availableExpItemsLabel";
+            this.availableExpItemsLabel.Size = new System.Drawing.Size(186, 29);
+            this.availableExpItemsLabel.TabIndex = 20;
+            this.availableExpItemsLabel.Text = "Available Items";
             // 
             // saveRibbonBtn
             // 
@@ -687,29 +690,31 @@
             this.Controls.Add(this.ribbon1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.experienceTable);
-            this.Controls.Add(this.experienceRemoveBtn);
             this.Controls.Add(this.experienceSaveBtn);
-            this.Controls.Add(this.experienceLoadBtn);
             this.Controls.Add(this.addExpItemBtn);
             this.Controls.Add(this.availableExpItemsLabel);
             this.Controls.Add(this.experienceLabel);
             this.Controls.Add(this.newRouteTable);
             this.Controls.Add(this.saveNewRouteBtn);
-            this.Controls.Add(this.removeAnchorFromNewRouteBtn);
-            this.Controls.Add(this.loadBtn);
             this.Controls.Add(this.availableExpItems);
             this.Controls.Add(this.availableNavPointsTableLabel);
             this.Controls.Add(this.newRouteTableLabel);
             this.Controls.Add(this.updateAnchorBtn);
             this.Controls.Add(this.addAnchorToNewRouteBtn);
             this.Controls.Add(this.availableNavPointsTable);
+            this.Controls.Add(this.experienceRemoveBtn);
+            this.Controls.Add(this.removeAnchorFromNewRouteBtn);
+            this.Controls.Add(this.experienceLoadBtn);
+            this.Controls.Add(this.loadBtn);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainExperienceCreator";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MAARS Experience Creator";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.MainExperienceCreator_Load);
+            this.Shown += new System.EventHandler(this.MainExperienceCreator_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.newRouteTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.availableNavPointsTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.experienceTable)).EndInit();
@@ -766,7 +771,7 @@
         private System.Windows.Forms.RibbonButton filterRibbonBtn;
         public System.Windows.Forms.DataGridView experienceTable;
         public System.Windows.Forms.Label experienceLabel;
-        private System.Windows.Forms.Button experienceLoadBtn;
+        public System.Windows.Forms.Button experienceLoadBtn;
         private System.Windows.Forms.Button experienceSaveBtn;
         private System.Windows.Forms.Button experienceRemoveBtn;
         public System.Windows.Forms.DataGridView availableExpItems;

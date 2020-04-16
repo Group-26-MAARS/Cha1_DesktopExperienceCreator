@@ -14,10 +14,12 @@ namespace MaarsExperienceCreator
     public partial class SaveExpDlg : Form
     {
         MainExperienceCreator parentForm;
-        public SaveExpDlg(MainExperienceCreator parent)
+        bool andLoad;
+        public SaveExpDlg(MainExperienceCreator parent, bool andLoad)
         {
             InitializeComponent();
             this.parentForm = parent;
+            this.andLoad = andLoad;
             this.Show();
         }
 
@@ -65,7 +67,16 @@ namespace MaarsExperienceCreator
 MessageBoxButtons.OK, MessageBoxIcon.Information);
                     if (dialogRes == DialogResult.OK)
                     {
-                        parentForm.clearNewRouteTable();
+                        parentForm.clearAvailableExperienceItems();
+                        if (andLoad)
+                        {
+                            parentForm.clearAvailableExperienceItems();
+                            // Replace the "New Route" Text with "Load Route" Text
+                            // Add a child window for loading a route from the DB
+                            parentForm.experienceLabel.Text = "Load Experience";
+
+                            LoadExperienceDlg loadExpDlg = new LoadExperienceDlg(this.parentForm);
+                        }
                         this.Close();
                         return;
                     }
@@ -75,12 +86,21 @@ MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
             {
                 this.parentForm.saveNewExperience(this.newExperienceNameTxtbox.Text);
-                DialogResult result = MessageBox.Show("Route " + this.newExperienceNameTxtbox.Text + " has been saved", "Saved",
+                DialogResult result = MessageBox.Show("Experience " + this.newExperienceNameTxtbox.Text + " has been saved", "Saved",
          MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (result == DialogResult.OK)
                 {
-                    parentForm.clearNewRouteTable();
+                    parentForm.clearAvailableExperienceItems();
                     this.Close();
+                    if (andLoad)
+                    {
+                        parentForm.clearAvailableExperienceItems();
+                        // Replace the "New Route" Text with "Load Route" Text
+                        // Add a child window for loading a route from the DB
+                        parentForm.experienceLabel.Text = "Load Experience";
+
+                        LoadExperienceDlg loadExpDlg = new LoadExperienceDlg(this.parentForm);
+                    }
                     return;
                 }
             }
