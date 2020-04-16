@@ -25,6 +25,7 @@ namespace MaarsExperienceCreator
             InitializeComponent();
             this.parentForm = parent;
             fillComboboxWithRoutes();
+            this.parentForm.TopLevel = false;
             this.TopLevel = true;
             this.Show();
 
@@ -57,6 +58,8 @@ namespace MaarsExperienceCreator
 
         private void cancelBtn_MouseUp(object sender, MouseEventArgs e)
         {
+            this.parentForm.TopLevel = true;
+            this.TopLevel = false;
             this.Close();
         }
 
@@ -106,6 +109,8 @@ namespace MaarsExperienceCreator
             //myThread.Join();
             LoadingForm.setAbort();
 
+            this.parentForm.TopLevel = true;
+            this.TopLevel = false;
             this.Close();
         }
     }
