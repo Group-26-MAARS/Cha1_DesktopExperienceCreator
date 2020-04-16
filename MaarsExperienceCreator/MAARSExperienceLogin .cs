@@ -52,6 +52,7 @@ namespace MaarsExperienceCreator
             // Attempt to login to Desktop application
             //   string myHash = hashPW(maskedTextBox1.Text);
             this.parentForm.allowLogin();
+            this.Close();
         }
     }
 }

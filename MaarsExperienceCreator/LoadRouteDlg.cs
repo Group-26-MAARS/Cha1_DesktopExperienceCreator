@@ -25,6 +25,7 @@ namespace MaarsExperienceCreator
             InitializeComponent();
             this.parentForm = parent;
             fillComboboxWithRoutes();
+            this.TopLevel = true;
             this.Show();
 
         }
