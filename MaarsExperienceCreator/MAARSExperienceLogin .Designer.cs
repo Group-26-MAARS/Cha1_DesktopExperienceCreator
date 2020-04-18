@@ -34,7 +34,6 @@
             this.loginBtn = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
@@ -56,10 +55,10 @@
             // 
             // loginBtn
             // 
-            this.loginBtn.Location = new System.Drawing.Point(307, 107);
+            this.loginBtn.Location = new System.Drawing.Point(430, 96);
             this.loginBtn.Name = "loginBtn";
             this.loginBtn.Size = new System.Drawing.Size(75, 23);
-            this.loginBtn.TabIndex = 3;
+            this.loginBtn.TabIndex = 6;
             this.loginBtn.Text = "Login";
             this.loginBtn.UseVisualStyleBackColor = true;
             this.loginBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.loginBtn_MouseUp);
@@ -84,15 +83,6 @@
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label1.UseWaitCursor = true;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(388, 107);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(117, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Create Account";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // imageList1
             // 
             this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
@@ -115,16 +105,16 @@
             this.maskedTextBox1.Location = new System.Drawing.Point(277, 68);
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.Size = new System.Drawing.Size(228, 22);
-            this.maskedTextBox1.TabIndex = 9;
+            this.maskedTextBox1.TabIndex = 5;
+            this.maskedTextBox1.PasswordChar = '*';
             // 
             // MaarsExperienceLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(517, 184);
+            this.ClientSize = new System.Drawing.Size(517, 169);
             this.Controls.Add(this.maskedTextBox1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.loginBtn);
@@ -145,7 +135,6 @@
         private System.Windows.Forms.Button loginBtn;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;

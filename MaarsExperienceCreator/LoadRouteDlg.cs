@@ -25,8 +25,8 @@ namespace MaarsExperienceCreator
             InitializeComponent();
             this.parentForm = parent;
             fillComboboxWithRoutes();
-            this.parentForm.TopLevel = false;
-            this.TopLevel = true;
+            //this.parentForm.TopLevel = false;
+            //this.TopLevel = true;
             this.Show();
 
         }
@@ -58,8 +58,8 @@ namespace MaarsExperienceCreator
 
         private void cancelBtn_MouseUp(object sender, MouseEventArgs e)
         {
-            this.parentForm.TopLevel = true;
-            this.TopLevel = false;
+            //this.parentForm.TopLevel = true;
+            //this.TopLevel = false;
             this.Close();
         }
 
@@ -105,12 +105,7 @@ namespace MaarsExperienceCreator
             parentForm.newRouteTable.ReadOnly = true; // Don't allow edits
                                                       //    parentForm.newRouteTable.Rows[parentForm.newRouteTable.Rows.Count - 1].Cells["routeAnchorsForRemovalChkboxesCol"].Value = false;
             parentForm.newRouteTableLabel.Text = "Loaded Route";
-            //myThread.Abort();
-            //myThread.Join();
             LoadingForm.setAbort();
-
-            this.parentForm.TopLevel = true;
-            this.TopLevel = false;
             this.Close();
         }
     }

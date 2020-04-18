@@ -38,7 +38,13 @@
             this.loadAnimationPanel = new System.Windows.Forms.RibbonPanel();
             this.RoutesTab = new System.Windows.Forms.RibbonTab();
             this.newRoutePanel = new System.Windows.Forms.RibbonPanel();
+            this.saveRibbonBtn = new System.Windows.Forms.RibbonButton();
+            this.delRouteRibbnBtn = new System.Windows.Forms.RibbonButton();
+            this.updateRouteNotes = new System.Windows.Forms.RibbonButton();
             this.loadRoutePanel = new System.Windows.Forms.RibbonPanel();
+            this.showHideRibbonBtn = new System.Windows.Forms.RibbonButton();
+            this.sortRibbonBtn = new System.Windows.Forms.RibbonButton();
+            this.filterRibbonBtn = new System.Windows.Forms.RibbonButton();
             this.viewActiveUsers = new System.Windows.Forms.RibbonTab();
             this.createNewUser = new System.Windows.Forms.RibbonPanel();
             this.viewUsers = new System.Windows.Forms.RibbonPanel();
@@ -81,12 +87,6 @@
             this.availExpUserAccessCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addExpItemBtn = new System.Windows.Forms.Button();
             this.availableExpItemsLabel = new System.Windows.Forms.Label();
-            this.saveRibbonBtn = new System.Windows.Forms.RibbonButton();
-            this.delRouteRibbnBtn = new System.Windows.Forms.RibbonButton();
-            this.updateRouteNotes = new System.Windows.Forms.RibbonButton();
-            this.showHideRibbonBtn = new System.Windows.Forms.RibbonButton();
-            this.sortRibbonBtn = new System.Windows.Forms.RibbonButton();
-            this.filterRibbonBtn = new System.Windows.Forms.RibbonButton();
             ((System.ComponentModel.ISupportInitialize)(this.newRouteTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.availableNavPointsTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.experienceTable)).BeginInit();
@@ -177,6 +177,36 @@
             this.newRoutePanel.Text = "Actions";
             this.newRoutePanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.newRoutePanel_MouseUp);
             // 
+            // saveRibbonBtn
+            // 
+            this.saveRibbonBtn.Image = global::MaarsExperienceCreator.Properties.Resources.saveBtnCompressed24;
+            this.saveRibbonBtn.LargeImage = global::MaarsExperienceCreator.Properties.Resources.saveBtnCompressed24;
+            this.saveRibbonBtn.Name = "saveRibbonBtn";
+            this.saveRibbonBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("saveRibbonBtn.SmallImage")));
+            this.saveRibbonBtn.Text = "";
+            this.saveRibbonBtn.ToolTip = "Save Route";
+            this.saveRibbonBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.saveRibbonBtn_MouseUp);
+            // 
+            // delRouteRibbnBtn
+            // 
+            this.delRouteRibbnBtn.Image = global::MaarsExperienceCreator.Properties.Resources.compressedX_24;
+            this.delRouteRibbnBtn.LargeImage = global::MaarsExperienceCreator.Properties.Resources.compressedX_24;
+            this.delRouteRibbnBtn.Name = "delRouteRibbnBtn";
+            this.delRouteRibbnBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("delRouteRibbnBtn.SmallImage")));
+            this.delRouteRibbnBtn.ToolTip = "Provides a List of Available Routes, which can be deleted from database";
+            this.delRouteRibbnBtn.ToolTipTitle = "Delete Route";
+            this.delRouteRibbnBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.delRouteRibbnBtn_MouseUp);
+            // 
+            // updateRouteNotes
+            // 
+            this.updateRouteNotes.Image = global::MaarsExperienceCreator.Properties.Resources.clipboardjpeg24;
+            this.updateRouteNotes.LargeImage = global::MaarsExperienceCreator.Properties.Resources.clipboardjpeg24;
+            this.updateRouteNotes.Name = "updateRouteNotes";
+            this.updateRouteNotes.SmallImage = ((System.Drawing.Image)(resources.GetObject("updateRouteNotes.SmallImage")));
+            this.updateRouteNotes.TextAlignment = System.Windows.Forms.RibbonItem.RibbonItemTextAlignment.Right;
+            this.updateRouteNotes.ToolTip = "Launches Dialog to Update Notes for the provided route";
+            this.updateRouteNotes.ToolTipTitle = "Update Route Notes";
+            // 
             // loadRoutePanel
             // 
             this.loadRoutePanel.Items.Add(this.showHideRibbonBtn);
@@ -185,6 +215,31 @@
             this.loadRoutePanel.Name = "loadRoutePanel";
             this.loadRoutePanel.Text = "View";
             this.loadRoutePanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.loadRoutePanel_MouseUp);
+            // 
+            // showHideRibbonBtn
+            // 
+            this.showHideRibbonBtn.Image = ((System.Drawing.Image)(resources.GetObject("showHideRibbonBtn.Image")));
+            this.showHideRibbonBtn.LargeImage = ((System.Drawing.Image)(resources.GetObject("showHideRibbonBtn.LargeImage")));
+            this.showHideRibbonBtn.Name = "showHideRibbonBtn";
+            this.showHideRibbonBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("showHideRibbonBtn.SmallImage")));
+            this.showHideRibbonBtn.ToolTip = "Show/Hide Columns";
+            this.showHideRibbonBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.showHideRibbonBtn_MouseUp);
+            // 
+            // sortRibbonBtn
+            // 
+            this.sortRibbonBtn.Image = ((System.Drawing.Image)(resources.GetObject("sortRibbonBtn.Image")));
+            this.sortRibbonBtn.LargeImage = ((System.Drawing.Image)(resources.GetObject("sortRibbonBtn.LargeImage")));
+            this.sortRibbonBtn.Name = "sortRibbonBtn";
+            this.sortRibbonBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("sortRibbonBtn.SmallImage")));
+            this.sortRibbonBtn.ToolTip = "Sort Anchors";
+            // 
+            // filterRibbonBtn
+            // 
+            this.filterRibbonBtn.Image = global::MaarsExperienceCreator.Properties.Resources.filterjpeg24;
+            this.filterRibbonBtn.LargeImage = global::MaarsExperienceCreator.Properties.Resources.filterjpeg24;
+            this.filterRibbonBtn.Name = "filterRibbonBtn";
+            this.filterRibbonBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("filterRibbonBtn.SmallImage")));
+            this.filterRibbonBtn.ToolTip = "Filter Anchors";
             // 
             // viewActiveUsers
             // 
@@ -627,61 +682,6 @@
             this.availableExpItemsLabel.TabIndex = 20;
             this.availableExpItemsLabel.Text = "Available Items";
             // 
-            // saveRibbonBtn
-            // 
-            this.saveRibbonBtn.Image = global::MaarsExperienceCreator.Properties.Resources.saveBtnCompressed24;
-            this.saveRibbonBtn.LargeImage = global::MaarsExperienceCreator.Properties.Resources.saveBtnCompressed24;
-            this.saveRibbonBtn.Name = "saveRibbonBtn";
-            this.saveRibbonBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("saveRibbonBtn.SmallImage")));
-            this.saveRibbonBtn.Text = "";
-            this.saveRibbonBtn.ToolTip = "Save Route";
-            this.saveRibbonBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.saveRibbonBtn_MouseUp);
-            // 
-            // delRouteRibbnBtn
-            // 
-            this.delRouteRibbnBtn.Image = global::MaarsExperienceCreator.Properties.Resources.compressedX_24;
-            this.delRouteRibbnBtn.LargeImage = global::MaarsExperienceCreator.Properties.Resources.compressedX_24;
-            this.delRouteRibbnBtn.Name = "delRouteRibbnBtn";
-            this.delRouteRibbnBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("delRouteRibbnBtn.SmallImage")));
-            this.delRouteRibbnBtn.ToolTip = "Provides a List of Available Routes, which can be deleted from database";
-            this.delRouteRibbnBtn.ToolTipTitle = "Delete Route";
-            this.delRouteRibbnBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.delRouteRibbnBtn_MouseUp);
-            // 
-            // updateRouteNotes
-            // 
-            this.updateRouteNotes.Image = global::MaarsExperienceCreator.Properties.Resources.clipboardjpeg24;
-            this.updateRouteNotes.LargeImage = global::MaarsExperienceCreator.Properties.Resources.clipboardjpeg24;
-            this.updateRouteNotes.Name = "updateRouteNotes";
-            this.updateRouteNotes.SmallImage = ((System.Drawing.Image)(resources.GetObject("updateRouteNotes.SmallImage")));
-            this.updateRouteNotes.TextAlignment = System.Windows.Forms.RibbonItem.RibbonItemTextAlignment.Right;
-            this.updateRouteNotes.ToolTip = "Launches Dialog to Update Notes for the provided route";
-            this.updateRouteNotes.ToolTipTitle = "Update Route Notes";
-            // 
-            // showHideRibbonBtn
-            // 
-            this.showHideRibbonBtn.Image = ((System.Drawing.Image)(resources.GetObject("showHideRibbonBtn.Image")));
-            this.showHideRibbonBtn.LargeImage = ((System.Drawing.Image)(resources.GetObject("showHideRibbonBtn.LargeImage")));
-            this.showHideRibbonBtn.Name = "showHideRibbonBtn";
-            this.showHideRibbonBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("showHideRibbonBtn.SmallImage")));
-            this.showHideRibbonBtn.ToolTip = "Show/Hide Columns";
-            this.showHideRibbonBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.showHideRibbonBtn_MouseUp);
-            // 
-            // sortRibbonBtn
-            // 
-            this.sortRibbonBtn.Image = ((System.Drawing.Image)(resources.GetObject("sortRibbonBtn.Image")));
-            this.sortRibbonBtn.LargeImage = ((System.Drawing.Image)(resources.GetObject("sortRibbonBtn.LargeImage")));
-            this.sortRibbonBtn.Name = "sortRibbonBtn";
-            this.sortRibbonBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("sortRibbonBtn.SmallImage")));
-            this.sortRibbonBtn.ToolTip = "Sort Anchors";
-            // 
-            // filterRibbonBtn
-            // 
-            this.filterRibbonBtn.Image = global::MaarsExperienceCreator.Properties.Resources.filterjpeg24;
-            this.filterRibbonBtn.LargeImage = global::MaarsExperienceCreator.Properties.Resources.filterjpeg24;
-            this.filterRibbonBtn.Name = "filterRibbonBtn";
-            this.filterRibbonBtn.SmallImage = ((System.Drawing.Image)(resources.GetObject("filterRibbonBtn.SmallImage")));
-            this.filterRibbonBtn.ToolTip = "Filter Anchors";
-            // 
             // MainExperienceCreator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -712,7 +712,6 @@
             this.Name = "MainExperienceCreator";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MAARS Experience Creator";
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.MainExperienceCreator_Load);
             this.Shown += new System.EventHandler(this.MainExperienceCreator_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.newRouteTable)).EndInit();

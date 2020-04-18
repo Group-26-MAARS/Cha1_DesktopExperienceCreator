@@ -40,9 +40,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(89, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(146, 17);
+            this.label1.Size = new System.Drawing.Size(178, 17);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Enter Name for Route";
+            this.label1.Text = "Enter Name for Experience";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // newExperienceNameTxtbox

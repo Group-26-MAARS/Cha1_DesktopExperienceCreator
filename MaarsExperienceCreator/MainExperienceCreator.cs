@@ -20,7 +20,7 @@ namespace MaarsExperienceCreator
         public MainExperienceCreator()
         {
             InitializeComponent();
-            this.BringToFront();
+            //this.BringToFront();
 
             createNewRouteHeaderCheckbox();
         }
@@ -468,10 +468,6 @@ namespace MaarsExperienceCreator
                     long ret;
                     if (long.TryParse(responseBody, out ret))
                     {
-                        Console.WriteLine("Key " + ret.ToString());
-                        DialogResult result = MessageBox.Show(experienceName + " has been saved to database", "Route Created",
-                                 MessageBoxButtons.OK,
-                                 MessageBoxIcon.Information);
                     }
                     else
                     {
@@ -518,10 +514,6 @@ namespace MaarsExperienceCreator
                     long ret;
                     if (long.TryParse(responseBody, out ret))
                     {
-                        Console.WriteLine("Key " + ret.ToString());
-                        DialogResult result = MessageBox.Show(routeName + " has been saved to database", "Route Created",
-                                 MessageBoxButtons.OK,
-                                 MessageBoxIcon.Information);
                     }
                     else
                     {
@@ -676,17 +668,26 @@ namespace MaarsExperienceCreator
                         // Save Before Entering the Loading Panel
                         SaveRouteDlg saveRouteDlg = new SaveRouteDlg(this);
                     }
-                    // Clear New Route Table
-                    clearNewRouteTable();
+                    else if (result == DialogResult.No)
+                    {
+                        this.clearNewRouteTable();
+                        // Replace the "New Route" Text with "Load Route" Text
+                        // Add a child window for loading a route from the DB
+                        newRouteTableLabel.Text = "Load Route";
+
+                        LoadRouteDlg loadRtDlg = new LoadRouteDlg(this);
+                    }
                 }
             }
             else
+            {
                 this.clearNewRouteTable();
-            // Replace the "New Route" Text with "Load Route" Text
-            // Add a child window for loading a route from the DB
-            newRouteTableLabel.Text = "Load Route";
+                // Replace the "New Route" Text with "Load Route" Text
+                // Add a child window for loading a route from the DB
+                newRouteTableLabel.Text = "Load Route";
 
-            LoadRouteDlg loadRtDlg = new LoadRouteDlg(this);
+                LoadRouteDlg loadRtDlg = new LoadRouteDlg(this);
+            }
         }
 
         private void loadRoutePanel_MouseUp(object sender, MouseEventArgs e)
@@ -903,6 +904,15 @@ namespace MaarsExperienceCreator
                         // Save Before Entering the Loading Panel
                         SaveExpDlg saveExpDlg = new SaveExpDlg(this, true);
                     }
+                    else if(result == DialogResult.No)
+                    {
+                        clearAvailableExperienceItems();
+                        // Replace the "New Route" Text with "Load Route" Text
+                        // Add a child window for loading a route from the DB
+                        experienceLabel.Text = "Load Experience";
+
+                        LoadExperienceDlg loadExpDlg = new LoadExperienceDlg(this);
+                    }
                 }
             }
             else
@@ -962,18 +972,12 @@ namespace MaarsExperienceCreator
         {
             enableFormControls();
             uiState = RouteUIState.notActive;
-            this.SendToBack();
             setupForNewExperience();
-            this.BringToFront();
         }
 
         private void MainExperienceCreator_Shown(object sender, EventArgs e)
         {
-            // change opacity
-            // showl ogin screen
             MaarsExperienceLogin loginScreen = new MaarsExperienceLogin(this);
-
-
         }
     }
 }

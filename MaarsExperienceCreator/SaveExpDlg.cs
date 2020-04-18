@@ -20,6 +20,7 @@ namespace MaarsExperienceCreator
             InitializeComponent();
             this.parentForm = parent;
             this.andLoad = andLoad;
+
             this.Show();
         }
 

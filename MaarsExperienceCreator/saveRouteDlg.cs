@@ -80,6 +80,8 @@ MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (result == DialogResult.OK)
                 {
                     parentForm.clearNewRouteTable();
+                    //this.parentForm.TopLevel = true;
+                    //this.TopLevel = false;
                     this.Close();
                     return;
                 }
