@@ -11,9 +11,68 @@ using System.Windows.Forms;
 using System.Threading;
 using System.IO;
 using System.Xml.Serialization;
+using System.Net;
+using Newtonsoft.Json;
+using System.Web;
+using System.Collections.Specialized;
+
 
 namespace MaarsExperienceCreator
 {
+    public class ExperienceAnimation
+    {
+        public string name;
+        public string _thingworxServer; // Will be empty for this experience if type is "Route"
+        public string url; // Will be empty for this experience if type is "Route"
+
+        public string getName()
+        {
+            return name;
+        }
+
+        public void setName(string name)
+        {
+            this.name = name;
+        }
+
+        public string getThingWorxServer()
+        {
+            return _thingworxServer;
+        }
+
+        public void setThingWorxServer(string thingworxServer)
+        {
+            _thingworxServer = thingworxServer;
+        }
+        public string getURL()
+        {
+            return url;
+        }
+
+        public void setURL(string url)
+        {
+            this.url = url;
+        }
+        override public string ToString()
+        {
+            return $"name: {this.name}\ntype:{"Animation"}\nurl:{this.url}";
+        }
+    }
+    public class Experience
+    {
+        public string _type;
+        public ExperienceAnimation animation; // Will be null for this experience if type is "Route"
+        public string getType()
+        {
+            return _type;
+        }
+
+        public void setType(string type)
+        {
+            _type = type;
+        }
+    }
+
     public partial class MainExperienceCreator : Form
     {
         delegate void MyDelegate();
@@ -120,58 +179,68 @@ namespace MaarsExperienceCreator
             this.NewExperienceTableModified = false;
             this.experienceTable.Rows.Clear();
         }
-        public void setupForNewExperience()
+        public int setupForNewExperience()
         {
             Thread myThread = new Thread(new ThreadStart(DisplayLoadingScreen));
             myThread.Start();
             clearAvailableExperienceItems();
 
-            HttpClient c = new HttpClient();
-            Task<string> t = c.GetStringAsync("https://sharingservice20200308094713.azurewebsites.net" + "/api/routes/all");
-
-            var result = string.Join(",", t.Result);
-            Console.WriteLine(result);
-            string[] routesKeyVal = result.Replace(", ", "*").Replace("[\"", "").Replace("\"]", "").Replace("\"", "").Split(',');
-            availableExpItems.Visible = false;
-            availableExpItems.ReadOnly = false;
-            int i = 0;
-            foreach (string routeStr in routesKeyVal)
+            try
             {
-                string routeName = routeStr.Split(':')[0];
+                HttpClient c = new HttpClient();
+                Task<string> t = c.GetStringAsync("https://sharingservice20200308094713.azurewebsites.net" + "/api/routes/all");
 
-                this.availableExpItems.Rows.Add(false, routeName, "Route", "");
-                availableExpItems.Rows[i].Cells["availExpChkboxCol"].ReadOnly = false;
-                availableExpItems.Rows[i].Cells["availExpNameCol"].ReadOnly = true;
-                availableExpItems.Rows[i].Cells["availExpTypeCol"].ReadOnly = true;
-                availableExpItems.Rows[i].Cells["availExpUserAccessCol"].ReadOnly = true;
+                var result = string.Join(",", t.Result);
+                Console.WriteLine(result);
+                string[] routesKeyVal = result.Replace(", ", "*").Replace("[\"", "").Replace("\"]", "").Replace("\"", "").Split(',');
+                availableExpItems.Visible = false;
+                availableExpItems.ReadOnly = false;
+                int i = 0;
+                foreach (string routeStr in routesKeyVal)
+                {
+                    string routeName = routeStr.Split(':')[0];
 
-                i++;
+                    this.availableExpItems.Rows.Add(false, routeName, "Route", "");
+                    availableExpItems.Rows[i].Cells["availExpChkboxCol"].ReadOnly = false;
+                    availableExpItems.Rows[i].Cells["availExpNameCol"].ReadOnly = true;
+                    availableExpItems.Rows[i].Cells["availExpTypeCol"].ReadOnly = true;
+                    availableExpItems.Rows[i].Cells["availExpUserAccessCol"].ReadOnly = true;
+
+                    i++;
+                }
+
+                Task<string> x = c.GetStringAsync("https://sharingservice20200308094713.azurewebsites.net" + "/api/animations/all");
+
+                abortLoadingForm();
+
+                result = string.Join(",", x.Result.Replace(":\\", "_"));
+
+                string[] animationsKeyVal = result.Replace("[\"", "").Replace("\"]", "").Replace("\"", "").Replace(",\\", "").Split(',');
+                this.availableExpItems.Visible = false;
+
+                foreach (string animationStr in animationsKeyVal)
+                {
+                    string animationName = animationStr.Split(':')[0].Substring(2, animationStr.Split(':')[0].Length - 2).Replace(" ", "");
+                    this.availableExpItems.Rows.Add(false, animationName, "Assembly", "");
+
+                }
+                showExperienceUI();
+
+
             }
-
-            Task<string> x = c.GetStringAsync("https://sharingservice20200308094713.azurewebsites.net" + "/api/animations/all");
-
-            abortLoadingForm();
-
-            result = string.Join(",", x.Result.Replace(":\\", "_"));
-
-            string[] animationsKeyVal = result.Replace("[\"", "").Replace("\"]", "").Replace("\"", "").Replace(",\\", "").Split(',');
-            this.availableExpItems.Visible = false;
-
-            foreach (string animationStr in animationsKeyVal)
+            catch (Exception e)
             {
-                string animationName = animationStr.Split(':')[0].Substring(2, animationStr.Split(':')[0].Length - 2).Replace(" ", "");
-                this.availableExpItems.Rows.Add(false, animationName, "Assembly", "");
-
+                if ((e.InnerException != null) && (e.InnerException.InnerException != null))
+                {
+                    // No Internet Connection
+                    return -1;
+                }
             }
-
-            availableExpItems.Visible = true;
-
-
+            return 0;
         }
         public void abortLoadingForm()
         {
             LoadingForm.setAbort();
-
         }
 
         public void setupForNewRoute()
@@ -725,9 +794,62 @@ namespace MaarsExperienceCreator
             saveBtnHelper();
         }
 
-        private void MainExperienceCreator_Load(object sender, EventArgs e)
-        {
 
+        // @steeve: move this to happen on startup of Unity App
+        // handle logistics of Vuforia studio
+        /// <summary>
+        /// Looks for Vuforia Studio Projects Directory, 
+        /// takes every project in there, and makes an object of the projects name, thingworxServer, url, and type (of Assembly)
+        /// Saves the list of json to a file called "animations" (looking @ you, Dylan)
+        /// </summary>
+        public async Task setupVuforiaStudioLogistics()
+        {
+            string username = System.Environment.GetEnvironmentVariable("UserName");
+            string docDir = $"C:\\Users\\{username}\\Documents";
+            string challenge1Dir = $"{docDir}\\MAARS-C1";
+            string expDir = $"{challenge1Dir}\\Experiences";
+            string vuforiaProjectsDir = $"{docDir}\\VuforiaStudio\\Projects";
+
+            // for each dir in vuforiaProjectsDir (except node_modules)
+            string[] subdirs = Directory.GetDirectories(vuforiaProjectsDir);
+            subdirs = subdirs.Where(x => !x.Contains("node_modules")).ToArray();
+
+            string assembliesJsonPath = $"{challenge1Dir}\\animations.json";
+
+            List<Experience> assemblyList = new List<Experience>();
+
+            foreach (string sub in subdirs)
+            {
+                string json = File.ReadAllText($"{sub}\\appConfig.json");
+                Experience tmpExperience = new Experience();
+                ExperienceAnimation animationExperience = JsonConvert.DeserializeObject<ExperienceAnimation>(json);
+                animationExperience.
+                    setURL(WebUtility.UrlEncode($"https://view.vuforia.com/command/view-experience?url={animationExperience.getThingWorxServer()}/ExperienceService/content/projects/{animationExperience.getName()}/index.html"));
+                tmpExperience.setType("Assembly");
+
+                HttpClient client = new HttpClient();
+                string body = $"{animationExperience.getName()}:{JsonConvert.SerializeObject(animationExperience)}";
+                NameValueCollection queryString = HttpUtility.ParseQueryString(string.Empty);
+                queryString.Add("name", animationExperience.getName());
+                queryString.Add("url", animationExperience.getURL());
+
+                string url = "https://sharingservice20200308094713.azurewebsites.net/api/animations";
+
+                // POST to API
+                var response = await client.PostAsync(url, new StringContent(queryString.ToString()));
+                //Debug.Log(response.StatusCode);
+                // end POST
+                tmpExperience.animation = animationExperience;
+                assemblyList.Add(tmpExperience);
+            }
+
+            File.WriteAllText(assembliesJsonPath, JsonConvert.SerializeObject(assemblyList));
+        }
+
+
+        private async void MainExperienceCreator_Load(object sender, EventArgs e)
+        {
+            await setupVuforiaStudioLogistics();
         }
 
 
@@ -813,7 +935,6 @@ namespace MaarsExperienceCreator
                 var md = new MyDelegate(abortLoadingForm);
                 md();
                 */
-                showExperienceUI();
             }
             else
             {

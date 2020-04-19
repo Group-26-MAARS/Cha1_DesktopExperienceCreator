@@ -46,7 +46,7 @@ namespace MaarsExperienceCreator
                 if (i == 100)
                     i = 0;
                 // If not in the process of being aborted
-                Thread.Sleep(5);
+                Thread.Sleep(20);
                 if (abortRequested == false)
                 {
                     circularProgressBar1.Value = i++;

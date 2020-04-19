@@ -58,8 +58,8 @@ namespace MaarsExperienceCreator
 
             if (validateWithConfig(this.textBox1.Text, this.maskedTextBox1.Text))
             {
-                this.parentForm.allowLogin();
                 this.Close();
+                this.parentForm.allowLogin();
             }
             else
             {

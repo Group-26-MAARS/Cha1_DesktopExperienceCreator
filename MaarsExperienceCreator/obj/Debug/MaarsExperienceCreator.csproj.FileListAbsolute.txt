@@ -9,7 +9,6 @@ C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreat
 C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\obj\Debug\MaarsExperienceCreator.csproj.CopyComplete
 C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\bin\Debug\NLog.dll
 C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\bin\Debug\NLog.xml
-C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\obj\Debug\MaarsExperienceCreator.MainExperienceCreator.resources
 C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\obj\Debug\MaarsExperienceCreator.SaveRouteDlg.resources
 C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\obj\Debug\MaarsExperienceCreator.LoadRouteDlg.resources
 C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\bin\Debug\WinFormAnimation.dll
@@ -26,3 +25,6 @@ C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreat
 C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\bin\Debug\PBKDF2.NET.dll
 C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\bin\Debug\BCrypt.Net-Core.pdb
 C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\bin\Debug\PBKDF2.NET.xml
+C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\obj\Debug\MaarsExperienceCreator.ExperienceAnimation.resources
+C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\bin\Debug\Newtonsoft.Json.dll
+C:\Users\drobe\Dropbox\Senior Design\MaarsExperienceCreator\MaarsExperienceCreator\MaarsExperienceCreator\bin\Debug\Newtonsoft.Json.xml
